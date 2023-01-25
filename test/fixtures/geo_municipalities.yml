@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  geo_region: one
+  geo_province: one
+  name: MyString
+
+two:
+  geo_region: two
+  geo_province: two
+  name: MyString

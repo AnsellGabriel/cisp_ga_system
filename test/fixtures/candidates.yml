@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_hub: one
+  elect_position: one
+  last_name: MyString
+  first_name: MyString
+  middle_name: MyString
+  suffix: MyString
+  birth_date: 2022-12-28
+  address: MyText
+  mobile_number: MyString
+  email: MyString
+  education: MyString
+  company: MyString
+  occupation: MyString
+  status: MyString
+
+two:
+  event_hub: two
+  elect_position: two
+  last_name: MyString
+  first_name: MyString
+  middle_name: MyString
+  suffix: MyString
+  birth_date: 2022-12-28
+  address: MyText
+  mobile_number: MyString
+  email: MyString
+  education: MyString
+  company: MyString
+  occupation: MyString
+  status: MyString

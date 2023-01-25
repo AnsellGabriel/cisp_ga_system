@@ -1,0 +1,43 @@
+<%= content_tag :h1, "List of Elect Positions" %>
+
+
+<div class="text-end mb-3">
+  <%= link_to new_elect_position_path, class: 'btn btn-primary' do %>
+    New Elect Position
+  <% end %>
+</div>
+
+<table class ="table table-striped">
+  <table class="table table-borderless table-hover">
+    <thead>
+      <tr class="border-top border-bottom border-primary">
+
+      <th>#</th>
+        <th class="text-primary">Coop Event</th>
+        <th class="text-primary">Name</th>
+        <th class="text-primary">Vacant</th>
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @elect_positions.each do |elect_position| %>
+        <tr>
+
+        <th scope="row"><%= elect_position.id %></th>
+        <td><%= elect_position.coop_event %></td>
+        <td><%= elect_position.name %></td>
+        <td><%= elect_position.vacant %></td>
+    
+          <td>
+            <%= link_to 'View', elect_position, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Edit', edit_elect_position_path(elect_position), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "Delete", elect_position, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

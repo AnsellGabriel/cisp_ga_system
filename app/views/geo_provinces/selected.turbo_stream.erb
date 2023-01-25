@@ -1,0 +1,9 @@
+<%= turbo_stream.update @target do %>
+    <option value="">Select a municipality</option>
+
+
+  <% @municipality.each do |municipality| %>
+    <option value="<%= municipality.id %>"><%= municipality.name %></option>
+  <% end %>
+  
+<% end %>

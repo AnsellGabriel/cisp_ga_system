@@ -1,0 +1,44 @@
+<div class="card">
+  <div class="card-header">
+    Coop event
+    <%= link_to "Delete", @coop_event, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div id="<%= dom_id coop_event %>">
+          <p>
+            <strong>Name:</strong>
+            <%= coop_event.name %>
+          </p>
+          <p>
+            <strong>Event date:</strong>
+            <%= coop_event.event_date %>
+          </p>
+          <p>
+            <%= coop_event.description %>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-6">
+            <h5 class="text-primary">Election vacant position(s)</h5>
+          </div>
+          <div class="col-6">
+            <div class="text-end">
+              <%= link_to "New Position",new_elect_position_path(v: @coop_event), class: 'btn btn-primary', data: { turbo_frame: "remote_modal" } %>
+  
+            </div>
+          </div>
+        </div>
+        <br>
+        <%= render 'elect_positions/show_elect_positions' %>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= link_to "Edit", edit_coop_event_path(@coop_event), class: "btn btn-secondary btn-sm" %> |
+    <%= link_to "Back", coop_events_path, class: "btn btn-secondary btn-sm" %>
+  </div>
+</div>

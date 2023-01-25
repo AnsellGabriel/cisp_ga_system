@@ -1,0 +1,17 @@
+<%# <div class="card">
+  <div class="card-header">
+  <h5>Add candidate</h5>
+  
+  </div>
+
+  <div class="card-body"> %>
+<%#= render "form", candidate: @candidate %>
+<%# </div>
+</div> %>
+<%= render "remote_modal", title: "File for candidacy" do %>
+  <% if params[:p] == "notmodal" %>
+    <%= render "form", url: candidates_path(v: @candidate), meth: 'post' %>
+  <% else %>
+    <%= render "form", url: candidates_path(v: @event_hub), meth: 'post' %>
+  <% end %>
+<% end %>

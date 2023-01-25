@@ -1,0 +1,22 @@
+<%#= simple_form_for(@event_hub) do |f| %>
+  <%= form_for voter_code_event_hubs_path, :method => :get do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <div class="col d-flex justify-content-center">
+      <div class="card" style="width:600px">
+        <%= image_tag 'assembly_logo.png', width: 200, class: 'mb-2 mb-lg-0 me-2' %>
+        <div class="card-body">
+          <div class="form-inputs mb-5" style="text-align: center;">
+            <%= f.label :search, "Vote code" %>
+            <%= f.text_field :search %>
+            <%= f.submit :submit %>
+          </div>
+          <div class="form-actions text-end">
+            <%#= link_to "Back", event_hubs_path, class: "btn btn-secondary" %>
+            <%#= link_to 'Vote', voter_code_event_hubs_path(v: @event_hub.vote_code), class: 'btn btn-success' %>
+            <%#= f.button :submit, class: "btn btn-success" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>

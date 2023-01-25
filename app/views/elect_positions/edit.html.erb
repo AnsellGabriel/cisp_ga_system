@@ -1,0 +1,14 @@
+<%# <div class="card">
+  <div class="card-header">
+  <h5 >Edit elect position</h5>
+  
+  </div>
+
+  <div class="card-body"> %>
+    <%#= render "form", elect_position: @elect_position %>
+
+<%= render "remote_modal", title: "Edit benefit" do %>
+  <%= render "form", url: elect_position_path(@elect_position), meth: 'patch' %>
+<% end %>
+  <%# </div>
+</div> %>

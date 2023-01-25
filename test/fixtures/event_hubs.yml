@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coop_event: one
+  cooperative: one
+  capital: 9.99
+  vote_power: 9.99
+  vote_code: MyString
+
+two:
+  coop_event: two
+  cooperative: two
+  capital: 9.99
+  vote_power: 9.99
+  vote_code: MyString

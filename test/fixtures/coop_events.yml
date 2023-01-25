@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  event_date: 2022-12-27
+  description: MyText
+  election: false
+  active: false
+
+two:
+  name: MyString
+  event_date: 2022-12-27
+  description: MyText
+  election: false
+  active: false

@@ -1,0 +1,5 @@
+<% if reg.board_reso.attached? %>
+  <%#= link_to '<i class="bi bi-eye"></i>'.html_safe, rails_blob_url(reg.id_pid), target: :_blank, class: 'btn btn-outline-primary btn-sm' %>
+  <%= link_to '<i class="bi bi-eye"></i>'.html_safe, rails_blob_url(reg.board_reso), target: :_blank, class: 'btn btn-outline-primary btn-sm' %>
+  <%#= link_to '<i class="bi bi-file-earmark-arrow-down"></i>'.html_safe, rails_blob_path(registration.file,disposition: "attachment"), class: 'btn btn-outline-primary btn-sm' %>
+<% end %>

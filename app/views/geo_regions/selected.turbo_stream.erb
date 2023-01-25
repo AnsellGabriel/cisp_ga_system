@@ -1,0 +1,7 @@
+<%= turbo_stream.update @target do %>
+    <option value="">Select a province</option>
+  <% @provinces.each do |province| %>
+  
+    <option value="<%= province.id %>"><%= province.name %></option>
+  <% end %>
+<% end %>

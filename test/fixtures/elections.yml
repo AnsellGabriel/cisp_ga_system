@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_hub: one
+  voter_code: MyString
+
+two:
+  event_hub: two
+  voter_code: MyString

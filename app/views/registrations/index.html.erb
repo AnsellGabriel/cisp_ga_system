@@ -1,0 +1,68 @@
+<%= search_form_for @q, data: { turbo_frame: :results } do |f| %>
+  <%# # Search if the name field contains... %>
+  <%#= f.label :last_name_cont %>
+  <%#= f.search_field :last_name_cont %>
+  <%# # Search if an associated articles.title starts with... %>
+  <%#= f.label :registration.event_hub_start %>
+  <%#= f.search_field :articles_title_start %>
+  <%= f.label :event_hub_cooperative_name_cont %>
+  <%= f.search_field :event_hub_cooperative_name_cont %>
+  <%# # Attributes may be chained. Search multiple attributes for one value... %>
+  <%#= f.label :last_name_or_first_name_cont %>
+  <%#= f.search_field :last_name_or_first_name_cont %>
+  <%= f.submit %>
+<% end %>
+<div class="row">
+  <div class="col">
+    <%= content_tag :h4, "List of Registrations", class: "text-primary"  %>
+  </div>
+  <div class="col">
+    <div class="text-end mb-3">
+      <%= link_to 'Back', home_event_hubs_path, class: 'btn btn-secondary btn-lg' %>
+      <%= link_to 'Register', new_modal_registrations_path(q: "notmodal"), class: 'btn btn-primary btn-lg' %>
+    </div>
+  </div>
+</div>
+<%= turbo_frame_tag :result do %>
+  <table class="table table-borderless table-hover">
+    <thead>
+      <tr class="border-top border-bottom border-primary">
+        <th>#</th>
+        <th class="text-primary">Registered</th>
+        <th class="text-primary">Attendance</th>
+        <th></th>
+      </tr>
+    </thead>
+    <%== pagy_bootstrap_nav(@pagy) %>
+    <tbody>
+      <% @registrations.each do |registration| %>
+        <tr>
+          <th scope="row"><%= registration.id %></th>
+          <td><strong><%= registration.event_hub %></strong><br>
+            <%= registration.get_fullname %><br>
+            <small><i class="bi bi-phone"></i> <%= registration.mobile_number %> |
+              <i class="bi bi-envelope"></i> <%= registration.email %></small></td>
+          <td><%= registration.guest_type %> <span class="badge text-bg-warning"><%= "Attended" if registration.attend %></span>
+            <br>
+            <small><%= registration.attendance %> <br>
+              <%= registration.created_at %> </small> </td>
+          <td>
+            <div class="mb-2">
+              <%= link_to '<i class="bi bi-eyeglasses"></i>'.html_safe, registration_path(registration), class: 'btn btn-secondary btn-sm', data: { turbo_frame: "remote_modal" }  %>
+              <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, registration_edit_modal_path(registration), class: 'btn btn-outline-primary btn-sm', data: { turbo_frame: "remote_modal" } %>
+              <% if registration.attend %>
+                <%= link_to '<i class="bi bi-bookmark-star"></i>'.html_safe, attend_registration_path(registration), class: "btn btn-outline-warning btn-sm" %>
+              <% else %>
+                <%= link_to '<i class="bi bi-bookmark-star"></i>'.html_safe, attend_registration_path(registration), class: "btn btn-warning btn-sm" %>
+              <% end %>
+            </div>
+            <%= link_to '<i class="bi bi-person-badge"></i>'.html_safe, rails_blob_url(registration.id_pic), target: :_blank, class: 'btn btn-outline-secondary btn-sm' if registration.id_pic.attached? %>
+            <%= link_to '<i class="bi bi-file-earmark-text"></i>'.html_safe, rails_blob_url(registration.board_reso), target: :_blank, class: 'btn btn-outline-secondary btn-sm' if registration.board_reso.attached? %>
+            <%#= link_to "Delete", registration, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>

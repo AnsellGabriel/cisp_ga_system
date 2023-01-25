@@ -1,0 +1,30 @@
+<%= simple_form_for(@cooperative) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="form-inputs">
+    <%= f.input :name, wrapper_html: { class: "mb-3" } %>
+    <div data-controller="geographs">
+      <div class="row mb-3">
+        <%= f.association :geo_region, label: "Region", prompt: "Select a region", wrapper_html: { class: "col-md-3" }, input_html: { class: 'form-select', data: { action: "change->geographs#search_province" } } %>
+        <%= f.association :geo_province, label: "Province", wrapper_html: { class: "col-md-3" }, input_html: { class: 'form-select', id: 'province_id', data: { geographs_target: "provinceSelect", action: "change->geographs#search_municipality" } } %>
+        <%= f.association :geo_municipality, label: "Municipality", wrapper_html: { class: "col-md-3" }, input_html: { class: 'form-select', id: 'municipality_id', data: { geographs_target: "municipalitySelect", action: "change->geographs#search_barangay" } } %>
+        <%= f.association :geo_barangay, label: "Barangay", wrapper_html: { class: "col-md-3" }, input_html: { class: 'form-select', id: 'barangay_id', data: { geographs_target: "barangaySelect" } }  %>
+        <%= f.input :street %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <%= f.input :email, wrapper_html: { class: "col-md-6" } %>
+      <%= f.input :contact_no, wrapper_html: { class: "col-md-6" } %>
+    </div>
+    <div class="row mb-3">
+      <%= f.input :tin, label: "TIN", wrapper_html: { class: "col-md-4" } %>
+      <%= f.input :registration_no, label: "Registration number", wrapper_html: { class: "col-md-4" } %>
+      <%= f.input :coop_type, label: "Cooperative Type", collection: Cooperative::CoopType, wrapper_html: { class: "col-md-4" } %>
+    </div>
+  </div>
+  <br>
+  <div class="form-actions text-end">
+    <%= link_to "Back", event_page_path(@event_hub), class: "btn btn-secondary" %>
+    <%= f.button :submit, class: "btn btn-success" %>
+  </div>
+<% end %>

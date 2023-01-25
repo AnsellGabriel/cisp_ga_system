@@ -1,0 +1,21 @@
+<%= simple_form_for @election, url: elections_path(p: params[:p]), method: :post do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="col d-flex justify-content-center">
+    <div class="card" style="width:600px">
+      <%= image_tag 'assembly_logo.png', width: 200, class: 'mb-2 mb-lg-0 me-2' %>
+      <div class="card-body">
+        <div class="form-inputs mb-5" style="text-align: center;">
+          <div class="form-inputs mb-3">
+            <%#= f.association :event_hub %>
+            <%= f.input :voter_code %>
+          </div>
+          <div class="form-actions text-end">
+            <%= link_to "Back", root_path, class: "btn btn-secondary" %>
+            <%= f.button :submit, class: "btn btn-success", value: "Vote" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

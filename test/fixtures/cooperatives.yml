@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  geo_region: one
+  geo_province: one
+  geo_municipality: one
+  geo_barangay: one
+  street: MyString
+  tin: MyString
+  registration_no: MyString
+  coop_type: MyString
+  email: MyString
+  contact_no: MyString
+
+two:
+  name: MyString
+  geo_region: two
+  geo_province: two
+  geo_municipality: two
+  geo_barangay: two
+  street: MyString
+  tin: MyString
+  registration_no: MyString
+  coop_type: MyString
+  email: MyString
+  contact_no: MyString

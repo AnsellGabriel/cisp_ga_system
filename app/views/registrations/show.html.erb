@@ -1,0 +1,16 @@
+<%# <div class="card">
+  <div class="card-header">
+    Registration
+  </div>
+  <div class="card-body"> %>
+<%= render "remote_modal", title: "Guest" do %>
+  <%= render @registration %>
+<%= link_to "Delete", @registration, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+<% end %>
+<%# </div>
+  <div class="card-footer"> %>
+<%#= link_to "Edit", edit_registration_path(@registration), class: "btn btn-secondary btn-sm" %> |
+<%#= link_to "Back", registrations_path, class: "btn btn-secondary btn-sm" %>
+<%# </div>
+
+</div> %>

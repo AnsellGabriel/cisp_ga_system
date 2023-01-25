@@ -1,0 +1,16 @@
+
+
+<div class="card">
+  <div class="card-header">
+    <h1>Elect position</h1>
+    <%= link_to "Delete", @elect_position, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+  </div>
+  <div class="card-body">
+    <%= render @elect_position %>
+  </div>
+  <div class="card-footer">
+    <%= link_to "Edit", edit_elect_position_path(@elect_position), class: "btn btn-secondary btn-sm" %> |
+    <%= link_to "Back", elect_positions_path, class: "btn btn-secondary btn-sm" %>
+  </div>
+
+</div>

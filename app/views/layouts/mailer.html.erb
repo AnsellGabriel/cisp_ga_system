@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      p, a {
+      font-family: Arial;
+      }
+      h1 {
+      color: maroon;
+      font-family: Helvetica;
+      }
+      .center {
+        border-style: solid;
+        border-width: 1px;
+        width:500px;
+      }
+      .footer {
+        background-color: #0008C1;
+        height: 50px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="text-align:center">
+      <div class="center">
+        <%= yield %>
+        <div class="footer">
+        <br>
+          <a href="https://www.1cisp.coop" target="_blank" style="color:white;">www.1cisp.coop</a>
+        </div>
+      </div >
+    </div>
+  </body>
+</html>

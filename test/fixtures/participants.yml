@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_hub: one
+  last_name: MyString
+  first_name: MyString
+  middle_name: MyString
+  birth_date: 2022-12-28
+  mobile_number: MyString
+  email: MyString
+  guest_type: MyString
+  attendance_channel: MyString
+
+two:
+  event_hub: two
+  last_name: MyString
+  first_name: MyString
+  middle_name: MyString
+  birth_date: 2022-12-28
+  mobile_number: MyString
+  email: MyString
+  guest_type: MyString
+  attendance_channel: MyString

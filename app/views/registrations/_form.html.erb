@@ -1,0 +1,54 @@
+<%#= simple_form_for(@registration) do |f| %>
+  <%#= simple_form_for @registration, url: url, method: meth, url: registrations_path(q: params[:q]), method: :post do |f| %>
+    <%= simple_form_for(@registration, url: url, method: meth) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%#= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <div class="form-inputs mb-3">
+        <div class="row mb-3">
+          <%= f.input :last_name, wrapper_html: { class: "col-md-4" } %>
+          <%= f.input :first_name, wrapper_html: { class: "col-md-4" } %>
+          <%= f.input :middle_name, wrapper_html: { class: "col-md-4" } %>
+        </div>
+        <div class="row mb-3">
+          <%= f.input :birth_date, as: :string, wrapper_html: { class: "col-md-4" }, 
+      input_html: { data: { controller: "flatpickr",
+      flatpickr_max_date: Time.zone.now,
+      flatpickr_next_arrow: "Next",
+      flatpickr_prev_arrow: "Prev" } } %>
+          <%= f.input :mobile_number, placeholder: "+63", wrapper_html: { class: "col-md-4" } %>
+          <%= f.input :email, placeholder: 'user@domain.com', wrapper_html: { class: "col-md-4" } %>
+        </div>
+        <% if params[:q] == "notmodal" %>
+          <%= f.association :event_hub, label: "Cooperative", wrapper_html: { class: "mb-3" }, input_html: { data: { controller: 'ts--select' } } %>
+        <% end %>
+        <div class="row mb-3">
+          <%= f.input :guest_type, collection: Registration::GuestType, wrapper_html: { class: "col-md-6" }, input_html: { id: "guesttype" } %>
+          <%= f.input :attendance, label: "You are attending?", collection: Registration::Attendance, wrapper_html: { class: "col-md-6" } %>
+          <div id="guesttype" class="form-text">Only the principal delegate are allowed to vote.</div>
+        </div>
+        <div class="alert alert-warning" role="alert">
+          <strong>  <i class="bi bi-file-earmark-arrow-up"></i> </strong>  Official delegate are required to upload their scanned image of their ID and Board resolution.
+        </div>
+        <div class="card">
+          <div class="card-header">Attachments</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <h6>ID Picture: </h6>
+                <%= f.file_field :id_pic %>
+              </div>
+              <div class="col-md-6">
+                <h6>Board Resolution: </h6>
+                <%= f.file_field :board_reso %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions text-end">
+        <%#= link_to "Back", root_path, class: "btn btn-secondary" %>
+        <%= link_to "Back", event_page_path(@event_hub), class: "btn btn-secondary" %>
+        <%= f.button :submit, class: "btn btn-success", value: "Register" %>
+      </div>
+    <% end %>

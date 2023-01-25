@@ -1,0 +1,12 @@
+<%# <h1>Register#register_created</h1> %>
+<%= image_tag attachments['email_header.jpg'].url, alt: 'My Photo',width: 500, class: 'photos' %>
+
+<p>
+  You are now registered 
+</p>
+<h1>Name: <%= @name %> </h1>
+<% if @guest_type == "Principal Delegate" %>
+  <p>
+    Your voter code is <strong> <%= @voter %> </strong>
+  </p>
+<%end%>

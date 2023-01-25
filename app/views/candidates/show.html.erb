@@ -1,0 +1,16 @@
+
+
+<div class="card">
+  <div class="card-header">
+    <h1>Candidate</h1>
+    <%= link_to "Delete", @candidate, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+  </div>
+  <div class="card-body">
+    <%= render @candidate %>
+  </div>
+  <div class="card-footer">
+    <%= link_to "Edit", edit_candidate_path(@candidate), class: "btn btn-secondary btn-sm" %> |
+    <%= link_to "Back", candidates_path, class: "btn btn-secondary btn-sm" %>
+  </div>
+
+</div>

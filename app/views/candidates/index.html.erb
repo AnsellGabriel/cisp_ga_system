@@ -1,0 +1,65 @@
+<%= content_tag :h1, "List of Candidates" %>
+
+
+<div class="text-end mb-3">
+  <%= link_to new_candidate_path(p: "notmodal"), class: 'btn btn-primary' do %>
+    New Candidate
+  <% end %>
+</div>
+
+<table class ="table table-striped">
+  <table class="table table-borderless table-hover">
+    <thead>
+      <tr class="border-top border-bottom border-primary">
+
+      <th>#</th>
+        <th class="text-primary">Event Hub</th>
+        <th class="text-primary">Elect Position</th>
+        <th class="text-primary">Last Name</th>
+        <th class="text-primary">First Name</th>
+        <th class="text-primary">Middle Name</th>
+        <th class="text-primary">Suffix</th>
+        <th class="text-primary">Birth Date</th>
+        <th class="text-primary">Address</th>
+        <th class="text-primary">Mobile Number</th>
+        <th class="text-primary">Email</th>
+        <th class="text-primary">Education</th>
+        <th class="text-primary">Company</th>
+        <th class="text-primary">Occupation</th>
+        <th class="text-primary">Status</th>
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @candidates.each do |candidate| %>
+        <tr>
+
+        <th scope="row"><%= candidate.id %></th>
+        <td><%= candidate.event_hub %></td>
+        <td><%= candidate.elect_position %></td>
+        <td><%= candidate.last_name %></td>
+        <td><%= candidate.first_name %></td>
+        <td><%= candidate.middle_name %></td>
+        <td><%= candidate.suffix %></td>
+        <td><%= candidate.birth_date %></td>
+        <td><%= candidate.address %></td>
+        <td><%= candidate.mobile_number %></td>
+        <td><%= candidate.email %></td>
+        <td><%= candidate.education %></td>
+        <td><%= candidate.company %></td>
+        <td><%= candidate.occupation %></td>
+        <td><%= candidate.status %></td>
+    
+          <td>
+            <%= link_to 'View', candidate, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Edit', edit_candidate_path(candidate), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "Delete", candidate, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,21 @@
+<%= content_tag :h1, @event_hub.cooperative.name %>
+<h4>Vote Strength <%= @event_hub.vote_amount%></h4>
+
+<%#= content_tag :h3, @event_hub.vote_amount %>
+<div class="row">
+  <% @candidates.each do |can| %>
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem;">
+        <%= image_tag can.picture, width: "100%" if can.picture.attached? %>
+        <div class="card-body">
+          <%= can.get_fullname %>
+          <p class="mb-0"><%= can.elect_position %></p>
+          <small><%= can.event_hub %></small> <br>
+          <class class="text-end">
+            <a href="#" class="btn btn-primary btn-sm">Vote</a>
+          </class>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

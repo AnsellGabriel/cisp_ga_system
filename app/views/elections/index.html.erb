@@ -1,0 +1,41 @@
+<%= content_tag :h1, "List of Elections" %>
+
+
+<div class="text-end mb-3">
+  <%= link_to new_election_path, class: 'btn btn-primary' do %>
+    New Election
+  <% end %>
+</div>
+
+<table class ="table table-striped">
+  <table class="table table-borderless table-hover">
+    <thead>
+      <tr class="border-top border-bottom border-primary">
+
+      <th>#</th>
+        <th class="text-primary">Event Hub</th>
+        <th class="text-primary">Voter Code</th>
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @elections.each do |election| %>
+        <tr>
+
+        <th scope="row"><%= election.id %></th>
+        <td><%= election.event_hub %></td>
+        <td><%= election.voter_code %></td>
+    
+          <td>
+            <%= link_to 'View', election, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Edit', edit_election_path(election), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "Delete", election, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,14 @@
+<%# <div class="card">
+  <div class="card-header">
+  <h5>Add elect position</h5>
+  
+  </div>
+
+  <div class="card-body"> %>
+<%= render "remote_modal", title: "Registration" do %>
+  <%#= render "form_modal", registration: @registration %>
+  <%= render "form", url: elect_positions_path(v: @coop_event), meth: 'post' %>
+<% end %>
+<%#= render "form", elect_position: @elect_position %>
+<%# </div>
+</div> %>

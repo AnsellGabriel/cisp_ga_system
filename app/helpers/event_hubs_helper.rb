@@ -1,0 +1,2 @@
+module EventHubsHelper
+end

@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coop_event: one
+  name: MyString
+  vacant: 1
+
+two:
+  coop_event: two
+  name: MyString
+  vacant: 1

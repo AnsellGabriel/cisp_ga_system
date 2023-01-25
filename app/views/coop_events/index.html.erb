@@ -1,0 +1,47 @@
+<%= content_tag :h1, "List of Coop Events" %>
+
+
+<div class="text-end mb-3">
+  <%= link_to new_coop_event_path, class: 'btn btn-primary' do %>
+    New Coop Event
+  <% end %>
+</div>
+
+<table class ="table table-striped">
+  <table class="table table-borderless table-hover">
+    <thead>
+      <tr class="border-top border-bottom border-primary">
+
+      <th>#</th>
+        <th class="text-primary">Name</th>
+        <th class="text-primary">Event Date</th>
+        <th class="text-primary">Description</th>
+        <th class="text-primary">Election</th>
+        <th class="text-primary">Active</th>
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @coop_events.each do |coop_event| %>
+        <tr>
+
+        <th scope="row"><%= coop_event.id %></th>
+        <td><%= coop_event.name %></td>
+        <td><%= coop_event.event_date %></td>
+        <td><%= coop_event.description %></td>
+        <td><%= coop_event.election %></td>
+        <td><%= coop_event.active %></td>
+    
+          <td>
+            <%= link_to 'View', coop_event, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Edit', edit_coop_event_path(coop_event), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "Delete", coop_event, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
