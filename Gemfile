@@ -59,7 +59,8 @@ group :development do
   gem "letter_opener", group: :development
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
-
+  gem "capistrano", "~> 3.10", require: false
+  gem "capistrano-rails", "~> 1.6", require: false
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
