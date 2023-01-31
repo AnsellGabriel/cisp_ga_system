@@ -9,4 +9,6 @@ class EventHub < ApplicationRecord
   def to_s 
     cooperative
   end
+
+  
 end

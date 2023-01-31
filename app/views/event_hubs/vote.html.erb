@@ -1,5 +1,5 @@
 <%= content_tag :h1, @event_hub.cooperative.name %>
-<h4>Vote Strength <%= @event_hub.vote_amount%></h4>
+<h4>Vote Strength <%= to_curr(@event_hub.vote_amount) %></h4>
 
 <%#= content_tag :h3, @event_hub.vote_amount %>
 <div class="row">
@@ -10,10 +10,20 @@
         <div class="card-body">
           <%= can.get_fullname %>
           <p class="mb-0"><%= can.elect_position %></p>
-          <small><%= can.event_hub %></small> <br>
-          <class class="text-end">
-            <a href="#" class="btn btn-primary btn-sm">Vote</a>
-          </class>
+          <p><%= can.event_hub %></p>
+          <% @vote = can.get_vote(@event_hub, can.id) %>
+          <p> Vote: <%= to_curr(@vote.vote_amount) unless @vote.nil? %></p>
+          <%#= can.votes.sum(:vote_amount) %>
+         
+          <div class="text-end">
+            <%# <a href="#" class="btn btn-primary btn-sm">Vote</a> %>
+            <% if @vote.nil? %>
+              <%= link_to  'Vote', new_vote_path(c: can, e: @event_hub), class: 'btn btn-primary btn-sm',   data: { turbo_frame: "remote_modal" }  %>
+            <% else %>
+              <%= link_to 'Edit', edit_vote_path(@vote), class: 'btn btn-secondary btn-sm',data: { turbo_frame: "remote_modal" } %>
+              <%= link_to "Delete", @vote, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

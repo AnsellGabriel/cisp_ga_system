@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_hub: one
+  coop_event: one
+  candidate: one
+  vote_amount: 1
+  vote_entry: 1
+  post: false
+
+two:
+  event_hub: two
+  coop_event: two
+  candidate: two
+  vote_amount: 1
+  vote_entry: 1
+  post: false

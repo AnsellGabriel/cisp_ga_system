@@ -1,0 +1,49 @@
+<%= content_tag :h1, "List of Votes" %>
+
+
+<div class="text-end mb-3">
+  <%= link_to new_vote_path, class: 'btn btn-primary' do %>
+    New Vote
+  <% end %>
+</div>
+
+<table class ="table table-striped">
+  <table class="table table-borderless table-hover">
+    <thead>
+      <tr class="border-top border-bottom border-primary">
+
+      <th>#</th>
+        <th class="text-primary">Event Hub</th>
+        <th class="text-primary">Coop Event</th>
+        <th class="text-primary">Candidate</th>
+        <th class="text-primary">Vote Amount</th>
+        <th class="text-primary">Vote Entry</th>
+        <th class="text-primary">Post</th>
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @votes.each do |vote| %>
+        <tr>
+
+        <th scope="row"><%= vote.id %></th>
+        <td><%= vote.event_hub %></td>
+        <td><%= vote.coop_event %></td>
+        <td><%= vote.candidate %></td>
+        <td><%= vote.vote_amount %></td>
+        <td><%= vote.vote_entry %></td>
+        <td><%= vote.post %></td>
+    
+          <td>
+            <%= link_to 'View', vote, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Edit', edit_vote_path(vote), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "Delete", vote, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

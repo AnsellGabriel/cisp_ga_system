@@ -7,12 +7,12 @@ class EventHubsController < ApplicationController
   end
 
   def voter_code 
-    raise "errors"
+    # raise "errors"
     respond_to do |format|
       if @event_hub.update_attribute(:voted, 1)
         format.html { redirect_back fallback_location: registrations_path, notice: "Updated" }
       end
-      format.html { redirect_to voter_code_event_hubs_url, notice: "Event hub was successfully destroyed." }
+      format.html { redirect_to voter_code_event_hubs_url(p: 1), notice: "Event hub was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -33,7 +33,9 @@ class EventHubsController < ApplicationController
   end
   def vote 
      @event_hub.vote_amount = @event_hub.vote_power
-     @candidates = Candidate.where(coop_event_id: @event_hub.coop_event_id)
+     @elect_position = ElectPosition.find_by(id: params[:p], coop_event: @event_hub.coop_event)
+     @candidates = Candidate.where(coop_event_id: @event_hub.coop_event_id, elect_position: @elect_position)
+    #  @vote = Vote.find_by(candidate_id: @candidates, event_hub_id: @event_hub)
   end
   # GET /event_hubs/new
   def new

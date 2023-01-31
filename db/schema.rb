@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_25_033955) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_30_065517) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -207,6 +207,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_033955) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "votes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "event_hub_id", null: false
+    t.bigint "coop_event_id", null: false
+    t.bigint "candidate_id", null: false
+    t.integer "vote_amount"
+    t.integer "vote_entry"
+    t.boolean "post"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_votes_on_candidate_id"
+    t.index ["coop_event_id"], name: "index_votes_on_coop_event_id"
+    t.index ["event_hub_id"], name: "index_votes_on_event_hub_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "candidates", "elect_positions"
@@ -221,4 +235,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_033955) do
   add_foreign_key "geo_municipalities", "geo_regions"
   add_foreign_key "geo_provinces", "geo_regions"
   add_foreign_key "participants", "event_hubs"
+  add_foreign_key "votes", "candidates"
+  add_foreign_key "votes", "coop_events"
+  add_foreign_key "votes", "event_hubs"
 end

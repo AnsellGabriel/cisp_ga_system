@@ -10,6 +10,7 @@ set :rails_env, 'production' #
 set :branch, 'main' #
 
 # set :deploy_to, "/var/www/#{fetch(:application)}"  #
+set :deploy_to, "/home/deploy/#{fetch :application}"
 
 set :rbenv_type, :user #
 set :rbenv_ruby, '3.0.3' #
@@ -19,8 +20,8 @@ set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rben
 set :rbenv_map_bins, %w{ rake gem bundle ruby rails } #
 set :rbenv_roles, :all #
 
-
-append :linked_files, "config/database.yml", "config/secrets.yml", "config/master.key", "config/initializers/meilisearch.rb"  #
+append :linked_files,  'config/credentials/production.key'
+append :linked_files, "config/database.yml", "config/secrets.yml", "config/master.key" #
 
 namespace :deploy do  #
   namespace :check do  #
@@ -35,19 +36,19 @@ namespace :deploy do  #
         unless test("[ -f #{shared_path}/config/database.yml ]")  #
           upload! 'config/database.yml', "#{shared_path}/config/database.yml"  #
         end  #
-        unless test("[ -f #{shared_path}/config/application.yml ]")  #
-          upload! 'config/application.yml', "#{shared_path}/config/application.yml"  #
-        end  #
-        unless test("[ -f #{shared_path}/config/initializers/meilisearch.rb ]")  #
-          upload! 'config/initializers/meilisearch.rb', "#{shared_path}/config/initializers/meilisearch.rb"  #
-        end  #
+        # unless test("[ -f #{shared_path}/config/application.yml ]")  #
+        #   upload! 'config/application.yml', "#{shared_path}/config/application.yml"  #
+        # end  #
+        # unless test("[ -f #{shared_path}/config/initializers/meilisearch.rb ]")  #
+        #   upload! 'config/initializers/meilisearch.rb', "#{shared_path}/config/initializers/meilisearch.rb"  #
+        # end  #
       end
     end
   end
 end
 
 # Deploy to the user's home directory
-set :deploy_to, "/home/deploy/#{fetch :application}"
+
 
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
 

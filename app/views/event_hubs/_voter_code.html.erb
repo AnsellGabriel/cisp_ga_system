@@ -1,5 +1,5 @@
 <%#= simple_form_for(@event_hub) do |f| %>
-  <%= form_for voter_code_event_hubs_path, :method => :get do |f| %>
+  <%= form_for voter_code_event_hubs_path(p: 1), :method => :post do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
     <div class="col d-flex justify-content-center">

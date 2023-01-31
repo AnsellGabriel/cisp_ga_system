@@ -50,6 +50,6 @@ test:
 #
 production:
   <<: *default
-  database: GA_system_production
-  username: GA_system
+  database: ga_system
+  username: deploy
   password: <%= ENV["GA_SYSTEM_DATABASE_PASSWORD"] %>

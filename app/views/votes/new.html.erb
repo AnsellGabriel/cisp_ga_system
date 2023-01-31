@@ -1,0 +1,13 @@
+
+<%# <div class="card">
+  <div class="card-header">
+  <h5>Add vote</h5>
+  
+  </div>
+
+  <div class="card-body"> %>
+  <%= render "remote_modal", title: "Vote" do %>
+    <%= render "form",  url: votes_path(e: @event_hub, c: @candidate), meth: 'post' %>
+  <% end %>
+  <%# </div>
+</div> %>
