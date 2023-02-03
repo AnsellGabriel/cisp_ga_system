@@ -28,7 +28,7 @@ class RegistrationsController < ApplicationController
   def new
     @event_hub = EventHub.find(params[:v])
     @registration = @event_hub.registrations.build
-    set_dummy_register
+    # set_dummy_register
   end
   def set_dummy_register 
     @eh = EventHub.all

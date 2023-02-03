@@ -52,4 +52,4 @@ production:
   <<: *default
   database: ga_system
   username: deploy
-  password: <%= ENV["GA_SYSTEM_DATABASE_PASSWORD"] %>
+  password: 1CISP

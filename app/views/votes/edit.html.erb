@@ -7,7 +7,7 @@
   <div class="card-body"> %>
   <%= render "remote_modal", title: "Edit vote" do %>
     <%#= render "form", vote: @vote %>
-    <%= render "form", url: vote_path(@vote), meth: 'patch' %>
+    <%= render "form", url: vote_path(@vote, p: params[:p]), meth: 'patch' %>
     <%end%>
   <%# </div>
 </div> %>

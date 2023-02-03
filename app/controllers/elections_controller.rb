@@ -30,7 +30,7 @@ class ElectionsController < ApplicationController
     respond_to do |format|
       @event_hub = EventHub.find_by(coop_event_id: params[:p], vote_code: election_params[:voter_code])
       if @election.save
-        format.html { redirect_to vote_event_hub_path(@event_hub,p: 1), notice: "Election was successfully created." }
+        format.html { redirect_to vote_votes_path(e: @event_hub,p: 1), notice: "Election was successfully created." }
         format.json { render :show, status: :created, location: @election }
       else
          format.html { render :new, status: :unprocessable_entity }

@@ -1,0 +1,9 @@
+<div class="col d-flex justify-content-center">
+  <div class="alert alert-success" role="alert" style="width:800px">
+    <%= image_tag 'assembly_logo.png', width: 200, class: 'mb-5 mb-lg-0 me-2' %>
+    <h4 class="alert-heading">You were successful in saving your votes!</h4>
+    <p> Thank you for participating in our electronic voting. </p>
+    <hr>
+    <p class="mb-0">To return to vote press here <%= link_to 'Vote' , new_election_path(p: @coop_event), class: 'text-success' %> </p>
+  </div>
+</div>

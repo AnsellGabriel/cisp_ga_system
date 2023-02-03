@@ -62,4 +62,4 @@
 server '139.162.9.248', user: 'deploy', roles: %w{app db web}
 #server "172.104.33.72", user: "deploy", roles: %w{app db web}#, my_property: :my_value
 
-set :default_env, { 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/var/www/passenger_temp' }
+set :default_env, { 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/home/deploy/passenger_temp' }

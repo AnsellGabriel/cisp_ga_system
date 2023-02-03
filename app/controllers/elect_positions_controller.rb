@@ -40,6 +40,7 @@ class ElectPositionsController < ApplicationController
 
   # PATCH/PUT /elect_positions/1 or /elect_positions/1.json
   def update
+    
     @coop_event = CoopEvent.find(@elect_position.coop_event_id)
     respond_to do |format|
       if @elect_position.update(elect_position_params)

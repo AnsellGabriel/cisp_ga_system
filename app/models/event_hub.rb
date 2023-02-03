@@ -6,6 +6,7 @@ class EventHub < ApplicationRecord
   has_many :registrations
   has_many :candidates
   has_many :election
+
   def to_s 
     cooperative
   end

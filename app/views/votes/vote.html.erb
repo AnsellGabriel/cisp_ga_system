@@ -13,7 +13,7 @@
   <%= content_tag :h2, @elect_position.name, class: "text-primary" %> <br>
   <div class="text-end">
   <% if @count_vote == @elect_position.vacant && @votes_available == 0 %>
-    <%= link_to "Proceed to " + @next_position.name, vote_event_hub_path(@event_hub,p: @next_position.id), class: 'btn btn-warning btn-lg' unless @next_position.nil? %>
+    <%= link_to "Proceed to " + @next_position.name, vote_votes_path(e: @event_hub,p: @next_position.id), class: 'btn btn-warning btn-lg' unless @next_position.nil? %>
     <%= link_to 'Review your votes', vote_review_votes_path(e: @event_hub), class: 'btn btn-success btn-lg' if @next_position.nil? %>
 
   <% end %>

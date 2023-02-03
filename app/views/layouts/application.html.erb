@@ -13,8 +13,8 @@
     <%= javascript_importmap_tags %>
   </head>
   <body class=" <%#= "cis_bg_color" unless params[:controller] == 'pages' %>">
-    <%= render partial: '/layouts/navbar' unless params[:controller] == 'pages' || params[:controller] ==  'registrations' || params[:controller] ==  'elections' %>
-    <%= render partial: '/layouts/wavebar'  if params[:controller] == 'registrations' || params[:controller] == 'event_hubs' %>
+    <%= render partial: '/layouts/navbar' unless params[:controller] == 'pages' || params[:controller] ==  'registrations' || params[:controller] ==  'elections' || params[:controller] == 'votes' %>
+    <%= render partial: '/layouts/wavebar'  if params[:controller] == 'registrations' || params[:controller] == 'event_hubs' || params[:controller] == 'votes' %>
 
     <div class=" <%= "container mt-3" unless params[:controller] == 'pages' || params[:controller] ==  'elections' %> ">
       <%= yield %>

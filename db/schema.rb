@@ -211,6 +211,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_30_065517) do
     t.bigint "event_hub_id", null: false
     t.bigint "coop_event_id", null: false
     t.bigint "candidate_id", null: false
+    t.bigint "elect_position_id"
     t.integer "vote_amount"
     t.integer "vote_entry"
     t.boolean "post"
@@ -218,6 +219,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_30_065517) do
     t.datetime "updated_at", null: false
     t.index ["candidate_id"], name: "index_votes_on_candidate_id"
     t.index ["coop_event_id"], name: "index_votes_on_coop_event_id"
+    t.index ["elect_position_id"], name: "index_votes_on_elect_position_id"
     t.index ["event_hub_id"], name: "index_votes_on_event_hub_id"
   end
 

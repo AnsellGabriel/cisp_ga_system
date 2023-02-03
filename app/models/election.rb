@@ -10,7 +10,9 @@ class Election < ApplicationRecord
     if @event_hub.nil?
       errors.add(:base,"Voter code not valid")
     else
-      puts "#####{@event_hub.vote_code}"
+      if @event_hub.voted 
+        errors.add(:base,"Cooperative already voted")
+      end
       event_hub_id = @event_hub.id
     end
   end

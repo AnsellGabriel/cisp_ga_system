@@ -32,10 +32,15 @@ class EventHubsController < ApplicationController
   def show
   end
   def vote 
-     @event_hub.vote_amount = @event_hub.vote_power
-     @elect_position = ElectPosition.find_by(id: params[:p], coop_event: @event_hub.coop_event)
-     @candidates = Candidate.where(coop_event_id: @event_hub.coop_event_id, elect_position: @elect_position)
+    @elect_position = ElectPosition.find_by(id: params[:p], coop_event: @event_hub.coop_event)
+    @next = params[:p].to_i + 1
+    @next_position = ElectPosition.find_by(id: @next)
+    @vote_sum = Vote.where(event_hub: @event_hub, elect_position: @elect_position).sum(:vote_amount)
+    @votes_available = @event_hub.vote_power - @vote_sum
+    @candidates = Candidate.where(coop_event_id: @event_hub.coop_event_id, elect_position: @elect_position)
     #  @vote = Vote.find_by(candidate_id: @candidates, event_hub_id: @event_hub)
+    @count_vote = Vote.where(elect_position: @elect_position, event_hub_id: @event_hub).count
+   
   end
   # GET /event_hubs/new
   def new
