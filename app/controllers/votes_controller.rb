@@ -103,6 +103,9 @@ class VotesController < ApplicationController
     #  @vote = Vote.find_by(candidate_id: @candidates, event_hub_id: @event_hub)
     @count_vote = Vote.where(elect_position: @elect_position, event_hub_id: @event_hub).count
   end
+  def result 
+    @elect_position = ElectPosition.all
+  end
   # DELETE /votes/1 or /votes/1.json
   def destroy
     @p = @vote.candidate.elect_position

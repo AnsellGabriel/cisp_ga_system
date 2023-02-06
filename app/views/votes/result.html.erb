@@ -1,0 +1,24 @@
+<% @elect_position.each do |ec| %>
+  <%= content_tag :h5, ec.name, class: "text-primary" %> 
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th> Name </th>
+        <th> Votes </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @vote = Vote.group(:candidate_id).where(elect_position: ec, post: 1).sum(:vote_amount) %>
+      <% @vote.each do |v| %>
+        <tr>
+            <% @candidate = Candidate.find(v[0]) %>
+            
+          <td> <%= v[0] %> </td>
+          <td> <%= @candidate %> </td>
+          <td> <%= to_curr(v[1]) %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

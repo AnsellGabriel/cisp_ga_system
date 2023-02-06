@@ -10,6 +10,10 @@ class Election < ApplicationRecord
     if @event_hub.nil?
       errors.add(:base,"Voter code not valid")
     else
+      @coop_event = CoopEvent.find(coop_event_id)
+      unless @coop_event.election 
+        errors.add(:base,"Election is now close")
+      end
       if @event_hub.voted 
         errors.add(:base,"Cooperative already voted")
       end

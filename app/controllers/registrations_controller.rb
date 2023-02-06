@@ -42,7 +42,7 @@ class RegistrationsController < ApplicationController
   def new_modal
       # puts "@@@@@#{params[:v]}"
       @registration = Registration.new
-      set_dummy_register
+      # set_dummy_register
     
   end
   # GET /registrations/1/edit

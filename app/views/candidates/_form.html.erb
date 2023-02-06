@@ -23,35 +23,36 @@
       <%= f.input :mobile_number, label: "Contact no./Mobile no.", wrapper_html: { class: "col-md-6" } %>
       <%= f.input :email, label: "Email address", wrapper_html: { class: "col-md-6" } %>
     </div>
-    <div class="row">
-      <%= f.input :occupation, wrapper_html: { class: "col-md-6" } %>
-      <%= f.input :company, label: "Company working/Cooperative", wrapper_html: { class: "col-md-6" } %>
-    </div>
-    <%= f.input :status %>
+    <%# <div class="row"> %>
+      <%#= f.input :occupation, wrapper_html: { class: "col-md-6" } %>
+      <%#= f.input :company, label: "Company working/Cooperative", wrapper_html: { class: "col-md-6" } %>
+    <%# </div> %>
+    <%#= f.input :status %>
   </div>
   <div class="alert alert-warning" role="alert">
-    Note: Please attach to this form your complete resume with 2x2 colored formal picture (in business attire) and kindly submit on or before March 31, 2023.
+    Note: Please attach to this form your aplication form with 2x2 colored formal picture (in business attire) and kindly submit on or before March 31, 2023.
   </div>
   <div class="row">
     <div class="col-md-4">
-      <h6>ID Picture: </h6>
+      <h6>2x2 picture: </h6>
       <%= f.file_field :picture %>
     </div>
     <div class="col-md-4">
-      <h6>Resume: </h6>
+      <h6>Application form: </h6>
       <%= f.file_field :resume %>
     </div>
     <div class="col-md-4">
-      <h6>Board Resolution: </h6>
+      <h6>Board Reso.: </h6>
       <%= f.file_field :board_reso %>
     </div>
   </div>
   <div class="form-actions text-end">
+    <hr>
     <% if params[:p] == "notmodal" %>
       <%= link_to "Back", @candidate, class: "btn btn-secondary" %>
     <% else %>
       <%= link_to "Back", event_page_path(@event_hub), class: "btn btn-secondary" %>
     <% end %>
-    <%= f.button :submit, class: "btn btn-success" %>
+    <%= f.button :submit, class: "btn btn-success", value: "Submit your application" %>
   </div>
 <% end %>

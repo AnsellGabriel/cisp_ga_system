@@ -31,17 +31,17 @@
 #     puts "#{bar.name}" if bar.save!
 # end
 
-spreadsheet = Roo::Spreadsheet.open("./db/uploads/coop_str.xlsx")
+spreadsheet = Roo::Spreadsheet.open("./db/uploads/vote_power.xlsx")
 
 (2..spreadsheet.last_row).each do |row|
-    coop = Cooperative.find_or_initialize_by(name: spreadsheet.cell(row, 'B'))
+    coop = Cooperative.find_or_initialize_by(name: spreadsheet.cell(row, 'A'))
     puts "#{coop.name}" if coop.save!
     
-    eh = EventHub.find_or_initialize_by(vote_code: spreadsheet.cell(row, 'F'))
+    eh = EventHub.find_or_initialize_by(vote_code: spreadsheet.cell(row, 'D'))
     eh.coop_event_id = 1
     eh.cooperative_id = coop.id
-    eh.capital = spreadsheet.cell(row, 'D')
-    eh.vote_power = spreadsheet.cell(row, 'E')
+    eh.capital = spreadsheet.cell(row, 'B')
+    eh.vote_power = spreadsheet.cell(row, 'C')
     puts "#{eh.vote_code}" if eh.save!
     
 end
