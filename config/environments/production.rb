@@ -1,8 +1,9 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  config.hosts << 'https://event.1cisp.coop/'
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { host: 'https://event.1cisp.coop/', protocol: "https" }
+  config.action_mailer.default_url_options = { host: 'https://event.1cisp.coop/' }
   # Code is not reloaded between requests.
   
   config.action_mailer.perform_deliveries = true
@@ -13,6 +14,7 @@ Rails.application.configure do
     port:                 587,
     domain:               'event.1cisp.coop',
     user_name:            '1cispga@gmail.com',
+    # password:             'mvdprajgquoorjkh',
     password:             'dcblyisvusphrhgh',
     authentication:       'plain',
     enable_starttls_auto: true,
@@ -76,7 +78,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "GA_system_production"
 
   config.action_mailer.perform_caching = false
-
+  config.action_mailer.raise_delivery_errors = true
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
