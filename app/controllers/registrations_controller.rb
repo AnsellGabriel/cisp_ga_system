@@ -41,7 +41,7 @@ class RegistrationsController < ApplicationController
     @registration.birth_date = "08/09/1983"
     @registration.guest_type = "Accompanying Delegate"
     @registration.attendance = "I am attending"
-
+    @registration.event_hub_id = 705
   end
 
   def new_modal

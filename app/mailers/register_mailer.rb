@@ -16,7 +16,7 @@ class RegisterMailer < ApplicationMailer
     @greeting = "Hi"
     attachments.inline['email_header.jpg'] = File.read('app/assets/images/email_header.jpg')
     mail(
-          from: "ansellgabriel@gmail.com",
+          from: "1cispga@gmail.com",
           to: @registration.email, 
           cc: "1cispga@gmail.com", 
           subject: "49th GA Registration"
