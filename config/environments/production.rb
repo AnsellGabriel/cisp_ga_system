@@ -8,14 +8,16 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   
   config.action_mailer.perform_deliveries = true
-  config.cache_classes = false
+  config.cache_classes = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'event.1cisp.coop',
-    user_name:            '1cispga@gmail.com',
-    password:             'dcblyisvusphrhgh',
+    # user_name:            Rails.applicaton.credentials.dig(:google_smtp, :email),
+    # password:             Rails.applicaton.credentials.dig(:google_smtp, :password),
+    user_name:             'ansellgabriel@gmail.com',
+    password:              'dcblyisvusphrhgh',
     authentication:       'plain',
     enable_starttls_auto: true,
     open_timeout:         5,

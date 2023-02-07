@@ -58,13 +58,13 @@ class RegistrationsController < ApplicationController
   end
   # POST /registrations or /registrations.json
   def create
-     puts "@@@@@#{params[:q]}"
+    #  puts "@@@@@#{params[:q]}"
     # raise "errors"
     if params[:q] == "notmodal"
       @registration = Registration.new(registration_params)
       @event_hub = EventHub.find(@registration.event_hub_id)
     else
-      puts "@@@ modal #{params[:v]}"
+      # puts "@@@ modal #{params[:v]}"
       @event_hub = EventHub.find(params[:v])
       @registration = @event_hub.registrations.build(registration_params)
     end
