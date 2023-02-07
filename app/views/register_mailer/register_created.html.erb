@@ -5,8 +5,8 @@
   You are now registered 
 </p>
 <h1>Name: <%= @name %> </h1>
-<%= content_tag :p, '(49th) Annual General Assembly Meeting and Election on April 15, 2023, Saturday at 9:00 A.M. The meeting will be held at Novotel Manila, Araneta City, General Aguinaldo Ave, Cubao, Quezon City, Metro Manila; and via Zoom (Meeting ID: 857 1289 6787) ' %>
-<%# <p>(49th) Annual General Assembly Meeting and Election on April 15, 2023, Saturday at 9:00 A.M. The meeting will be held at Novotel Manila Araneta City, General Aguinaldo Avenue, Araneta City, Quezon City; and via Zoom (Meeting ID: 857 1289 6787) </p> %>
+<%# <%= content_tag :p, '(49th) Annual General Assembly Meeting and Election on April 15, 2023, Saturday at 9:00 A.M. The meeting will be held at Novotel Manila, Araneta City, General Aguinaldo Ave, Cubao, Quezon City, Metro Manila; and via Zoom (Meeting ID: 857 1289 6787) ' %>
+<p style="margin-left: 20px, margin-right: 20px">(49th) Annual General Assembly Meeting and Election on April 15, 2023, Saturday at 9:00 A.M. The meeting will be held at Novotel Manila Araneta City, General Aguinaldo Avenue, Araneta City, Quezon City; and via Zoom (Meeting ID: 857 1289 6787) </p>
 <% if @guest_type == "Principal Delegate" %>
   <p>
     Your voter code is <strong> <%= @voter %> </strong>
