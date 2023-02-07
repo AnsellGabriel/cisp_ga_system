@@ -3,7 +3,8 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # config.hosts << 'https://event.1cisp.coop/'
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { host: 'https://event.1cisp.coop/' }
+  # config.action_mailer.default_url_options = { host: 'https://event.1cisp.coop/' }
+  config.action_mailer.default_url_options = { host: 'event.1cisp.coop/', protocol: "https" }
   # Code is not reloaded between requests.
   
   config.action_mailer.perform_deliveries = true
