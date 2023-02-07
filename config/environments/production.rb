@@ -16,7 +16,7 @@ Rails.application.configure do
     domain:               'event.1cisp.coop',
     # user_name:            Rails.applicaton.credentials.dig(:google_smtp, :email),
     # password:             Rails.applicaton.credentials.dig(:google_smtp, :password),
-    user_name:             'ansellgabriel@gmail.com',
+    user_name:             '1cispga@gmail.com',
     password:              'dcblyisvusphrhgh',
     authentication:       'plain',
     enable_starttls_auto: true,
