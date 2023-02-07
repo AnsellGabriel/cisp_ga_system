@@ -1,7 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.hosts << 'https://event.1cisp.coop/'
+  # config.hosts << 'https://event.1cisp.coop/'
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_mailer.default_url_options = { host: 'https://event.1cisp.coop/' }
   # Code is not reloaded between requests.
@@ -14,7 +14,6 @@ Rails.application.configure do
     port:                 587,
     domain:               'event.1cisp.coop',
     user_name:            '1cispga@gmail.com',
-    # password:             'mvdprajgquoorjkh',
     password:             'dcblyisvusphrhgh',
     authentication:       'plain',
     enable_starttls_auto: true,
