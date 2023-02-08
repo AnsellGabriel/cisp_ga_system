@@ -14,8 +14,6 @@
       <% @vote.each do |v| %>
         <tr>
             <% @candidate = Candidate.find(v[0]) %>
-            
-          
           <td> <%= @candidate %> </td>
           <td> <%= to_curr(v[1]) %> </td>
         </tr>
