@@ -31,7 +31,7 @@ class Registration < ApplicationRecord
     end
   end
 
-  GuestType = ["Principal Delegate", "Accompanying Delegate"]
+  GuestType = ["Principal Delegate", "Accompanying Delegate", "Young Coop leader (35yo and below)"]
 
   Attendance = [  "I will attend physically in the venue",
                   "I will attend virtually via zoom",
