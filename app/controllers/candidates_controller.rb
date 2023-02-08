@@ -20,7 +20,7 @@ class CandidatesController < ApplicationController
       @candidate = @event_hub.candidates.build
     end
    
-    #  set_dummy_register
+     set_dummy_register
   end
   def set_dummy_register 
     @candidate.last_name = FFaker::Name.last_name

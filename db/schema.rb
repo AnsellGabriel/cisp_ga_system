@@ -206,7 +206,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_30_065517) do
     t.bigint "candidate_id", null: false
     t.bigint "elect_position_id"
     t.integer "vote_amount"
-    t.integer "vote_entry"
     t.boolean "post"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

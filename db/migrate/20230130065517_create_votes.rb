@@ -6,7 +6,7 @@ class CreateVotes < ActiveRecord::Migration[7.0]
       t.references :candidate, null: false, foreign_key: true
       t.references :elect_position
       t.integer :vote_amount
-      t.integer :vote_entry
+      # t.integer :vote_entry
       t.boolean :post
 
       t.timestamps

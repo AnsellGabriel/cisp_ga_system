@@ -11,7 +11,7 @@
       <div class="card">
         <div class="card-header">
           <strong class="text-primary"> <%= ec.name %> </strong><br>
-          <%= link_to "Change", vote_event_hub_path(@event_hub,p: ec.id), class: 'btn btn-warning btn-sm' %>
+          <%= link_to "Change", vote_votes_path(e: @event_hub,p: ec.id), class: 'btn btn-warning btn-sm' %>
         </div>
         <% @votes = Vote.where(elect_position: ec, event_hub: @event_hub) %>
         <ul class="list-group list-group-flush">

@@ -52,7 +52,7 @@ class VotesController < ApplicationController
     # raise "errors"
     respond_to do |format|
       if @vote.save
-        format.html { redirect_to vote_event_hub_url(@event_hub, p: @vote.candidate.elect_position_id), notice: "Vote was successfully created." }
+        format.html { redirect_to vote_votes_url(e: @event_hub, p: @vote.candidate.elect_position_id), notice: "Vote was successfully created." }
         format.json { render :show, status: :created, location: @vote }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -68,7 +68,7 @@ class VotesController < ApplicationController
     @vote.entry_vote =  @event_hub.vote_power + @vote.vote_amount - @TotalVote
     respond_to do |format|
       if @vote.update(vote_params)
-        format.html { redirect_to vote_event_hub_url(@event_hub, p: @vote.candidate.elect_position_id), notice: "Vote was successfully updated." }
+        format.html { redirect_to vote_votes_url(e: @event_hub, p: @vote.candidate.elect_position_id), notice: "Vote was successfully updated." }
         format.json { render :show, status: :ok, location: @vote }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -127,6 +127,6 @@ class VotesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def vote_params
-      params.require(:vote).permit(:event_hub_id, :coop_event_id, :candidate_id, :elect_position_id, :vote_amount, :vote_entry, :post)
+      params.require(:vote).permit(:event_hub_id, :coop_event_id, :candidate_id, :elect_position_id, :vote_amount, :post)
     end
 end
