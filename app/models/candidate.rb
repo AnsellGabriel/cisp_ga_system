@@ -8,7 +8,7 @@ class Candidate < ApplicationRecord
   validates_presence_of :last_name, :first_name
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   def get_fullname 
-    last_name + ', ' + first_name + ' ' + middle_name
+    first_name + ' ' + middle_name + ' ' + last_name + ' ' + suffix
   end
   def to_s 
     get_fullname 
