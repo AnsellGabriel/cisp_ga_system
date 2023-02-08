@@ -9,5 +9,5 @@
   <%# </div>
 </div> %>
 <%= render "remote_modal", title: "Edit candidate" do %>
-  <%= render "form", url: candidate_path(@candidate), meth: 'patch' %>
+  <%= render "form_edit", url: candidate_path(@candidate), meth: 'patch' %>
 <% end %>
