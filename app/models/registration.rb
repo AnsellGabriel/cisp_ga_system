@@ -1,7 +1,8 @@
 class Registration < ApplicationRecord
   belongs_to :event_hub
-  validates_presence_of :last_name, :first_name, :guest_type, :attendance, :email, :mobile_number
+  validates_presence_of :last_name, :first_name, :guest_type, :attendance, :email, :mobile_number, :coop_tin
   # validates :guest_type, :attendance, presence: :true
+  attr_accessor :coop_tin
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validate :check_principal
@@ -38,6 +39,6 @@ class Registration < ApplicationRecord
                   "I will attend virtually and will avail AGA kit (will shoulder shipping cost)"]
 
   def get_fullname 
-      first_name + ' ' + middle_name + ' ' + last_name
+      first_name + ' ' + middle_name + ' ' + last_name 
   end
 end

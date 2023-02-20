@@ -92,6 +92,7 @@ class VotesController < ApplicationController
   def vote_success 
     @coop_event = CoopEvent.find(params[:p])
   end
+  
   def vote
     @event_hub = EventHub.find(params[:e])
     @elect_position = ElectPosition.find_by(id: params[:p], coop_event: @event_hub.coop_event)

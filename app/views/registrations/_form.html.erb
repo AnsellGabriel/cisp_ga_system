@@ -22,26 +22,30 @@
         <% if params[:q] == "notmodal" %>
           <%= f.association :event_hub, label: "Cooperative", wrapper_html: { class: "mb-3" }, input_html: { data: { controller: 'ts--select' } } %>
         <% end %>
-        <div class="row mb-3">
-          <%= f.input :guest_type, collection: Registration::GuestType, wrapper_html: { class: "col-md-6" }, input_html: { id: "guesttype" } %>
-          <%= f.input :attendance, label: "You are attending?", collection: Registration::Attendance, wrapper_html: { class: "col-md-6" } %>
-          <div id="guesttype" class="form-text">Only the principal delegate are allowed to vote.</div>
-        </div>
-        <div class="alert alert-warning" role="alert">
-          <i class="bi bi-file-earmark-arrow-up"></i>  Official delegate are required to upload their scanned image of their ID and Board resolution. <br>
-          <i class="bi bi-exclamation-square"></i> Accompanying- excess of the first two free (2) representatives, with registration fee.
-        </div>
-        <div class="card">
-          <div class="card-header">Attachments</div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-6">
-                <h6>ID Picture: </h6>
-                <%= f.file_field :id_pic %>
-              </div>
-              <div class="col-md-6">
-                <h6>Board Resolution: </h6>
-                <%= f.file_field :board_reso %>
+        <div data-controller="showhide" data-showhide-show-if-value="Principal Delegate">
+          <div class="row mb-3">
+            <%= f.input :guest_type, collection: Registration::GuestType, wrapper_html: { class: "col-md-6" }, input_html: { id: "guesttype" }, input_html: { data: { showhide_target: "input", action: "change->showhide#toggle" } } %>
+            <%= f.input :attendance, label: "You are attending?", collection: Registration::Attendance, wrapper_html: { class: "col-md-6" } %>
+            <div id="guesttype" class="form-text">Only the principal delegate are allowed to vote.</div>
+          </div>
+          <div class="alert alert-warning" role="alert">
+            <i class="bi bi-file-earmark-arrow-up"></i>  Official delegate are required to upload their scanned image of their ID and Board resolution. <br>
+            <i class="bi bi-exclamation-square"></i> Accompanying- excess of the first two free (2) representatives, with registration fee.
+          </div>
+          <div data-showhide-target="output">
+            <div class="card">
+              <div class="card-header">Attachments</div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h6>ID Picture: </h6>
+                    <%= f.file_field :id_pic %>
+                  </div>
+                  <div class="col-md-6">
+                    <h6>Board Resolution: </h6>
+                    <%= f.file_field :board_reso %>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

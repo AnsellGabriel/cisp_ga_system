@@ -1,3 +1,5 @@
+set :rbenv_type, :user
+set :rbenv_ruby, '3.0.3vi /etc/profile'
 # Load DSL and set up stages
 require "capistrano/setup"
 
@@ -19,8 +21,7 @@ require 'capistrano/rails'
 require 'capistrano/passenger'
 require 'capistrano/rbenv'
 
-set :rbenv_type, :user
-set :rbenv_ruby, '3.0.3vi /etc/profile'
+
 # Include tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:

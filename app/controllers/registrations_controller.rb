@@ -68,15 +68,19 @@ class RegistrationsController < ApplicationController
     if params[:q] == "notmodal"
       @registration = Registration.new(registration_params)
       @event_hub = EventHub.find(@registration.event_hub_id)
+      @cooperative = Cooperative.find(@event_hub.cooperative_id)
     else
       # puts "@@@ modal #{params[:v]}"
       @event_hub = EventHub.find(params[:v])
       @registration = @event_hub.registrations.build(registration_params)
+      @cooperative = Cooperative.find(@event_hub.cooperative_id)
+      @registration.coop_tin = @cooperative.tin
     end
     @registration.attend = 0
     # raise "errors"
     respond_to do |format|
       if @registration.save
+          @cooperative.update_attribute(:tin, @registration.coop_tin)
           RegisterMailer.with(registration: @registration, event_hub: @event_hub).register_created.deliver_later
           format.html { redirect_to event_page_path(@event_hub), notice: "Registration was successfully created." }
         # format.html { redirect_to registration_url(@registration), notice: "Registration was successfully created." }
@@ -141,6 +145,6 @@ class RegistrationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def registration_params
-      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend)
+      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin)
     end
 end
