@@ -1,47 +1,48 @@
 <%= content_tag :h1, "List of Event Hubs" %>
-
-
 <div class="text-end mb-3">
   <%= link_to new_event_hub_path, class: 'btn btn-primary' do %>
     New Event Hub
   <% end %>
 </div>
-
-<table class ="table table-striped">
-  <table class="table table-borderless table-hover">
-    <thead>
-      <tr class="border-top border-bottom border-primary">
-
-      <th>#</th>
-        <th class="text-primary">Coop Event</th>
-        <th class="text-primary">Cooperative</th>
-        <th class="text-primary">Capital</th>
-        <th class="text-primary">Vote Power</th>
-        <th class="text-primary">Vote Code</th>
-        <th></th>
-
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @event_hubs.each do |event_hub| %>
-        <tr>
-
-        <th scope="row"><%= event_hub.id %></th>
-        <td><%= event_hub.coop_event %></td>
-        <td><%= event_hub.cooperative %></td>
-        <td><%= event_hub.capital %></td>
-        <td><%= event_hub.vote_power %></td>
-        <td><%= event_hub.vote_code %></td>
-    
-          <td>
-            <%= link_to 'View', event_hub, class: 'btn btn-secondary btn-sm' %>
-            <%= link_to 'Edit', edit_event_hub_path(event_hub), class: 'btn btn-secondary btn-sm' %>
-            <%= link_to "Delete", event_hub, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
-          </td>
-
+<%= search_form_for @q, data: { turbo_frame: :results } do |f| %>
+  <%# # Search if the name field contains... %>
+  <%#= f.label :last_name_cont %>
+  <%#= f.search_field :last_name_cont %>
+  <%# # Search if an associated articles.title starts with... %>
+  <%#= f.label :registration.event_hub_start %>
+  <%#= f.search_field :articles_title_start %>
+  <%= f.label :cooperative_name_cont %>
+  <%= f.search_field :cooperative_name_cont %>
+  <%# # Attributes may be chained. Search multiple attributes for one value... %>
+  <%#= f.label :last_name_or_first_name_cont %>
+  <%#= f.search_field :last_name_or_first_name_cont %>
+  <%= f.submit %>
+<% end %>
+<%= turbo_frame_tag :result do %>
+  <table class ="table table-striped">
+    <table class="table table-borderless table-hover">
+      <thead>
+        <tr class="border-top border-bottom border-primary">
+          <th>#</th>
+          <th class="text-primary">Cooperative</th>
+          <th></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+      </thead>
+      <tbody>
+      <%== pagy_bootstrap_nav(@pagy) %>
+        <% @event_hubs.each do |event_hub| %>
+          <tr>
+            <th scope="row"><%= event_hub.id %></th>
+            <td><%= event_hub.cooperative %> <br>
+              <small> C <%= to_curr(event_hub.capital) %> | VP <%= to_curr(event_hub.vote_power ) %> | <%= event_hub.vote_code %></small> </td>
+            <td>
+              <%= link_to 'View', event_hub, class: 'btn btn-secondary btn-sm' %>
+              <%= link_to 'Edit', edit_event_hub_path(event_hub), class: 'btn btn-secondary btn-sm' %>
+              <%= link_to "Delete", event_hub, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

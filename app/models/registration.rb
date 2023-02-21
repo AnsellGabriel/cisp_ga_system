@@ -28,7 +28,9 @@ class Registration < ApplicationRecord
       unless board_reso.attached? 
         errors.add(:base, "Must attached a board reso")
       end
-    
+      unless id_pic.attached? 
+        errors.add(:base, "Must attached an ID")
+      end
     end
   end
 

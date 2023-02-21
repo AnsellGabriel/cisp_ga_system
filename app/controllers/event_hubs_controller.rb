@@ -1,9 +1,14 @@
 class EventHubsController < ApplicationController
+  include Pagy::Backend
   before_action :set_event_hub, only: %i[ show edit update destroy vote ]
 
   # GET /event_hubs or /event_hubs.json
   def index
-    @event_hubs = EventHub.all
+    # @event_hubs = EventHub.all
+    @q = EventHub.ransack(params[:q])
+    # @pagy, @event_hubs = pagy(EventHub)
+    @pagy, @event_hubs = pagy(@q.result(distinct: true).order(created_at: :desc), items: 10)
+    
   end
 
   def voter_code 
