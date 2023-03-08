@@ -1,7 +1,7 @@
 class EventHubsController < ApplicationController
   include Pagy::Backend
   before_action :set_event_hub, only: %i[ show edit update destroy vote ]
-
+  # before_action :authenticate_user!
   # GET /event_hubs or /event_hubs.json
   def index
     # @event_hubs = EventHub.all

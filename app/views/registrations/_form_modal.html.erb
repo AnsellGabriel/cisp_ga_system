@@ -19,7 +19,7 @@
     <% if params[:q] == "notmodal" %>
       <%= f.association :event_hub, label: "Cooperative", wrapper_html: { class: "mb-3" }, input_html: { data: { controller: 'ts--select' } } %>
     <% end %>
-    <div data-controller="showhide" data-showhide-show-if-value="Principal Delegate">
+    <div data-controller="showhide" data-showhide-show-if-value="Accompanying Delegate">
       <div class="row">
         <%= f.input :coop_tin, label: "Cooperative TIN", wrapper_html: { class: "col-md-4" } %>
         <%= f.input :guest_type, collection: Registration::GuestType, wrapper_html: { class: "col-md-4" }, input_html: { data: { showhide_target: "input", action: "change->showhide#toggle" } } %>
@@ -28,7 +28,8 @@
       </div>
       <div class="alert alert-warning" role="alert">
         <i class="bi bi-file-earmark-arrow-up"></i>  Official delegate are required to upload their scanned image of their ID and Board resolution. <br>
-        <i class="bi bi-exclamation-square"></i> Accompanying- excess of the first two free (2) representatives, with registration fee.
+        <i class="bi bi-exclamation-square"></i> Accompanying- excess of the first two free (2) representatives, with registration fee. <br>
+        <i class="bi bi-exclamation-square"></i> Young coop leader must be 18 to 35 years of age
       </div>
       <div data-showhide-target="output">
         <div class="card">
@@ -40,8 +41,10 @@
                 <%= f.file_field :id_pic %>
               </div>
               <div class="col-md-6">
-                <h6>Board Resolution: </h6>
-                <%= f.file_field :board_reso %>
+                <div data-showhide-target="board">
+                  <h6>Board Resolution: </h6>
+                  <%= f.file_field :board_reso %>
+                </div>
               </div>
             </div>
           </div>

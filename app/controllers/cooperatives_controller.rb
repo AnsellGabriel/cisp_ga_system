@@ -1,6 +1,6 @@
 class CooperativesController < ApplicationController
   before_action :set_cooperative, only: %i[ show edit update destroy ]
-
+  # before_action :authenticate_user!
   # GET /cooperatives or /cooperatives.json
   def index
     @cooperatives = Cooperative.all

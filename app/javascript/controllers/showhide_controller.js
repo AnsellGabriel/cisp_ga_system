@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="showhide"
 export default class extends Controller {
-  static targets = ["input", "output"]
+  static targets = ["input", "output", "board"]
   static values = { showIf: String }
   connect() {
     // this.toggle()
@@ -13,11 +13,15 @@ export default class extends Controller {
     // console.log(this.showIfValue)
     // console.log(this.inputTarget.value)
     if (this.inputTarget.value != this.showIfValue) {
-      this.outputTarget.hidden = true
-      console.log("yes")
-    } else if (this.inputTarget.value = this.showIfValue) {
       this.outputTarget.hidden = false
-      console.log("no")
-    }
+      if (this.inputTarget.value != "Principal Delegate") {
+        this.boardTarget.hidden = true
+      } else {
+        this.boardTarget.hidden = false
+      }
+    } else if (this.inputTarget.value = this.showIfValue) {
+      this.outputTarget.hidden = true
+    
+    } 
   }
 }

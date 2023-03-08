@@ -14,7 +14,7 @@ class Candidate < ApplicationRecord
     get_fullname 
   end
   
-  def get_vote (event_hub, candidate_id) 
+  def get_vote (event_hub, candidate_id)
     Vote.find_by(candidate_id: candidate_id, event_hub_id: event_hub)
   end
 

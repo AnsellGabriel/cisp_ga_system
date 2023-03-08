@@ -1,7 +1,7 @@
 class RegistrationsController < ApplicationController
   include Pagy::Backend
   before_action :set_registration, only: %i[ show edit update destroy attend ]
-
+  # before_action :authenticate_user!
   # GET /registrations or /registrations.json
   def index
     # @registrations = Registration.all
@@ -13,11 +13,19 @@ class RegistrationsController < ApplicationController
   def dash_board 
     @attend_principal = Registration.where(:attend => 1, :guest_type => "Principal Delegate").count
     @attend_associate = Registration.where(:attend => 1, :guest_type => "Accompanying Delegate").count
+    
     @principal_count = Registration.where(:guest_type => "Principal Delegate").count
+    @principal_venue = Registration.group(:attendance).where(:guest_type => "Principal Delegate").count
     @accompanying_count = Registration.where(:guest_type => "Accompanying Delegate").count
-    @attend_venue = Registration.where(:attendance =>  "I will attend physically in the venue").count
-    @attend_zoom = Registration.where(:attendance =>  "I will attend virtually via zoom").count
-    @attend_kit = Registration.where(:attendance =>  "I will attend virtually and will avail AGA kit (will shoulder shipping cost)").count
+    @accompanying_venue = Registration.group(:attendance).where(:guest_type =>  "Accompanying Delegate").count
+    @youngleader_count = Registration.where(:guest_type => "Young Coop leader (35yo and below)").count
+    @youngleader_venue = Registration.group(:attendance).where(:guest_type => "Young Coop leader (35yo and below)").count
+    @attend_venue = Registration.group(:attendance).count
+    @attend_shares = Registration.joins(:event_hub).where(:attend => 1, :guest_type => "Principal Delegate").sum(:vote_power)
+    @coop_event = CoopEvent.find_by(:active => 1)
+    @total_shares = EventHub.where(coop_event: @coop_event).sum(:vote_power)
+    @quorum = (@attend_shares / @total_shares) * 100
+    
   end
 
   # GET /registrations/1 or /registrations/1.json

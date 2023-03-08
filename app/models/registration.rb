@@ -31,15 +31,19 @@ class Registration < ApplicationRecord
       unless id_pic.attached? 
         errors.add(:base, "Must attached an ID")
       end
+    elsif guest_type == "Young Coop leader (35yo and below)"
+      unless id_pic.attached? 
+        errors.add(:base, "Must attached an ID")
+      end
     end
   end
 
-  GuestType = ["Principal Delegate", "Accompanying Delegate", "Young Coop leader (35yo and below)"]
-
+  
   Attendance = [  "I will attend physically in the venue",
-                  "I will attend virtually via zoom",
-                  "I will attend virtually and will avail AGA kit (will shoulder shipping cost)"]
-
+    "I will attend virtually via zoom",
+    "I will attend virtually and will avail AGA kit (will shoulder shipping cost)"]
+    
+  GuestType = ["Principal Delegate", "Accompanying Delegate", "Young Coop leader (35yo and below)"]
   def get_fullname 
       first_name + ' ' + middle_name + ' ' + last_name 
   end

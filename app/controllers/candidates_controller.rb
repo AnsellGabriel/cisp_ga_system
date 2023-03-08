@@ -1,6 +1,6 @@
 class CandidatesController < ApplicationController
   before_action :set_candidate, only: %i[ show edit update destroy ]
-
+  # before_action :authenticate_user!
   # GET /candidates or /candidates.json
   def index
     @candidates = Candidate.all
@@ -20,7 +20,7 @@ class CandidatesController < ApplicationController
       @candidate = @event_hub.candidates.build
     end
    
-     set_dummy_register
+    #  set_dummy_register
   end
   def set_dummy_register 
     @candidate.last_name = FFaker::Name.last_name
@@ -28,7 +28,10 @@ class CandidatesController < ApplicationController
     @candidate.middle_name = FFaker::Name.name[0]
     @candidate.email = @candidate.last_name.downcase + "@email.com"
   end
-
+  def new_edit 
+    @candidate = Candidate.new
+    set_dummy_register
+  end
   # GET /candidates/1/edit
   def edit
   end

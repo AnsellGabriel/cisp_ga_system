@@ -2,7 +2,7 @@
 
 
 <div class="text-end mb-3">
-  <%= link_to new_candidate_path(p: "notmodal"), class: 'btn btn-primary' do %>
+  <%= link_to new_edit_candidates_path, class: 'btn btn-primary', data: { turbo_frame: "remote_modal" } do %>
     New Candidate
   <% end %>
 </div>
@@ -25,11 +25,13 @@
         <tr>
 
         <th scope="row"><%= candidate.id %></th>
-        <td> <%= image_tag candidate.picture, width: "100%", height: "50", class: "card-img-top" if candidate.picture.attached? %></td>
+        <td> <%= image_tag candidate.picture, width: "100%", height: "100", class: "card-img-top" if candidate.picture.attached? %></td>
         <td><strong> <%= candidate.get_fullname %> </strong> <br>
           <%= candidate.event_hub %> <br>
-          <%= candidate.elect_position %></td>
-    
+          <%= candidate.elect_position %> <br>
+          <%= link_to '<i class="bi bi-person-badge"></i> picture'.html_safe, rails_blob_url(candidate.picture), target: :_blank, class: 'btn btn-outline-secondary btn-sm' if candidate.picture.attached? %> | 
+          <%= link_to '<i class="bi bi-file-earmark-medical"></i> form'.html_safe, rails_blob_url(candidate.resume), target: :_blank, class: 'btn btn-outline-secondary btn-sm' if candidate.resume.attached? %> |
+          <%= link_to '<i class="bi bi-file-earmark-text"></i> board reso.'.html_safe, rails_blob_url(candidate.board_reso), target: :_blank, class: 'btn btn-outline-secondary btn-sm' if candidate.board_reso.attached? %> </td>
           <td>
             <%= link_to 'View', candidate, class: 'btn btn-secondary btn-sm' %>
             <%= link_to 'Edit', edit_candidate_path(candidate), class: 'btn btn-secondary btn-sm' %>

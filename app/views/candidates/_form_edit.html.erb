@@ -3,6 +3,7 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <div class="form-inputs mb-3">
     <%= f.association :elect_position, label: "Desired position" %>
+    <%= f.association :event_hub, label: "Cooperative", wrapper_html: { class: "mb-3" }, input_html: { data: { controller: 'ts--select' } } %>
     <div class="row">
       <%= f.input :last_name, wrapper_html: { class: "col-md-3" }  %>
       <%= f.input :first_name, wrapper_html: { class: "col-md-3" }  %>

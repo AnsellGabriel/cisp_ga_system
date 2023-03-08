@@ -7,6 +7,7 @@ class CreateEventHubs < ActiveRecord::Migration[7.0]
       t.decimal :vote_power, precision: 18, scale: 2
       t.string :vote_code
       t.boolean :voted
+      t.boolean :attend
       t.timestamps
     end
   end

@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     get "dash_board", to: "registrations#dash_board", as: "dash_board", on: :collection
     get "attend", to: "registrations#attend", on: :member
   end
-  resources :candidates
+  resources :candidates do 
+    get "new_edit", to: "candidates#new_edit", as: "new_edit", on: :collection
+  end
   resources :elect_positions
   resources :participants
   resources :event_hubs do 
