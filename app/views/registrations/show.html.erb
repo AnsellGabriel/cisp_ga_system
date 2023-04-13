@@ -5,7 +5,7 @@
   <div class="card-body"> %>
 <%= render "remote_modal", title: "Guest" do %>
   <%= render @registration %>
-<%= link_to "Delete", @registration, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" }  if params[:controller] == 'registrations' %>
+<%#= link_to "Delete", @registration, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" }  if params[:controller] == 'registrations' %>
 <% end %>
 <%# </div>
   <div class="card-footer"> %>

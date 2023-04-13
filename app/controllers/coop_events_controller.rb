@@ -1,6 +1,6 @@
 class CoopEventsController < ApplicationController
+   before_action :authenticate_user!
   before_action :set_coop_event, only: %i[ show edit update destroy ]
-  # before_action :authenticate_user!
   # GET /coop_events or /coop_events.json
   def index
     @coop_events = CoopEvent.all

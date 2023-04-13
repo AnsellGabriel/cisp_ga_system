@@ -12,11 +12,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <%= javascript_importmap_tags %>
   </head>
-  <body class=" <%#= "cis_bg_color" unless params[:controller] == 'pages' %>">
-    <%= render partial: '/layouts/navbar' unless params[:controller] == 'pages' || params[:controller] ==  'registrations' || params[:controller] ==  'elections' || params[:controller] == 'votes' || params[:controller] == 'users' %>
+  <body class="<%= "bg_gradient" if params[:controller] == 'pages' %>">
+    <% if current_user  %>
+      <%= render partial: '/layouts/navbar' unless params[:controller] == 'pages' || params[:controller] ==  'registrations' || params[:controller] ==  'elections' || params[:controller] == 'votes' || params[:controller] == 'users' %>
+    <% end %>
     <%= render partial: '/layouts/wavebar'  if params[:controller] == 'registrations' || params[:controller] == 'event_hubs' || params[:controller] == 'votes' %>
     <div class=" <%= "container mt-3" unless params[:controller] == 'pages' || params[:controller] ==  'elections' %> ">
-    
+      <%= render 'layouts/notification' unless params[:controller] == 'pages' %>
       <%= yield %>
       <%= turbo_frame_tag "remote_modal", target: "_top" %>
     </div>

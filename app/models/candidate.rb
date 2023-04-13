@@ -22,7 +22,7 @@ class Candidate < ApplicationRecord
     unless board_reso.attached? 
       errors.add(:base, "Must attached a board resolution")
     end
-    unless resume.attached? 
+    unless resume.attached?  
       errors.add(:base, "Please attach your application form for candidacy")
     end
     unless picture.attached? 

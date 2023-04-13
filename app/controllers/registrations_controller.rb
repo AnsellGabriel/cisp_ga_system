@@ -1,6 +1,7 @@
 class RegistrationsController < ApplicationController
   include Pagy::Backend
   before_action :set_registration, only: %i[ show edit update destroy attend ]
+  
   # before_action :authenticate_user!
   # GET /registrations or /registrations.json
   def index
@@ -8,11 +9,21 @@ class RegistrationsController < ApplicationController
 
     @q = Registration.ransack(params[:q])
     @pagy, @registrations = pagy(@q.result(distinct: true).order(created_at: :desc), items: 10)
+    @attended = Registration.where(attend: 1).order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data Registration.to_csv(@attended), filename: Date.today.to_s, content_type: "text/csv"
+      end
+    end
   end
+
+
 
   def dash_board 
     @attend_principal = Registration.where(:attend => 1, :guest_type => "Principal Delegate").count
     @attend_associate = Registration.where(:attend => 1, :guest_type => "Accompanying Delegate").count
+    @attend_youngleader = Registration.where(:attend => 1, :guest_type => "Young Coop leader (35yo and below)").count
     
     @principal_count = Registration.where(:guest_type => "Principal Delegate").count
     @principal_venue = Registration.group(:attendance).where(:guest_type => "Principal Delegate").count
@@ -26,6 +37,12 @@ class RegistrationsController < ApplicationController
     @total_shares = EventHub.where(coop_event: @coop_event).sum(:vote_power)
     @quorum = (@attend_shares / @total_shares) * 100
     
+    respond_to do |format|
+      format.html 
+      format.csv do
+        send_data Registration.to_csv, file_name: Date.today.to_s, content_type: 'text/csv'
+      end
+    end
   end
 
   # GET /registrations/1 or /registrations/1.json
@@ -137,14 +154,23 @@ class RegistrationsController < ApplicationController
     else
       @attend = 1
     end
+    @registration.attend = @attend
+    @registration.attend_date = DateTime.now
+
     respond_to do |format|
-      if @registration.update_attribute(:attend, @attend)
+       if @registration.update(attend: @attend, attend_date: DateTime.now)
+        # @registration.update_attribute(:attend_date, DateTime.now)
         format.html { redirect_back fallback_location: registrations_path, notice: "Updated" }
-      end
+       else 
+        format.html { render :edit_modal, status: :unprocessable_entity }
+        format.json { render json: @registration.errors, status: :unprocessable_entity }
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
+       end
     end
     
   end
   private
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_registration
       @registration = Registration.find(params[:id])
@@ -153,6 +179,6 @@ class RegistrationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def registration_params
-      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin)
+      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin, :attend_date)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_27_093955) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_11_031518) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -188,6 +188,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_27_093955) do
     t.boolean "attend"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "attend_date"
     t.index ["event_hub_id"], name: "index_registrations_on_event_hub_id"
   end
 

@@ -106,6 +106,7 @@ class VotesController < ApplicationController
   end
   def result 
     @elect_position = ElectPosition.all
+    @event = CoopEvent.find_by(active: 1)
   end
   # DELETE /votes/1 or /votes/1.json
   def destroy
