@@ -6,6 +6,7 @@ class PagesController < ApplicationController
 
     def vote 
         @election = Election.new
+        @coop_event = CoopEvent.find_by(:active => 1)
     end
 
     def coop 

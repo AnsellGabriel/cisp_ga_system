@@ -11,9 +11,9 @@
             <div class="text-end">
               <%= link_to '<i class="bi bi-gear"></i>'.html_safe, coop_event_path(coop_event), class: 'text-secondary' %>
             </div>
-            <h5 class="card-title"><%= coop_event.name %></h5>
+            <h5 class="card-title"><%= @coop_event.name %></h5>
             <p class="card-text"><small class="text-muted">Event date: <%= coop_event.event_date %></small></p>
-            <p class="card-text"><%= coop_event.description %></p>
+            <p class="card-text"><%= @coop_event.description %></p>
             <%#= coop_event.election %>
             <% if coop_event.election %>
               <span class="badge rounded-pill text-bg-success">Election open</span>
@@ -37,4 +37,5 @@
         </div>
       </div>
     </div>
-  <% end %>
+  </div>
+<% end %>

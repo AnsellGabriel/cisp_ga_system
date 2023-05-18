@@ -1,49 +1,52 @@
-<div class="card mb-3">
-  <div class="card-header">Election</div>
-  <div class="card-body">
-    <%= content_tag :h3, @event_hub.cooperative.name %>
-    <h4 class="text-primary">Vote Strength <%= to_curr(@votes_available) %></h4>
-  </div>
-</div>
-<div class="alert alert-warning" role="alert">
-  <i class="bi bi-exclamation-triangle"></i>
-  You must vote for <%= @elect_position.vacant %> candidate(s) <br>
-  You must use up your voting power.
-</div>
-<div class="text-end mb-3">
-  <%= content_tag :h2, @elect_position.name, class: "text-primary" %> <br>
-  <div class="text-end">
-  <% if @count_vote == @elect_position.vacant && @votes_available == 0 %>
-    <%= link_to "Proceed to " + @next_position.name, vote_votes_path(e: @event_hub,p: @next_position.id), class: 'btn btn-warning btn-lg' unless @next_position.nil? %>
-    <%= link_to 'Review your votes', vote_review_votes_path(e: @event_hub), class: 'btn btn-success btn-lg' if @next_position.nil? %>
 
-  <% end %>
-</div>
-</div>
-<div class="row mb-5">
-  <% @candidates.each do |can| %>
-    <div class="col-lg-3 col-md-6 mb-3">
-      <div class="card" style="width: 18rem;">
-        <%= image_tag can.picture, width: "100%", height: "240", class: "card-img-top" if can.picture.attached? %>
-        <div class="card-body">
-          <%= can.get_fullname %>
-          <p class="mb-0"><%= can.elect_position %></p>
-          <p><%= can.event_hub %></p>
-          <% @vote = can.get_vote(@event_hub, can.id) %>
-          <p class="text-primary"> <strong> Vote: <%= to_curr(@vote.vote_amount) unless @vote.nil? %></strong></p>
-          <%#= can.votes.sum(:vote_amount) %>
-          <div class="text-end">
-            <%# <a href="#" class="btn btn-primary btn-sm">Vote</a> %>
-            <% if @vote.nil? %>
-              <%= link_to  'Vote', new_vote_path(c: can, e: @event_hub, p: params[:p]), class: 'btn btn-primary btn-sm',   data: { turbo_frame: "remote_modal" }  %>
-            <% else %>
-              <%= link_to 'Edit', edit_vote_path(@vote, p: params[:p] ), class: 'btn btn-secondary btn-sm',data: { turbo_frame: "remote_modal" } %>
-              <%= link_to "Delete", @vote, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
-            <% end %>
+<div class="container">
+  <div class="card mb-3 mt-4">
+    <div class="card-header"><%= content_tag :h4, @event_hub.coop_event %></div>
+    <div class="card-body">
+     <%= image_tag 'assembly_logo.png', width: 200 %>
+      <%= content_tag :h3, @event_hub.cooperative.name %>
+      <h4 class="text-primary">Vote Strength <%= to_curr(@votes_available) %></h4>
+    </div>
+  </div>
+  <div class="alert alert-warning" role="alert">
+    <i class="bi bi-exclamation-triangle"></i>
+    You can vote upto <%= @elect_position.vacant %> candidate(s) <br>
+    You must use up your voting power.
+  </div>
+  <div class="text-end mb-3">
+    <%= content_tag :h2, @elect_position.name, class: "text-primary" %> <br>
+    <div class="text-end">
+      <%# if @count_vote == @elect_position.vacant && @votes_available == 0 %>
+      <% if @votes_available == 0 %>
+        <%= link_to "Proceed to " + @next_position.name, vote_votes_path(e: @event_hub,p: @next_position.id), class: 'btn btn-warning btn-lg' unless @next_position.nil? %>
+        <%= link_to 'Review your votes', vote_review_votes_path(e: @event_hub), class: 'btn btn-success btn-lg' if @next_position.nil? %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <% @candidates.each do |can| %>
+      <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card" style="width: 18rem;">
+          <%= image_tag can.picture, width: "100%", height: "240", class: "card-img-top" if can.picture.attached? %>
+          <div class="card-body">
+            <p class="text-primary"><%= can.get_fullname %></p>
+            <p class="mb-0"><%= can.elect_position %></p>
+            <p><small><%= can.event_hub %></small></p>
+            <% @vote = can.get_vote(@event_hub, can.id) %>
+            <p class="text-primary"> <strong> Vote: <%= to_curr(@vote.vote_amount) unless @vote.nil? %></strong></p>
+            <%#= can.votes.sum(:vote_amount) %>
+            <div class="text-end">
+              <%# <a href="#" class="btn btn-primary btn-sm">Vote</a> %>
+              <% if @vote.nil? %>
+                <%= link_to  'Vote', new_vote_path(c: can, e: @event_hub, p: params[:p]), class: 'btn btn-primary btn-sm',   data: { turbo_frame: "remote_modal" }  %>
+              <% else %>
+                <%= link_to 'Edit', edit_vote_path(@vote, p: params[:p] ), class: 'btn btn-secondary btn-sm',data: { turbo_frame: "remote_modal" } %>
+                <%= link_to "Delete", @vote, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
-

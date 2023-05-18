@@ -16,6 +16,7 @@ class Registration < ApplicationRecord
   def to_s 
     event_hub.cooperative
   end
+
   def check_principal 
     if guest_type == "Principal Delegate"
       #  puts "@@@@@ check #{guest_type}"
@@ -24,6 +25,13 @@ class Registration < ApplicationRecord
         errors.add(:base,"Principal delegate already registered")
       end
     end
+    # if guest_type == "Young Coop leader"
+    #   #  puts "@@@@@ check #{guest_type}"
+    #   @principal = Registration.find_by(event_hub_id: "#{event_hub_id}", guest_type: "#{guest_type}")
+    #   unless @principal.nil?
+    #     errors.add(:base,"Young Coop Leader already registered")
+    #   end
+    # end
   end
   def check_attached_board_reso
     # rails "errors"
@@ -34,7 +42,7 @@ class Registration < ApplicationRecord
       unless id_pic.attached? 
         errors.add(:base, "Must attached an ID")
       end
-    elsif guest_type == "Young Coop leader (35yo and below)"
+    elsif guest_type == "Young Coop leader"
       unless id_pic.attached? 
         errors.add(:base, "Must attached an ID")
       end
@@ -54,7 +62,7 @@ class Registration < ApplicationRecord
     "I will attend virtually via zoom",
     "I will attend virtually and will avail AGA kit (will shoulder shipping cost)"]
     
-  GuestType = ["Principal Delegate", "Accompanying Delegate", "Young Coop leader (35yo and below)"]
+  GuestType = ["Principal Delegate", "Accompanying Delegate", "Young Coop leader"]
   def get_fullname 
       first_name + ' ' + middle_name + ' ' + last_name 
   end

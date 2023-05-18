@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GASystem</title>
+    <title>General Assembly</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,15 +12,39 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <%= javascript_importmap_tags %>
   </head>
-  <body class="<%= "bg_gradient" if params[:controller] == 'pages' %>">
+  <body class="<%#= "cis_bg_color" if params[:controller] == 'votes' %>">
     <% if current_user  %>
-      <%= render partial: '/layouts/navbar' unless params[:controller] == 'pages' || params[:controller] ==  'registrations' || params[:controller] ==  'elections' || params[:controller] == 'votes' || params[:controller] == 'users' %>
+      <%#= render partial: '/layouts/navbar' unless params[:controller] == 'pages' || params[:controller] ==  'registrations' || params[:controller] ==  'elections' || params[:controller] == 'votes' || params[:controller] == 'users' %>
+      <%= render partial: '/layouts/navbar' %>
+    <% else %> 
+      <%= render partial: '/layouts/home_nav' unless params[:controller] == 'pages' && params[:action] == 'vote' || params[:controller] == 'votes' || params[:controller] ==  'elections' %>
     <% end %>
-    <%= render partial: '/layouts/wavebar'  if params[:controller] == 'registrations' || params[:controller] == 'event_hubs' || params[:controller] == 'votes' %>
-    <div class=" <%= "container mt-3" unless params[:controller] == 'pages' || params[:controller] ==  'elections' %> ">
-      <%= render 'layouts/notification' unless params[:controller] == 'pages' %>
-      <%= yield %>
-      <%= turbo_frame_tag "remote_modal", target: "_top" %>
+    <%# if params[:controller] == 'pages' %>
+    <%#= render partial: '/layouts/home_nav' %>
+    <%# end %>
+    <%# if params[:controller] == 'registrations'  %>
+    <%#= render partial: '/layouts/home_nav' %>
+    <%# end %>
+    <%#= render partial: '/layouts/wavebar'  if params[:controller] == 'registrations' || params[:controller] == 'event_hubs' || params[:controller] == 'votes' %>
+    <div class=" <%= "top-content" unless current_user || params[:controller] == 'pages' || params[:controller] == 'votes' || params[:controller] ==  'elections' %>">
+      <div class=" <%= "container" unless params[:controller] == 'pages' || params[:controller] ==  'elections' || params[:controller] == 'votes' %> ">
+        <%= render 'layouts/notification' unless params[:controller] == 'pages' || params[:controller] ==  'elections' || params[:controller] == 'votes' %>
+        <%= yield %>
+        <%= turbo_frame_tag "remote_modal", target: "_top" %>
+      </div>
     </div>
+
+    <script>
+      $(document).ready(function() {
+        $(window).scroll(function() {
+          if ($(this).scrollTop() > 50) {
+            $('.navbar').addClass('solid-navbar');
+          } else {
+            $('.navbar').removeClass('solid-navbar');
+          }
+        });
+      });
+    </script>
+    
   </body>
 </html>

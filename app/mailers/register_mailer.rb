@@ -9,17 +9,18 @@ class RegisterMailer < ApplicationMailer
     @registration = params[:registration]
     @name = @registration.get_fullname
     @guest_type= @registration.guest_type
+    
     # @registration = Registration.find(params[:id])
     # @email = @email.shuffle.first.email
     @event_hub = params[:event_hub]
     @voter = @event_hub.vote_code
     @greeting = "Hi"
-    attachments.inline['email_header.jpg'] = File.read('app/assets/images/email_header.jpg')
+    attachments.inline['email50.png'] = File.read('app/assets/images/email50.png')
     mail(
           from: "1cispga@gmail.com",
           to: @registration.email, 
           cc: "1cispga@gmail.com", 
-          subject: "49th GA Registration"
+          subject: "50th GA Registration"
     )
   end
 end

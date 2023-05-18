@@ -1,38 +1,40 @@
-<%= content_tag :h2, @event.name %>
-<%= content_tag :h4, 'Election Result' %>
-<br>
-<%#= content_tag :p, d.strftime("%m/%d/%Y %H:%M")  %>
-<% unless @event.election %>
-  <%= content_tag :p, 'The result of the election are as follows:' %>
-  <div class="row">
-    <% @elect_position.each do |ec| %>
-      <div class="col-md-6 mb-4">
-        <%= content_tag :h5, ec.name, class: "text-primary" %>
-        <% @win = ec.vacant %>
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th> Name </th>
-              <th> Votes </th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @vote = Vote.group(:candidate_id).where(elect_position: ec, post: 1).order('sum_vote_amount desc').sum(:vote_amount) %>
-            <% @vote.each do |v| %>
-              <tr class= "<%= 'table-success' if @win > 0 %>">
-                <% @candidate = Candidate.find(v[0]) %>
-                <td> <%= @candidate %> </td>
-                <td> <%= to_curr(v[1]) %> </td>
-                <% @win = @win - 1 %>
+<div class="container">
+  <%= content_tag :h2, @event.name %>
+  <%= content_tag :h4, 'Election Result' %>
+  <br>
+  <%#= content_tag :p, d.strftime("%m/%d/%Y %H:%M")  %>
+  <% unless @event.election %>
+    <%= content_tag :p, 'The result of the election are as follows:' %>
+    <div class="row">
+      <% @elect_position.each do |ec| %>
+        <div class="col-md-6 mb-4">
+          <%= content_tag :h5, ec.name, class: "text-primary" %>
+          <% @win = ec.vacant %>
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th> Name </th>
+                <th> Votes </th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    <% end %>
-  </div>
-<% else %>
-  <div class="alert alert-danger" role="alert">
-    <%= content_tag :h2, 'Election is still open' %>
-  </div>
-<% end %>
+            </thead>
+            <tbody>
+              <% @vote = Vote.group(:candidate_id).where(elect_position: ec, post: 1).order('sum_vote_amount desc').sum(:vote_amount) %>
+              <% @vote.each do |v| %>
+                <tr class= "<%= 'table-success' if @win > 0 %>">
+                  <% @candidate = Candidate.find(v[0]) %>
+                  <td> <%= @candidate %> </td>
+                  <td> <%= to_curr(v[1]) %> </td>
+                  <% @win = @win - 1 %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="alert alert-danger" role="alert">
+      <%= content_tag :h2, 'Election is still open' %>
+    </div>
+  <% end %>
+</div>

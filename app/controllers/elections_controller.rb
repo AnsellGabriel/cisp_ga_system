@@ -13,7 +13,8 @@ class ElectionsController < ApplicationController
   # GET /elections/new
   def new
     @election = Election.new
-    @election.coop_event_id = params[:p]
+    @coop_event = CoopEvent.find_by(:active => 1)
+    @election.coop_event_id = @coop_event.id
   end
 
   # GET /elections/1/edit

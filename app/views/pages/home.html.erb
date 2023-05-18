@@ -1,22 +1,78 @@
-<%# <h1>Congratulations! Bootstrap is working in your app.</h1> %>
-<!--Hey! This is the original version
-of Simple CSS Waves-->
-<div class="header">
-  <!--Content before waves-->
-  <div class="inner-header flex">
-    <!--Just the logo.. Don't mind this-->
-    <div class="container">
-      <br>
-      <%= render '/coop_events/home' %>
-    </div>
-  </div>
-  <!--Waves Container-->
-  <%= render 'pages/wave' %>
-  <!--Waves end-->
-</div>
-<!--Header ends-->
-<!--Content starts-->
-<%# <div class="content flex">
-  <p>By.Goodkatz | Free to use </p>
+<%# <div class="header"> %>
+<!--Content before waves-->
+<%# <div class="inner-header flex"> %>
+<!--Just the logo.. Don't mind this-->
+<%# <div class="container"> %>
+<%# <br> %>
+<%#= render '/coop_events/home' %>
+<%# </div> %>
+<%# </div> %>
+<!--Waves Container-->
+<%#= render 'pages/wave' %>
+<!--Waves end-->
+<%# </div> %>
+<%# <div class="container">
+  <div class="jumbotron">
+    <video id="video-background" preload="" muted="" autoplay="" loop="">
+      <%# <source src="https://drive.google.com/file/d/1kjhyIsfyJcDW3X8sbpJJSuq1g2bpCgeI/view?usp=share_link" type="video/mp4"> %>
+<%# <source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+     <source src="http://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+     </video> %>
+<%#= image_tag '50logo.png', width: 300, class: 'mb-2 mb-lg-0 me-2 center' %>
+<%#= image_tag '50logo.png', width: 300, class: 'mb-2 mb-lg-0 me-2 center' %>
+<%# </div>
 </div> %>
-<!--Content ends-->
+<div class="c-header">
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active c-item">
+        <%= image_tag 'car_5.JPG', class: 'd-block w-100 c-image' %>
+        <div class="carousel-caption top-0 mt-5 d-none d-md-block">
+          <div class="carousel-caps">
+            <%= image_tag '50logo.png', width: 250, class: ' mt-5 mb-2 mb-lg-0 me-2 center' %>
+            <h1 class="text-light display-3 fw-bolder text-capitalize">Some representative placeholder content for the first slide.</h1>
+            <%= link_to 'Register', new_modal_registrations_path(q: "notmodal"), class: "btn btn-primary px-4 py-2 fs-5" %>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item c-item">
+        <%= image_tag 'car_2.JPG', class: 'd-block w-100 c-image' %>
+        <div class="carousel-caption top-0 mt-5 d-none d-md-block">
+          <br>
+          <br>
+          <h1 class="text-warning mt-5 display-1 fw-bolder text-capitalize">Some representative placeholder content for the second slide.</h1>
+          <%= link_to 'Register', new_modal_registrations_path(q: "notmodal"), class: "btn btn-primary mt-3 px-4 py-2 fs-5" %>
+        </div>
+      </div>
+      <div class="carousel-item c-item">
+        <%= image_tag 'car_3.JPG', class: 'd-block w-100 c-image' %>
+        <div class="carousel-caption top-0 mt-5 d-none d-md-block">
+          <br>
+          <br>
+          <h1 class="text-light mt-5 display-1 fw-bolder text-capitalize">Some representative placeholder content for the second slide.</h1>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<div class="container my-5">
+  <div class="text-center">
+    <iframe src="https://player.vimeo.com/video/678254053?h=530012c833&loop=1&portrait=0" width="700" height="394" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis quam minima perspiciatis eos tenetur. Praesentium dolores at quos aperiam sed, sint provident consectetur incidunt, nostrum porro earum commodi, ex architecto.</p>
+</div>
+<%= render 'layouts/footer'  %>
+

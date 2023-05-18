@@ -1,6 +1,6 @@
 class RegistrationsController < ApplicationController
   include Pagy::Backend
-  before_action :set_registration, only: %i[ show edit update destroy attend ]
+  before_action :set_registration, only: %i[ show edit update destroy attend paid ]
   
   # before_action :authenticate_user!
   # GET /registrations or /registrations.json
@@ -23,14 +23,17 @@ class RegistrationsController < ApplicationController
   def dash_board 
     @attend_principal = Registration.where(:attend => 1, :guest_type => "Principal Delegate").count
     @attend_associate = Registration.where(:attend => 1, :guest_type => "Accompanying Delegate").count
-    @attend_youngleader = Registration.where(:attend => 1, :guest_type => "Young Coop leader (35yo and below)").count
+    @attend_youngleader = Registration.where(:attend => 1, :guest_type => "Young Coop leader").count
     
     @principal_count = Registration.where(:guest_type => "Principal Delegate").count
     @principal_venue = Registration.group(:attendance).where(:guest_type => "Principal Delegate").count
     @accompanying_count = Registration.where(:guest_type => "Accompanying Delegate").count
     @accompanying_venue = Registration.group(:attendance).where(:guest_type =>  "Accompanying Delegate").count
-    @youngleader_count = Registration.where(:guest_type => "Young Coop leader (35yo and below)").count
-    @youngleader_venue = Registration.group(:attendance).where(:guest_type => "Young Coop leader (35yo and below)").count
+    @acoompanying_paid = Registration.where(:guest_type => "Accompanying Delegate", :paid => 1)
+    @youngleader_count = Registration.where(:guest_type => "Young Coop leader").count
+    @youngleader_venue = Registration.group(:attendance).where(:guest_type => "Young Coop leader").count
+    @awardee_count = Registration.where(:award => 1).count
+    @awardee_type = Registration.group(:guest_type).where(:award => 1).count
     @attend_venue = Registration.group(:attendance).count
     @attend_shares = Registration.joins(:event_hub).where(:attend => 1, :guest_type => "Principal Delegate").sum(:vote_power)
     @coop_event = CoopEvent.find_by(:active => 1)
@@ -53,7 +56,8 @@ class RegistrationsController < ApplicationController
   def new
     @event_hub = EventHub.find(params[:v])
     @registration = @event_hub.registrations.build
-    # set_dummy_register
+    
+    set_dummy_register
   end
   def set_dummy_register 
     @eh = EventHub.all
@@ -65,14 +69,15 @@ class RegistrationsController < ApplicationController
     @registration.mobile_number = "+639127123459"
     @registration.birth_date = "08/09/1983"
     @registration.guest_type = "Accompanying Delegate"
-    @registration.attendance = "I am attending"
-    @registration.event_hub_id = 705
+    @registration.attendance = "I will attend physically in the venue"
+    @registration.event_hub_id = @eh.shuffle.first.id
+    @registration.coop_tin = 123
   end
 
   def new_modal
       # puts "@@@@@#{params[:v]}"
       @registration = Registration.new
-      # set_dummy_register
+       set_dummy_register
     
   end
   # GET /registrations/1/edit
@@ -85,6 +90,41 @@ class RegistrationsController < ApplicationController
     
      @registration = Registration.find_by(id: params[:registration_id])
       @event_hub = EventHub.find(@registration.event_hub_id)
+  end
+
+  def get_price
+    if @registration.guest_type == 'Accompanying Delegate' && @registration.attendance == 'I will attend physically in the venue'
+      if Date.current >= Date.new(2024, 3, 1)
+        @registration.price = 12000
+      end
+      if Date.current <= Date.new(2024, 6, 30)
+        @registration.price = 10000
+      end
+      if Date.current <= Date.new(2023, 5, 30)
+        @registration.price = 8000
+      end
+      if Date.current <= Date.new(2023, 3, 31)
+        @registration.price = 6000
+      end
+    end
+    @count_yl = Registration.where(:event_hub => @registration.event_hub ,:guest_type => 'Young Coop leader').count
+    # raise "errors #{@count_yl}"
+    if Registration.where(:event_hub => @registration.event_hub ,:guest_type => 'Young Coop leader').count > 0
+      if @registration.guest_type == 'Young Coop leader' && @registration.attendance == 'I will attend physically in the venue'
+        if Date.current >= Date.new(2024, 3, 1)
+          @registration.price = 12000
+        end
+        if Date.current <= Date.new(2024, 6, 30)
+          @registration.price = 10000
+        end
+        if Date.current <= Date.new(2023, 5, 30)
+          @registration.price = 8000
+        end
+        if Date.current <= Date.new(2023, 3, 31)
+          @registration.price = 6000
+        end
+      end
+    end
   end
   # POST /registrations or /registrations.json
   def create
@@ -102,11 +142,23 @@ class RegistrationsController < ApplicationController
       @registration.coop_tin = @cooperative.tin
     end
     @registration.attend = 0
+    get_price
+    
+    unless @registration.guest_type == 'Accompanying Delegate'
+      if Registration.where(:award => 1).count < 5
+        @registration.award = 1
+      else
+        @registration.award = 0
+      end
+    end
     # raise "errors"
     respond_to do |format|
       if @registration.save
+        # @registration.get_price
           @cooperative.update_attribute(:tin, @registration.coop_tin)
-          RegisterMailer.with(registration: @registration, event_hub: @event_hub).register_created.deliver_later
+          # unless @registration.guest_type == 'Accompanying Delegate'
+            RegisterMailer.with(registration: @registration, event_hub: @event_hub).register_created.deliver_later
+          # end
           format.html { redirect_to event_page_path(@event_hub), notice: "Registration was successfully created." }
         # format.html { redirect_to registration_url(@registration), notice: "Registration was successfully created." }
         format.json { render :show, status: :created, location: @registration }
@@ -154,6 +206,7 @@ class RegistrationsController < ApplicationController
     else
       @attend = 1
     end
+   
     @registration.attend = @attend
     @registration.attend_date = DateTime.now
 
@@ -167,7 +220,30 @@ class RegistrationsController < ApplicationController
         format.turbo_stream { render :form_update, status: :unprocessable_entity }
        end
     end
-    
+  end
+  def paid 
+    if @registration.paid
+      @paid = 0
+    else
+      @paid = 1
+    end
+    @award_count = Registration.where(:award => 1).count 
+    # raise "errors @@ {#@award_count}"
+    if Registration.where(:award => 1).count < 5
+      @award = 1
+    else
+      @award = 0
+    end
+    respond_to do |format|
+      if @registration.update(paid: @paid, award: @award)
+       # @registration.update_attribute(:attend_date, DateTime.now)
+       format.html { redirect_back fallback_location: registrations_path, notice: "Updated" }
+      else 
+       format.html { render :edit_modal, status: :unprocessable_entity }
+       format.json { render json: @registration.errors, status: :unprocessable_entity }
+       format.turbo_stream { render :form_update, status: :unprocessable_entity }
+      end
+   end
   end
   private
   
@@ -179,6 +255,6 @@ class RegistrationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def registration_params
-      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin, :attend_date)
+      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin, :attend_date, :price)
     end
 end

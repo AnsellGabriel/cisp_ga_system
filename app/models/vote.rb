@@ -12,11 +12,17 @@ class Vote < ApplicationRecord
   validate :validate_vote_amount_edit, :on => :update
 
   def validate_vote_amount 
-    if vote_amount > entry_vote
-      errors.add(:base,"Vote amount must not exceed " + entry_vote.to_s)
-    end
-    if vote_amount <= 0 
-      errors.add(:base,"Vote amount must be greater than 0")
+    unless vote_amount.nil? 
+      if vote_amount > entry_vote
+        errors.add(:base,"Vote amount must not exceed " + entry_vote.to_s)
+      end
+      
+      # if vote_amount.nil?
+      #   vote_amount = 0 
+      # end
+      if vote_amount <= 0 
+        errors.add(:base,"Vote amount must be greater than 0")
+      end
     end
     @count_vote = Vote.where(elect_position_id: elect_position_id, event_hub_id: event_hub_id).count
     @max_vote = ElectPosition.find(elect_position_id).vacant

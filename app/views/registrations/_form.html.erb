@@ -22,7 +22,7 @@
         <% if params[:q] == "notmodal" %>
           <%= f.association :event_hub, label: "Cooperative", wrapper_html: { class: "mb-3" }, input_html: { data: { controller: 'ts--select' } } %>
         <% end %>
-        <div data-controller="showhide" data-showhide-show-if-value="Accompanying Delegate" data-showhide-show-if-value="Young Coop leader (35yo and below)" >
+        <div data-controller="showhide" data-showhide-show-if-value="Accompanying Delegate" data-showhide-show-if-value="Young Coop leader" >
       
           <%# <div data-controller="showtype" data-showtype-show-if-value="Young Coop leader (35yo and below)"> %>
             <div class="row mb-3">

@@ -100,7 +100,7 @@ class VotesController < ApplicationController
     @next_position = ElectPosition.find_by(id: @next)
     @vote_sum = Vote.where(event_hub: @event_hub, elect_position: @elect_position).sum(:vote_amount)
     @votes_available = @event_hub.vote_power - @vote_sum
-    @candidates = Candidate.where(coop_event_id: @event_hub.coop_event_id, elect_position: @elect_position).shuffle
+    @candidates = Candidate.where(coop_event_id: @event_hub.coop_event_id, elect_position: @elect_position)
     #  @vote = Vote.find_by(candidate_id: @candidates, event_hub_id: @event_hub)
     @count_vote = Vote.where(elect_position: @elect_position, event_hub_id: @event_hub).count
   end

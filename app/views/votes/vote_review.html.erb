@@ -1,35 +1,41 @@
-<div class="alert alert-success" role="alert">
-  <i class="bi bi-check-circle"></i>
-  Please check your votes.
-</div>
-<div class="text-end mb-4">
-  <%= link_to '<i class="bi bi-box-seam"></i> Save Votes'.html_safe , vote_final_votes_path(p: @event_hub), class: 'btn btn-success btn-lg' %>
-</div>
-<div class="row">
-  <% @elect_positions.each do |ec| %>
-    <div class="col-3">
-      <div class="card">
-        <div class="card-header">
-          <strong class="text-primary"> <%= ec.name %> </strong><br>
-          <%= link_to "Change", vote_votes_path(e: @event_hub,p: ec.id), class: 'btn btn-warning btn-sm' %>
-        </div>
-        <% @votes = Vote.where(elect_position: ec, event_hub: @event_hub) %>
-        <ul class="list-group list-group-flush">
-          <% @votes.each do |v| %>
-            <li class="list-group-item">
-              <div class="row">
-                <div class="col-4">
-                  <%= image_tag v.candidate.picture, width: "100%", height: "50", class: "img-fluid rounded-start" if v.candidate.picture.attached? %>
-                </div>
-                <div class="col-8">
-                  <strong> <%= v.candidate %> </strong>  <br>
-                  <p> <%= to_curr(v.vote_amount) %> </p>
-                </div>
-              </div>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+
+
+<div class="container">
+  <div class="card text-bg-warning mb-3 mt-4">
+    <div class="card-header"><%= @event_hub.coop_event %></div>
+    <div class="card-body">
+      <h3 class="text-center"><i class="bi bi-check-circle"></i> Please check your votes.</h3>
     </div>
-  <% end %>
+  </div>
+  <div class="text-end mb-4">
+    <%= link_to '<i class="bi bi-box-seam"></i> Save Votes'.html_safe , vote_final_votes_path(p: @event_hub), class: 'btn btn-success btn-lg' %>
+  </div>
+  <div class="row">
+    <% @elect_positions.each do |ec| %>
+      <div class="col-lg-3">
+        <div class="card">
+          <div class="card-header">
+            <strong class="text-primary"> <%= ec.name %> </strong><br>
+            <%= link_to "Change", vote_votes_path(e: @event_hub,p: ec.id), class: 'btn btn-warning btn-sm' %>
+          </div>
+          <% @votes = Vote.where(elect_position: ec, event_hub: @event_hub) %>
+          <ul class="list-group list-group-flush">
+            <% @votes.each do |v| %>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col-4">
+                    <%= image_tag v.candidate.picture, width: "100%", height: "50", class: "img-fluid rounded-start" if v.candidate.picture.attached? %>
+                  </div>
+                  <div class="col-8">
+                    <strong> <%= v.candidate %> </strong>  <br>
+                    <p> <%= to_curr(v.vote_amount) %> </p>
+                  </div>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

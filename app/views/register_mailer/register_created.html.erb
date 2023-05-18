@@ -1,14 +1,16 @@
 <%# <h1>Register#register_created</h1> %>
-<%= image_tag attachments['email_header.jpg'].url, alt: 'My Photo',width: 500, class: 'photos' %>
-
-<p>
-  You are now registered 
-</p>
-<h1>Name: <%= @name %> </h1>
-<%# <%= content_tag :p, '(49th) Annual General Assembly Meeting and Election on April 15, 2023, Saturday at 9:00 A.M. The meeting will be held at Novotel Manila, Araneta City, General Aguinaldo Ave, Cubao, Quezon City, Metro Manila; and via Zoom (Meeting ID: 857 1289 6787) ' %>
-<p style="margin-left: 50px, margin-right: 50px">(49th) Annual General Assembly Meeting and Election on April 15, 2023, Saturday at 9:00 A.M. The meeting will be held at Novotel Manila Araneta City, General Aguinaldo Avenue, Araneta City, Quezon City; and via Zoom (Meeting ID: 857 1289 6787) </p>
-<% if @guest_type == "Principal Delegate" %>
-  <p>
-    Your voter code is <strong> <%= @voter %> </strong>
-  </p>
-<%end%>
+<%= image_tag attachments['email50.png'].url, alt: 'My Photo',width: 500, class: 'photos' %>
+<div class="content-letter">
+  <p>Dear <%= @name %>,</p>
+  <p>You have successfully registered for the 50th annual general assembly; please present this confirmation at the event.</p>
+  <%# <%= content_tag :p, '(49th) Annual General Assembly Meeting and Election on April 15, 2023, Saturday at 9:00 A.M. The meeting will be held at Novotel Manila, Araneta City, General Aguinaldo Ave, Cubao, Quezon City, Metro Manila; and via Zoom (Meeting ID: 857 1289 6787) ' %>
+  <% if @guest_type == "Principal Delegate" %>
+    <p>
+      Your voter's code is <strong> <%= @voter %> </strong>
+    </p>
+  <%end%>
+  <p>The (50th) Annual General Assembly Meeting and Election will take place on April 12-13, 2024. The event will be held at the Manila Marriott Hotel, located at Newport Boulevard, Newport City, Pasay 1309, Metro Manila.</p>
+  <% if @registration.award %>
+    <p>Congratulations! your one of the winners who can avail the 50th Annual General Assembly merchandise, you can claim your prize at the event. for more information please contact us at 1cisp_ga@gmail.com</p>
+  <% end %>
+</div>

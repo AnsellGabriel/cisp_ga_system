@@ -14,6 +14,7 @@
       <%= to_curr(@vote.entry_vote) %>
     </p>
     <%= f.input :vote_amount %>
+    <%= content_tag :p, 'Avoid using comma "," on the vote amount', class: "form-text" %>
     <%#= f.input :entry_vote %>
     <%#= f.input :post %>
   </div>

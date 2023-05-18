@@ -31,7 +31,7 @@
 #     puts "#{bar.name}" if bar.save!
 # end
 
-spreadsheet = Roo::Spreadsheet.open("./db/uploads/msc_vote.xlsx")
+spreadsheet = Roo::Spreadsheet.open("./db/uploads/chmf_migs.xlsx")
 
 (2..spreadsheet.last_row).each do |row|
     coop = Cooperative.find_or_initialize_by(name: spreadsheet.cell(row, 'A'))
