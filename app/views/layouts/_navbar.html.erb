@@ -15,17 +15,30 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Data Entries
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <%= link_to "Registered", registrations_path, class: "dropdown-item" %>
-            <%= link_to "Events", coop_events_path, class: "dropdown-item" %>
-            <%= link_to "Cooperatives", cooperatives_path, class: "dropdown-item" %>
-            <%= link_to "Event Hub", event_hubs_path, class: "dropdown-item" %>
-            <li><hr class="dropdown-divider"></li>
-            <%= link_to "Position", elect_positions_path, class: "dropdown-item" %>
-            <%= link_to "Candidates", candidates_path, class: "dropdown-item" %>
-            <%#= link_to "Result", result_votes_path, class: "dropdown-item" %>
-            
-          </ul>
+          <% if current_user %>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to "Registered", registrations_path, class: "dropdown-item" %>
+              <%= link_to "Events", coop_events_path, class: "dropdown-item" %>
+              <%= link_to "Cooperatives", cooperatives_path, class: "dropdown-item" %>
+              <%= link_to "Event Hub", event_hubs_path, class: "dropdown-item" %>
+              <li><hr class="dropdown-divider"></li>
+              <%= link_to "Position", elect_positions_path, class: "dropdown-item" %>
+              <%= link_to "Candidates", candidates_path, class: "dropdown-item" %>
+              <%= link_to "Result", result_votes_path, class: "dropdown-item" %>
+            </ul>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i> Hi, <%= current_user.email %>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li class="nav-item"> <%= link_to "Edit Account", edit_user_registration_path, class: "nav-link" %></li>
+                <li class="nav-item"> <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-sm btn-primary mx-2" %></li>
+              </ul>
+            </li>
+          <% else %>
+            <li class="nav-item"> <%= link_to "Sign Up", new_user_registration_path, class: "nav-link"  %></li>
+            <li class="nav-item"> <%= link_to "Sign In", new_user_session_path, class: "nav-link"  %></li>
+          <% end %>
         </li>
       </ul>
     </div>

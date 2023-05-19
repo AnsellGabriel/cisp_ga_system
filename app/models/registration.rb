@@ -1,6 +1,7 @@
 class Registration < ApplicationRecord
   belongs_to :event_hub
-  validates_presence_of :last_name, :first_name, :guest_type, :attendance, :email, :mobile_number, :coop_tin
+  validates_presence_of :last_name, :first_name, :guest_type, :attendance, :email, :mobile_number
+  validates_presence_of :coop_tin, on: :create
   # validates :guest_type, :attendance, presence: :true
   attr_accessor :coop_tin
 

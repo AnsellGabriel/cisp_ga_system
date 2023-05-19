@@ -3,7 +3,6 @@
   <%= link_to 'Back', home_event_hubs_path, class: 'btn btn-secondary btn-lg' %>
   <%= link_to 'Register', new_modal_registrations_path(q: "notmodal"), class: 'btn btn-primary btn-lg' %>
 </div>
-<<<<<<< HEAD
 <%= turbo_stream_from :update_dash %>
 <div class="row">
   <div class="col-md-4">
@@ -25,29 +24,6 @@
               </div>
               <div class="col-2">
                 <%= to_curr(pv[1]) %>
-=======
-<%= turbo_frame_tag :result do %>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="card text-bg-primary mb-3">
-        <div class="card-header">
-          Principal Delegate:
-        </div>
-        <div class="card-body">
-          <%# <h1><i class="bi bi-person-fill"></i></h1> %>
-          <h4><%= @principal_count %></h4>
-        </div>
-        <ul class="list-group list-group-flush">
-          <% @principal_venue.each do |pv| %>
-            <li class="list-group-item">
-              <div class="row">
-                <div class="col-10">
-                  <%= pv[0] %>
-                </div>
-                <div class="col-2">
-                  <%= to_curr(pv[1]) %>
-                </div>
->>>>>>> parent of 3f6760e (update download csv and other layouts)
               </div>
             </div>
           </li>
@@ -146,7 +122,6 @@
       </ul>
     </div>
   </div>
-<<<<<<< HEAD
   <div class="col-md-6">
     <div class="card text-bg-secondary mb-3">
       <div class="card-header">
@@ -171,62 +146,11 @@
           <div class="col-4 text-center">
             <p class="mb-0"><strong>Quorum :</strong></p>
             <h1 class="mt-0 text-primary"><%= to_curr(@quorum) %></h1>
-=======
-  <%#= turbo_frame_tag "attend" do %>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="card">
-          <h5 class="card-header">Total attending participants</h5>
-          <ul class="list-group list-group-flush">
-            <% @attend_venue.each do |av| %>
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-10">
-                    <%= av[0] %>
-                  </div>
-                  <div class="col-2">
-                    <%= to_curr(av[1]) %>
-                  </div>
-                </div>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card text-bg-secondary mb-3">
-          <div class="card-header">
-            Attendance:
-          </div>
-          <div class="card-body">
-            <p class="text-light"> <strong>Principal :</strong> <%= @attend_principal %></p>
-            <p class="text-light"><strong>Accompanying :</strong> <%= @attend_associate %></p>
-          </div>
-        </div>
-        <div class="card text-bg-light mb-3">
-          <div class="card-header">
-            Number of shares:
-          </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-8">
-                <p> <strong>Present no. of shares :</strong> <%= to_curr(@attend_shares) %></p>
-                <p><strong>Total no. of shares :</strong> <%= to_curr(@total_shares) %></p>
-              </div>
-              <div class="col-4 text-center">
-                <p class="mb-0"><strong>Quorum :</strong></p> <h1 class="mt-0 text-primary"><%= to_curr(@quorum) %></h1>
-              </div>
-            </div>
->>>>>>> parent of 3f6760e (update download csv and other layouts)
           </div>
         </div>
       </div>
       <%# end %>
     </div>
-<<<<<<< HEAD
   </div>
   <%# end %>
 </div>
-=======
-  <%end%>
->>>>>>> parent of 3f6760e (update download csv and other layouts)

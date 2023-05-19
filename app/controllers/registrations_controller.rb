@@ -201,7 +201,7 @@ class RegistrationsController < ApplicationController
       end
     end
   end
-  def paid 
+  def paid
     if @registration.paid
       @paid = 0
     else
@@ -215,7 +215,8 @@ class RegistrationsController < ApplicationController
       @award = 0
     end
     respond_to do |format|
-      if @registration.update(paid: @paid, award: @award)
+      if @registration.update!(paid:@paid, award:@award)
+        # raise "error"
        # @registration.update_attribute(:attend_date, DateTime.now)
        format.html { redirect_back fallback_location: registrations_path, notice: "Updated" }
       else 
@@ -234,6 +235,6 @@ class RegistrationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def registration_params
-      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin, :attend_date, :price)
+      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin, :attend_date, :price, :paid, :award)
     end
 end
