@@ -1,11 +1,7 @@
 class RegistrationsController < ApplicationController
   include Pagy::Backend
-<<<<<<< HEAD
   before_action :set_registration, only: %i[ show edit update destroy attend paid ]
   
-=======
-  before_action :set_registration, only: %i[ show edit update destroy attend ]
->>>>>>> parent of 3f6760e (update download csv and other layouts)
   # before_action :authenticate_user!
   # GET /registrations or /registrations.json
   def index
@@ -18,10 +14,7 @@ class RegistrationsController < ApplicationController
   def dash_board 
     @attend_principal = Registration.where(:attend => 1, :guest_type => "Principal Delegate").count
     @attend_associate = Registration.where(:attend => 1, :guest_type => "Accompanying Delegate").count
-<<<<<<< HEAD
     @attend_youngleader = Registration.where(:attend => 1, :guest_type => "Young Coop leader").count
-=======
->>>>>>> parent of 3f6760e (update download csv and other layouts)
     
     @principal_count = Registration.where(:guest_type => "Principal Delegate").count
     @principal_venue = Registration.group(:attendance).where(:guest_type => "Principal Delegate").count
