@@ -191,13 +191,10 @@ class RegistrationsController < ApplicationController
     else
       @attend = 1
     end
-<<<<<<< HEAD
    
     @registration.attend = @attend
     @registration.attend_date = DateTime.now
 
-=======
->>>>>>> parent of 3f6760e (update download csv and other layouts)
     respond_to do |format|
       if @registration.update_attribute(:attend, @attend)
         format.html { redirect_back fallback_location: registrations_path, notice: "Updated" }
@@ -237,10 +234,6 @@ class RegistrationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def registration_params
-<<<<<<< HEAD
       params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin, :attend_date, :price)
-=======
-      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin)
->>>>>>> parent of 3f6760e (update download csv and other layouts)
     end
 end
