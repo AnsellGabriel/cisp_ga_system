@@ -34,7 +34,7 @@
           <tr>
             <th scope="row"><%= event_hub.id %></th>
             <td><%= event_hub.cooperative %> <br>
-              <small> C <%= to_curr(event_hub.capital) %> | VP <%= to_curr(event_hub.vote_power ) %> | <%= event_hub.vote_code %></small> </td>
+              <small> C <%= to_curr(event_hub.capital) %> | VP <%= to_curr(event_hub.vote_power ) %> | <%= event_hub.vote_code %> | <span class="badge text-bg-success"><%= "Voted" if event_hub.voted %></span></small> </td>
             <td>
               <%= link_to 'View', event_hub, class: 'btn btn-secondary btn-sm' %>
               <%= link_to 'Edit', edit_event_hub_path(event_hub), class: 'btn btn-secondary btn-sm' %>

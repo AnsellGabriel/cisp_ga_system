@@ -7,7 +7,7 @@ class EventHubsController < ApplicationController
     # @event_hubs = EventHub.all
     @q = EventHub.ransack(params[:q])
     # @pagy, @event_hubs = pagy(EventHub)
-    @pagy, @event_hubs = pagy(@q.result(distinct: true).order(created_at: :desc), items: 10)
+    @pagy, @event_hubs = pagy(@q.result(distinct: true).order(vote_power: :desc), items: 10)
     
   end
 

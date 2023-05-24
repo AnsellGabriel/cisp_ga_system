@@ -16,6 +16,10 @@ class RegistrationsController < ApplicationController
     @attend_associate = Registration.where(:attend => 1, :guest_type => "Accompanying Delegate").count
     @attend_youngleader = Registration.where(:attend => 1, :guest_type => "Young Coop leader").count
     
+    @count_paid = Registration.where(:paid => 1).count
+    @count_unpaid = Registration.where(:paid => 0).count
+    @paid_participants = Registration.where(:paid => 1).sum(:price)
+    @unpaid_participants = Registration.where(:paid => 0).sum(:price)
     @principal_count = Registration.where(:guest_type => "Principal Delegate").count
     @principal_venue = Registration.group(:attendance).where(:guest_type => "Principal Delegate").count
     @accompanying_count = Registration.where(:guest_type => "Accompanying Delegate").count
@@ -57,6 +61,7 @@ class RegistrationsController < ApplicationController
     @registration.attendance = "I will attend physically in the venue"
     @registration.event_hub_id = @eh.shuffle.first.id
     @registration.coop_tin = 123
+    @registration.size = "Large"
   end
 
   def new_modal
@@ -78,7 +83,7 @@ class RegistrationsController < ApplicationController
   end
 
   def get_price
-    if @registration.guest_type == 'Accompanying Delegate' && @registration.attendance == 'I will attend physically in the venue'
+    if @registration.guest_type == 'Accompanying Delegate'
       if Date.current >= Date.new(2024, 3, 1)
         @registration.price = 12000
       end
@@ -95,7 +100,7 @@ class RegistrationsController < ApplicationController
     @count_yl = Registration.where(:event_hub => @registration.event_hub ,:guest_type => 'Young Coop leader').count
     # raise "errors #{@count_yl}"
     if Registration.where(:event_hub => @registration.event_hub ,:guest_type => 'Young Coop leader').count > 0
-      if @registration.guest_type == 'Young Coop leader' && @registration.attendance == 'I will attend physically in the venue'
+      if @registration.guest_type == 'Young Coop leader'
         if Date.current >= Date.new(2024, 3, 1)
           @registration.price = 12000
         end
@@ -235,6 +240,6 @@ class RegistrationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def registration_params
-      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin, :attend_date, :price, :paid, :award)
+      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin, :attend_date, :price, :paid, :award, :size)
     end
 end

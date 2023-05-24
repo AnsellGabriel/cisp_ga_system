@@ -1,6 +1,6 @@
 class Registration < ApplicationRecord
   belongs_to :event_hub
-  validates_presence_of :last_name, :first_name, :guest_type, :attendance, :email, :mobile_number
+  validates_presence_of :last_name, :first_name, :guest_type, :email, :mobile_number, :size
   validates_presence_of :coop_tin, on: :create
   # validates :guest_type, :attendance, presence: :true
   attr_accessor :coop_tin
@@ -51,6 +51,8 @@ class Registration < ApplicationRecord
   Attendance = [  "I will attend physically in the venue",
     "I will attend virtually via zoom",
     "I will attend virtually and will avail AGA kit (will shoulder shipping cost)"]
+  
+  Size = [ "XXL", "XL", "Large", "Medium", "Small"]
     
   GuestType = ["Principal Delegate", "Accompanying Delegate", "Young Coop leader"]
   def get_fullname 

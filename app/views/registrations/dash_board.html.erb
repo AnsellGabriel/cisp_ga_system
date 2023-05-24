@@ -104,53 +104,82 @@
         <% end %>
       </ul>
     </div>
-    <div class="card">
-      <h5 class="card-header">Total attending participants</h5>
-      <ul class="list-group list-group-flush">
-        <% @attend_venue.each do |av| %>
-          <li class="list-group-item">
-            <div class="row">
-              <div class="col-10">
-                <%= av[0] %>
-              </div>
-              <div class="col-2">
-                <%= to_curr(av[1]) %>
-              </div>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="card text-bg-secondary mb-3">
-      <div class="card-header">
-        Attendance:
-      </div>
-      <div class="card-body">
-        <p class="text-light"> <strong>Principal :</strong> <%= @attend_principal %></p>
-        <p class="text-light"><strong>Accompanying :</strong> <%= @attend_associate %></p>
-        <p class="text-light"><strong>Young leader :</strong> <%= @attend_youngleader %></p>
-      </div>
-    </div>
-    <div class="card text-bg-light mb-3">
-      <div class="card-header">
-        Number of shares:
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-8">
-            <p> <strong>Present no. of shares :</strong> <%= to_curr(@attend_shares) %></p>
-            <p><strong>Total no. of shares :</strong> <%= to_curr(@total_shares) %></p>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card text-bg-primary mb-3">
+          <div class="card-header">
+            Paid Participants: <%= to_curr(@count_paid) %>
           </div>
-          <div class="col-4 text-center">
-            <p class="mb-0"><strong>Quorum :</strong></p>
-            <h1 class="mt-0 text-primary"><%= to_curr(@quorum) %></h1>
+          <div class="card-body">
+            <%# <h1><i class="bi bi-person-fill"></i></h1> %>
+            <h4><%= to_curr(@paid_participants) %></h4>
+            <%#= link_to "download csv", registrations_path(format: :csv), download: ["principal_attend", Date.today].join(" ") %>
           </div>
         </div>
       </div>
-      <%# end %>
+      <div class="col-md-6">
+        <div class="card text-bg-warning mb-3">
+          <div class="card-header">
+            Unpaid Participants: <%= to_curr(@count_unpaid) %>
+          </div>
+          <div class="card-body">
+            <%# <h1><i class="bi bi-person-fill"></i></h1> %>
+            <h4><%= to_curr(@unpaid_participants) %></h4>
+            <%#= link_to "download csv", registrations_path(format: :csv), download: ["principal_attend", Date.today].join(" ") %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <%# end %>
+  <%# <div class="card"> %>
+  <%# <h5 class="card-header">Total attending participants</h5> %>
+  <%# <ul class="list-group list-group-flush"> %>
+  <%# @attend_venue.each do |av| %>
+    <%# <li class="list-group-item"> %>
+    <%# <div class="row"> %>
+    <%# <div class="col-10"> %>
+    <%#= av[0] %>
+    <%# </div> %>
+    <%# <div class="col-2"> %>
+    <%#= to_curr(av[1]) %>
+    <%# </div> %>
+    <%# </div> %>
+    <%# </li> %>
+    <%# end %>
+    <%# </ul> %>
+    <%# </div> %>
+    <%# </div> %>
+    <div class="col-md-6">
+      <div class="card text-bg-secondary mb-3">
+        <div class="card-header">
+          Attendance:
+        </div>
+        <div class="card-body">
+          <p class="text-light"> <strong>Principal :</strong> <%= @attend_principal %></p>
+          <p class="text-light"><strong>Accompanying :</strong> <%= @attend_associate %></p>
+          <p class="text-light"><strong>Young leader :</strong> <%= @attend_youngleader %></p>
+        </div>
+      </div>
+      <div class="card text-bg-light mb-3">
+        <div class="card-header">
+          Number of shares:
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <p> <strong>Present no. of shares :</strong> <%= to_curr(@attend_shares) %></p>
+              <p><strong>Total no. of shares :</strong> <%= to_curr(@total_shares) %></p>
+            </div>
+            <div class="col-4 text-center">
+              <p class="mb-0"><strong>Quorum :</strong></p>
+              <h1 class="mt-0 text-primary"><%= to_curr(@quorum) %></h1>
+            </div>
+          </div>
+        </div>
+        <%# end %>
+      </div>
+    </div>
+    <%# end %>
+  </div>
+</div>
 </div>

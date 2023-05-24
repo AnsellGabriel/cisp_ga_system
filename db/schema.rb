@@ -192,6 +192,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_075218) do
     t.decimal "price", precision: 8, scale: 2
     t.boolean "paid"
     t.boolean "award"
+    t.string "size"
     t.index ["event_hub_id"], name: "index_registrations_on_event_hub_id"
   end
 

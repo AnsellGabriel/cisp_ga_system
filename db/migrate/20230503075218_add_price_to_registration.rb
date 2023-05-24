@@ -3,6 +3,7 @@ class AddPriceToRegistration < ActiveRecord::Migration[7.0]
     add_column :registrations, :price, :decimal, precision: 8, scale: 2
     add_column :registrations, :paid, :boolean
     add_column :registrations, :award, :boolean
+    add_column :registrations, :size, :string
 
   end
 end
