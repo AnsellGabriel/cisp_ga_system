@@ -1,7 +1,7 @@
 <div class="card mb-3">
-<div class="card-header">
-  <h2>Registration Guidelines</h2>
-</div>
+  <div class="card-header">
+    <h2>Registration Guidelines</h2>
+  </div>
   <div class="card-body">
     <ol>
       <li>Registration opens this Thursday, June 01, 2023.</li>
@@ -21,7 +21,6 @@
         <dt class="col-sm-3"> Php 10,000.00</dt>
         <dd class="col-sm-6">Register from March until April 2024</dd>
         <dt class="col-sm-3"> Php 12,000.00</dt>
-        
       </dl>
       <li>First 100 individuals to register will receive 1CISP 50th AGA merchandise.</li>
     </ol>
@@ -35,6 +34,9 @@
       <%= f.input :last_name,label: "Last Name", wrapper_html: { class: "col-md-4" } %>
       <%= f.input :first_name,label: "First Name", wrapper_html: { class: "col-md-4" } %>
       <%= f.input :middle_name,label: "Middle Initial", wrapper_html: { class: "col-md-4" } %>
+      <div class="form-check form-switch mt-3">
+        <%= f.input :tentative, label: "Tentative delegate" %>
+      </div>
     </div>
     <div class="row mb-3">
       <%= f.input :birth_date, label: "Birth Date", as: :string, wrapper_html: { class: "col-md-4" }, 
@@ -60,6 +62,7 @@
         <i class="bi bi-file-earmark-arrow-up"></i> Official delegate are required to upload their scanned image of their ID and Board resolution. <br>
         <i class="bi bi-exclamation-square"></i> Accompanying- excess of the first two free (2) representatives, with registration fee. <br>
         <i class="bi bi-exclamation-square"></i> Young coop leader must be 18 to 35 years of age
+        <i class="bi bi-exclamation-square"></i> If you are unsure about the attending participants, check the tentative delegate.
       </div>
       <div data-showhide-target="output">
         <div class="card">
