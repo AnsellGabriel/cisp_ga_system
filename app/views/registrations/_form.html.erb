@@ -9,6 +9,9 @@
           <%= f.input :last_name, wrapper_html: { class: "col-md-4" } %>
           <%= f.input :first_name, wrapper_html: { class: "col-md-4" } %>
           <%= f.input :middle_name, wrapper_html: { class: "col-md-4" } %>
+          <div class="form-check form-switch mt-3">
+            <%= f.input :tentative, label: "Tentative delegate" %>
+          </div>
         </div>
         <div class="row mb-3">
           <%= f.input :birth_date, as: :string, wrapper_html: { class: "col-md-4" }, 
@@ -32,7 +35,9 @@
           </div>
           <div class="alert alert-warning" role="alert">
             <i class="bi bi-file-earmark-arrow-up"></i>  Official delegate are required to upload their scanned image of their ID and Board resolution. <br>
-            <i class="bi bi-exclamation-square"></i> Accompanying- excess of the first two free (2) representatives, with registration fee.
+            <i class="bi bi-exclamation-square"></i> Accompanying- excess of the first two free (2) representatives, with registration fee. <br>
+             <i class="bi bi-exclamation-square"></i> Young coop leader must be 18 to 35 years of age <br>
+            <i class="bi bi-exclamation-square"></i> If you are unsure about the attending participants, check the tentative delegate.
           </div>
           <div data-showhide-target="output">
             <div class="card">

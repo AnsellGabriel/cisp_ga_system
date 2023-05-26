@@ -17,9 +17,9 @@ class RegistrationsController < ApplicationController
     @attend_youngleader = Registration.where(:attend => 1, :guest_type => "Young Coop leader").count
     
     @count_paid = Registration.where(:paid => 1).count
-    @count_unpaid = Registration.where(:paid => 0).count
+    @count_unpaid = Registration.where(paid: [nil, 0]).count
     @paid_participants = Registration.where(:paid => 1).sum(:price)
-    @unpaid_participants = Registration.where(:paid => 0).sum(:price)
+    @unpaid_participants = Registration.where(paid: [nil, 0]).sum(:price)
     @principal_count = Registration.where(:guest_type => "Principal Delegate").count
     @principal_venue = Registration.group(:attendance).where(:guest_type => "Principal Delegate").count
     @accompanying_count = Registration.where(:guest_type => "Accompanying Delegate").count
@@ -135,7 +135,7 @@ class RegistrationsController < ApplicationController
     get_price
     
     unless @registration.guest_type == 'Accompanying Delegate'
-      if Registration.where(:award => 1).count < 5
+      if Registration.where(:award => 1).count < 100
         @registration.award = 1
       else
         @registration.award = 0
