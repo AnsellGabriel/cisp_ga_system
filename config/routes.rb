@@ -6,8 +6,9 @@ Rails.application.routes.draw do
     get "vote", to: "votes#vote", on: :collection
     get "result", to: "votes#result", on: :collection
   end
+
   devise_for :users
-  resources :users
+  # resources :users
    
   resources :elections
   resources :registrations do 
