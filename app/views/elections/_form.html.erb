@@ -10,21 +10,22 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            
-              <% @coop_event = CoopEvent.find_by(:active => 1) %>
-              <h5 class="card-title mt-4"><%= @coop_event.name %></h5>
-              <p class="card-text mt-4"><small class="text-muted"><%= @coop_event.description %></small></p>
-              <div class="form-inputs mb-5" style="text-align: center;">
-                <div class="form-inputs mb-3">
-                  <%#= f.association :event_hub %>
-                  <%= f.input :voter_code %>
-                </div>
-                <div class="form-actions text-center">
-                  <%#= link_to "Back", root_path, class: "btn btn-secondary" %>
-                  <%= f.button :submit, class: "btn btn-success btn-lg", value: "Enter Code" %>
-                </div>
+            <div class="text-end">
+              <%= link_to '<i class="bi bi-gear"></i>'.html_safe, coop_event_path(@coop_event), class: 'text-secondary' %>
+            </div>
+            <% @coop_event = CoopEvent.find_by(:active => 1) %>
+            <h5 class="card-title mt-4"><%= @coop_event.name %></h5>
+            <p class="card-text mt-4"><small class="text-muted"><%= @coop_event.description %></small></p>
+            <div class="form-inputs mb-5" style="text-align: center;">
+              <div class="form-inputs mb-3">
+                <%#= f.association :event_hub %>
+                <%= f.input :voter_code %>
               </div>
-         
+              <div class="form-actions text-center">
+                <%#= link_to "Back", root_path, class: "btn btn-secondary" %>
+                <%= f.button :submit, class: "btn btn-success btn-lg", value: "Enter Code" %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
