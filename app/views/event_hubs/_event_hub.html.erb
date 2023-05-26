@@ -29,16 +29,17 @@
             <%# <div class="card-header">Header</div> %>
             <div class="card-body">
               <h5 class="card-title"><%= event_hub.coop_event %> Election</h5>
-              <p class="fw-semibold">The following positions are hereby declared vacant and interested individuals may file their Certificate of Candidacy on or before the scheduled deadline stipulated herein: </p>
+              <p class="fw-semibold">The following positions are hereby declared vacant. </p>
+              <p class="fw-semibold"> Interested individuals may file their Certificate of Candidacy on or before the scheduled deadline stipulated herein: </p>
               <ul>
                 <li>4 Regular Members of the Board of Directors (BOD);</li>
                 <li>2 Members of the Audit and Inventory Committee;</li>
-                <li>1 Members of the Election Committee; and</li>
-                <li>1 Members of the Ethics Committee.</li>
+                <li>1 Member of the Election Committee; and</li>
+                <li>1 Member of the Ethics Committee.</li>
               </ul>
-              <p>Get a copy of our election guidelines here <a href="https://docs.google.com/document/d/1bugvuI2zfN7BzzfDKFscY1CdT-bZ48z5/edit?usp=sharing&ouid=104610794696860884770&rtpof=true&sd=true" target="_blank">Election guidelines</a></p>
-              <p>Application for candidacy form <a href="https://docs.google.com/document/d/17fvQt6-A2KoXH7IW-v6rBjytjveDNjFl/edit?usp=sharing&ouid=104610794696860884770&rtpof=true&sd=true" target="_blank">Application for Candidacy</a></p>
-              <%= link_to '<i class="bi bi-file-earmark"></i> File for candidacy'.html_safe, new_candidate_path(v: event_hub), class: "btn btn-warning btn-sm",  data: { turbo_frame: "remote_modal" } %> </strong> </small>
+              <%# <p>Get a copy of our election guidelines here <a href="https://docs.google.com/document/d/1bugvuI2zfN7BzzfDKFscY1CdT-bZ48z5/edit?usp=sharing&ouid=104610794696860884770&rtpof=true&sd=true" target="_blank">Election guidelines</a></p> %>
+              <%# <p>Application for candidacy form <a href="https://docs.google.com/document/d/17fvQt6-A2KoXH7IW-v6rBjytjveDNjFl/edit?usp=sharing&ouid=104610794696860884770&rtpof=true&sd=true" target="_blank">Application for Candidacy</a></p> %>
+              <%#= link_to '<i class="bi bi-file-earmark"></i> File for candidacy'.html_safe, new_candidate_path(v: event_hub), class: "btn btn-warning btn-sm",  data: { turbo_frame: "remote_modal" } %> </strong> </small>
         </div>
       </div>
     </div>

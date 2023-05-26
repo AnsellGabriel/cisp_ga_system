@@ -52,7 +52,7 @@ class Registration < ApplicationRecord
     "I will attend virtually via zoom",
     "I will attend virtually and will avail AGA kit (will shoulder shipping cost)"]
   
-  Size = [ "XXL", "XL", "Large", "Medium", "Small"]
+  Size = [ "XXXL", "XXL", "XL", "Large", "Medium", "Small", "X-Small"]
     
   GuestType = ["Principal Delegate", "Accompanying Delegate", "Young Coop leader"]
   def get_fullname 

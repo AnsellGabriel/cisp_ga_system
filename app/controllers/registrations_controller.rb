@@ -87,13 +87,13 @@ class RegistrationsController < ApplicationController
       if Date.current >= Date.new(2024, 3, 1)
         @registration.price = 12000
       end
-      if Date.current <= Date.new(2024, 6, 30)
+      if Date.current <= Date.new(2024, 2, 29)
         @registration.price = 10000
       end
-      if Date.current <= Date.new(2023, 5, 30)
+      if Date.current <= Date.new(2023, 12, 31)
         @registration.price = 8000
       end
-      if Date.current <= Date.new(2023, 3, 31)
+      if Date.current <= Date.new(2023, 8, 3)
         @registration.price = 6000
       end
     end
@@ -104,13 +104,13 @@ class RegistrationsController < ApplicationController
         if Date.current >= Date.new(2024, 3, 1)
           @registration.price = 12000
         end
-        if Date.current <= Date.new(2024, 6, 30)
+        if Date.current <= Date.new(2024, 2, 29)
           @registration.price = 10000
         end
-        if Date.current <= Date.new(2023, 5, 30)
+        if Date.current <= Date.new(2023, 12, 31)
           @registration.price = 8000
         end
-        if Date.current <= Date.new(2023, 3, 31)
+        if Date.current <= Date.new(2023, 8, 3)
           @registration.price = 6000
         end
       end
@@ -240,6 +240,6 @@ class RegistrationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def registration_params
-      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin, :attend_date, :price, :paid, :award, :size)
+      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin, :attend_date, :price, :paid, :award, :size, :tentative)
     end
 end

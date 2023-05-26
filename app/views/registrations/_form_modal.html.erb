@@ -4,22 +4,22 @@
 </div>
   <div class="card-body">
     <ol>
-      <li>Registration opens on June 01, 2023(Thursday).</li>
-      <li>Free: one (1) principal deleage and one(1) young coop leader.</li>
+      <li>Registration opens this Thursday, June 01, 2023.</li>
+      <li>Free: one (1) principal delegate and one (1) young coop leader.</li>
       <ul>
-        <li><strong>Principal Delegate</strong> - Who is endorsed by his/her respective cooperative and supported by a Board Resolution, has the right to vote in the General Assembly.</li>
-        <li><strong>Young Coop Leader</strong> - Any representative from the member-coop whose age is 35 years old and younger</li>
+        <li><strong>Principal Delegate</strong> - Any representative endorsed by the cooperative and supported by a Board Resolution; has the right to vote in the General Assembly.</li>
+        <li><strong>Young Coop Leader</strong> - Any representative endorsed by the cooperative but must be 35 years old and below.</li>
       </ul>
       <li>Accompanying Delegate - Any delegate in excess of the first two(2) representative.</li>
       <dl class="row">
         <dd>The following is the cost of accompanying delegates:</dd>
-        <dd class="col-sm-6">Register by June until August 2023</dd>
+        <dd class="col-sm-6">Register from June until August 2023</dd>
         <dt class="col-sm-3"> Php 6,000.00</dt>
-        <dd class="col-sm-6">Register between September and December 2023.</dd>
+        <dd class="col-sm-6">Register from September until December 2023</dd>
         <dt class="col-sm-3"> Php 8,000.00</dt>
-        <dd class="col-sm-6">Register between January and February 2024.</dd>
+        <dd class="col-sm-6">Register from January until February 2024</dd>
         <dt class="col-sm-3"> Php 10,000.00</dt>
-        <dd class="col-sm-6">Register on March 1, 2024 onwards</dd>
+        <dd class="col-sm-6">Register from March until April 2024</dd>
         <dt class="col-sm-3"> Php 12,000.00</dt>
         
       </dl>
@@ -32,12 +32,12 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <div class="form-inputs mb-3">
     <div class="row mb-3">
-      <%= f.input :last_name, wrapper_html: { class: "col-md-4" } %>
-      <%= f.input :first_name, wrapper_html: { class: "col-md-4" } %>
-      <%= f.input :middle_name, wrapper_html: { class: "col-md-4" } %>
+      <%= f.input :last_name,label: "Last Name", wrapper_html: { class: "col-md-4" } %>
+      <%= f.input :first_name,label: "First Name", wrapper_html: { class: "col-md-4" } %>
+      <%= f.input :middle_name,label: "Middle Initial", wrapper_html: { class: "col-md-4" } %>
     </div>
     <div class="row mb-3">
-      <%= f.input :birth_date, as: :string, wrapper_html: { class: "col-md-4" }, 
+      <%= f.input :birth_date, label: "Birth Date", as: :string, wrapper_html: { class: "col-md-4" }, 
       input_html: { data: { controller: "flatpickr",
       flatpickr_max_date: Time.zone.now,
       flatpickr_next_arrow: "Next",

@@ -15,7 +15,7 @@ class RegisterMailer < ApplicationMailer
     @event_hub = params[:event_hub]
     @voter = @event_hub.vote_code
     @greeting = "Hi"
-    attachments.inline['panget_email.png'] = File.read('app/assets/images/panget_email.png')
+    attachments.inline['50email.png'] = File.read('app/assets/images/50email.png')
     mail(
           from: "1cispga@gmail.com",
           to: @registration.email, 

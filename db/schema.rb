@@ -193,6 +193,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_075218) do
     t.boolean "paid"
     t.boolean "award"
     t.string "size"
+    t.boolean "tentative"
     t.index ["event_hub_id"], name: "index_registrations_on_event_hub_id"
   end
 
