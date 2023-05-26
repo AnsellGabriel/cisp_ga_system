@@ -4,6 +4,7 @@ class AddPriceToRegistration < ActiveRecord::Migration[7.0]
     add_column :registrations, :paid, :boolean
     add_column :registrations, :award, :boolean
     add_column :registrations, :size, :string
+    add_column :registrations, :tentative, :boolean
 
   end
 end
