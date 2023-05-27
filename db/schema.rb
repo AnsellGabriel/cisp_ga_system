@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_26_062645) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_27_065808) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -120,6 +120,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_062645) do
     t.boolean "voted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "code"
     t.index ["coop_event_id"], name: "index_event_hubs_on_coop_event_id"
     t.index ["cooperative_id"], name: "index_event_hubs_on_cooperative_id"
   end
@@ -194,6 +195,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_062645) do
     t.boolean "award"
     t.string "size"
     t.boolean "tentative"
+    t.string "dietary"
     t.index ["event_hub_id"], name: "index_registrations_on_event_hub_id"
   end
 

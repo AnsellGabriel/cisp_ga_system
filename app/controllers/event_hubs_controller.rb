@@ -50,8 +50,13 @@ class EventHubsController < ApplicationController
   # GET /event_hubs/new
   def new
     @event_hub = EventHub.new
+    default_value
   end
 
+  def default_value 
+    @event_hub.coop_event = CoopEvent.find_by(:active => 1)
+    @event_hub.vote_code = SecureRandom.alphanumeric(5)
+  end
   # GET /event_hubs/1/edit
   def edit
   end

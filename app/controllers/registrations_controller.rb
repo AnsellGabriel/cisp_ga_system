@@ -1,5 +1,6 @@
 class RegistrationsController < ApplicationController
   include Pagy::Backend
+  require 'csv'
   before_action :set_registration, only: %i[ show edit update destroy attend paid ]
   
   # before_action :authenticate_user!
@@ -9,24 +10,34 @@ class RegistrationsController < ApplicationController
 
     @q = Registration.ransack(params[:q])
     @pagy, @registrations = pagy(@q.result(distinct: true).order(created_at: :desc), items: 10)
+
+    respond_to do |format|
+      format.html
+      format.csv do 
+        send_data Registration.to_csv, filename: Date.today.to_s, content_type: 'text/csv'
+      end
+    end
   end
 
   def dash_board 
     @attend_principal = Registration.where(:attend => 1, :guest_type => "Principal Delegate").count
     @attend_associate = Registration.where(:attend => 1, :guest_type => "Accompanying Delegate").count
     @attend_youngleader = Registration.where(:attend => 1, :guest_type => "Young Coop leader").count
+    @tentative = Registration.where(:tentative => 1).count
+    @t_shirt_sizes = Registration.group(:size).count
+    @t_shirt_count = Registration.count
     
     @count_paid = Registration.where(:paid => 1).count
     @count_unpaid = Registration.where(paid: [nil, 0]).count
     @paid_participants = Registration.where(:paid => 1).sum(:price)
     @unpaid_participants = Registration.where(paid: [nil, 0]).sum(:price)
     @principal_count = Registration.where(:guest_type => "Principal Delegate").count
-    @principal_venue = Registration.group(:attendance).where(:guest_type => "Principal Delegate").count
+    # @principal_venue = Registration.group(:attendance).where(:guest_type => "Principal Delegate").count
     @accompanying_count = Registration.where(:guest_type => "Accompanying Delegate").count
-    @accompanying_venue = Registration.group(:attendance).where(:guest_type =>  "Accompanying Delegate").count
+    # @accompanying_venue = Registration.group(:attendance).where(:guest_type =>  "Accompanying Delegate").count
     @acoompanying_paid = Registration.where(:guest_type => "Accompanying Delegate", :paid => 1)
     @youngleader_count = Registration.where(:guest_type => "Young Coop leader").count
-    @youngleader_venue = Registration.group(:attendance).where(:guest_type => "Young Coop leader").count
+    # @youngleader_venue = Registration.group(:attendance).where(:guest_type => "Young Coop leader").count
     @awardee_count = Registration.where(:award => 1).count
     @awardee_type = Registration.group(:guest_type).where(:award => 1).count
     @attend_venue = Registration.group(:attendance).count
@@ -46,7 +57,7 @@ class RegistrationsController < ApplicationController
     @event_hub = EventHub.find(params[:v])
     @registration = @event_hub.registrations.build
     
-    set_dummy_register
+    # set_dummy_register
   end
   def set_dummy_register 
     @eh = EventHub.all
@@ -67,7 +78,7 @@ class RegistrationsController < ApplicationController
   def new_modal
       # puts "@@@@@#{params[:v]}"
       @registration = Registration.new
-       set_dummy_register
+      #  set_dummy_register
     
   end
   # GET /registrations/1/edit
@@ -240,6 +251,6 @@ class RegistrationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def registration_params
-      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin, :attend_date, :price, :paid, :award, :size, :tentative)
+      params.require(:registration).permit(:event_hub_id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso, :attend, :coop_tin, :attend_date, :price, :paid, :award, :size, :tentative, :dietary)
     end
 end

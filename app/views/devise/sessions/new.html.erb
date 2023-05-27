@@ -4,8 +4,8 @@
       <div class="container-fluid py5">
         <%= image_tag 'assembly_logo.png', width: 300, class: 'mb-lg-0 me-2' %>
         <% @event = CoopEvent.find_by(:active => 1) %>
-        <h1 class="display-6 fw-bold mb-3 mt-4"><%= @event.name %></h1>
-        <p class=" fs-4"><%= @event.description %></p>
+        <h1 class="display-6 fw-bold mb-3 mt-4"><%= @event.name unless @event.nil? %></h1>
+        <p class=" fs-4"><%= @event.description unless @event.nil? %></p>
       </div>
     </div>
     <div class="col-md-5">
