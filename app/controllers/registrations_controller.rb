@@ -44,7 +44,8 @@ class RegistrationsController < ApplicationController
     @attend_shares = Registration.joins(:event_hub).where(:attend => 1, :guest_type => "Principal Delegate").sum(:vote_power)
     @coop_event = CoopEvent.find_by(:active => 1)
     @total_shares = EventHub.where(coop_event: @coop_event).sum(:vote_power)
-    @quorum = (@attend_shares / @total_shares) * 100
+    # @quorum = (@attend_shares / @total_shares) * 100
+    @quorum = 0
     
   end
 
