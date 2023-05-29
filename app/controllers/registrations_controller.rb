@@ -97,16 +97,16 @@ class RegistrationsController < ApplicationController
   def get_price
     if @registration.guest_type == 'Accompanying Delegate'
       if Date.current >= Date.new(2024, 3, 1)
-        @registration.price = 12000
+        @registration.price = 13000
       end
       if Date.current <= Date.new(2024, 2, 29)
-        @registration.price = 10000
+        @registration.price = 11000
       end
       if Date.current <= Date.new(2023, 12, 31)
-        @registration.price = 8000
+        @registration.price = 9000
       end
       if Date.current <= Date.new(2023, 8, 3)
-        @registration.price = 6000
+        @registration.price = 7000
       end
     end
     @count_yl = Registration.where(:event_hub => @registration.event_hub ,:guest_type => 'Young Coop leader').count
@@ -114,16 +114,16 @@ class RegistrationsController < ApplicationController
     if Registration.where(:event_hub => @registration.event_hub ,:guest_type => 'Young Coop leader').count > 0
       if @registration.guest_type == 'Young Coop leader'
         if Date.current >= Date.new(2024, 3, 1)
-          @registration.price = 12000
+          @registration.price = 13000
         end
         if Date.current <= Date.new(2024, 2, 29)
-          @registration.price = 10000
+          @registration.price = 11000
         end
         if Date.current <= Date.new(2023, 12, 31)
-          @registration.price = 8000
+          @registration.price = 9000
         end
         if Date.current <= Date.new(2023, 8, 3)
-          @registration.price = 6000
+          @registration.price = 7000
         end
       end
     end
