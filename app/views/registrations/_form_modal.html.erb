@@ -25,6 +25,7 @@
       </dl>
       <li>First 100 individuals to register will receive 1CISP 50th AGA merchandise.</li>
     </ol>
+    To assist you on your registration, please click this video <%= link_to "How to vote", how_to_vote_registrations_path, class: "btn btn-warning btn-sm", data: { turbo_frame: "remote_modal" } %>
   </div>
 </div>
 <%= simple_form_for @registration, url: registrations_path(q: params[:q]), method: :post do |f| %>
@@ -37,6 +38,7 @@
       <%= f.input :middle_name,label: "Middle Initial", wrapper_html: { class: "col-md-4" } %>
       <div class="form-check form-switch mt-3">
         <%= f.input :tentative, label: "Tentative delegate" %>
+        <div class="form-text">If you are unsure whether the participants will attend, please switch on the tentative.</div>
       </div>
     </div>
     <div class="row mb-3">

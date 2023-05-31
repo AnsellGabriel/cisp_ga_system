@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get "dash_board", to: "registrations#dash_board", as: "dash_board", on: :collection
     get "attend", to: "registrations#attend", on: :member
     get "paid", to: "registrations#paid", on: :member
+    get "hot_to_vote", to: "registrations#how_to_vote", as: "how_to_vote", on: :collection
   end
   resources :candidates do 
     get "new_edit", to: "candidates#new_edit", as: "new_edit", on: :collection
@@ -45,6 +46,8 @@ Rails.application.routes.draw do
     get "event_hub", to: "pages#event_hub", as: "event", on: :member
     get "register", to: "pages#register", as: "register", on: :collection
     get "vote", to: "pages#vote", as: "vote", on: :collection
+    get "coming_soon", to: "pages#coming_soon", as: "coming_soon", on: :collection
+    get "announcement", to: "pages#announcement", as: "announcement", on: :collection
   end
     # post :coop, on: :collection, to: "pages#coop"
     # post "coop", on: :collection, to: "pages#coop"

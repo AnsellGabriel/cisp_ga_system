@@ -9,6 +9,12 @@ class PagesController < ApplicationController
         @coop_event = CoopEvent.find_by(:active => 1)
     end
 
+    def coming_soon 
+
+    end
+    def announcement 
+        
+    end
     def coop 
         # @event_hub = EventHub.where(coop_event_id: coop_event.id)
     end

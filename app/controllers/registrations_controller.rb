@@ -52,6 +52,8 @@ class RegistrationsController < ApplicationController
   # GET /registrations/1 or /registrations/1.json
   def show
   end
+  def how_to_vote 
+  end
 
   # GET /registrations/new
   def new
