@@ -14,9 +14,14 @@
     </div>
   </div>
   <div class="alert alert-warning" role="alert">
-    <i class="bi bi-exclamation-triangle"></i>
-    You can vote upto <%= @elect_position.vacant %> candidate(s) <br>
-    You must use up your voting power.
+    <%# <i class="bi bi-exclamation-triangle"></i> %>
+    You have the options to distribute the voting power in two ways: <br>
+    Either give all the voting power to one candidate or allocate it among candidates: <br>
+    BOD: 4 Vacant positions for the Board of Directors <br>
+    Audit Committee: 2 Vacant positions for Audit Committee <br>
+    Election Committee: 2 Vacant position for the Election Committee
+    <%# You can vote upto = @elect_position.vacant candidate(s) <br> %>
+    <%# You must use up your voting power. %>
   </div>
   <div class="text-end mb-3">
     <%= content_tag :h2, @elect_position.name, class: "text-primary" %> <br>
