@@ -17,7 +17,7 @@ Rails.application.configure do
     port:                 587,
     domain:               'event.1cisp.coop',
     user_name:            '1cispga@gmail.com',
-    password:             'dcblyisvusphrhgh',
+    password:             'tqughticipmujarl',
     authentication:       'plain',
     enable_starttls_auto: true,
     open_timeout:         5,
