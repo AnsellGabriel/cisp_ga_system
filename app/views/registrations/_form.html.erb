@@ -14,13 +14,14 @@
           </div>
         </div>
         <div class="row mb-3">
-          <%= f.input :birth_date, label: "Birth Date", as: :string, wrapper_html: { class: "col-md-4" }, 
+          <%= f.input :birth_date, label: "Birth Date", as: :string, wrapper_html: { class: "col-md-3" }, 
           input_html: { data: { controller: "flatpickr",
           flatpickr_max_date: Time.zone.now,
           flatpickr_next_arrow: "Next",
           flatpickr_prev_arrow: "Prev" } } %>
-          <%= f.input :mobile_number, placeholder: "+63", wrapper_html: { class: "col-md-4" } %>
-          <%= f.input :email, placeholder: 'user@domain.com', wrapper_html: { class: "col-md-4" } %>
+          <%= f.input :gender, collection: Registration::Gender, wrapper_html: { class: "col-md-3" } %>
+          <%= f.input :mobile_number, placeholder: "+63", wrapper_html: { class: "col-md-3" } %>
+          <%= f.input :email, placeholder: 'user@domain.com', wrapper_html: { class: "col-md-3" } %>
         </div>
         <% if params[:q] == "notmodal" %>
           <%= f.association :event_hub, label: "Cooperative", wrapper_html: { class: "mb-3" }, input_html: { data: { controller: 'ts--select' } } %>

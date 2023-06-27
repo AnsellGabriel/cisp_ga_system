@@ -66,7 +66,10 @@ class Registration < ApplicationRecord
   GuestType = ["Principal Delegate", "Accompanying Delegate", "Young Coop leader"]
 
   Dietary = ["None", "Halal", "Vegetarian", "Vegan"]
+
+  Gender = [ "Male", "Female", "Others" ]
   def get_fullname 
       first_name + ' ' + middle_name + ' ' + last_name 
   end
 end
+ 

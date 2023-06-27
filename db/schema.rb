@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_27_065808) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_22_030330) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -196,6 +196,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_27_065808) do
     t.string "size"
     t.boolean "tentative"
     t.string "dietary"
+    t.string "gender"
     t.index ["event_hub_id"], name: "index_registrations_on_event_hub_id"
   end
 

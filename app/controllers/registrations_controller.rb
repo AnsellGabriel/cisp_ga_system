@@ -2,12 +2,12 @@ class RegistrationsController < ApplicationController
   include Pagy::Backend
   require 'csv'
   before_action :set_registration, only: %i[ show edit update destroy attend paid ]
-  
+  before_action :authenticate_user!, only: :index
   # before_action :authenticate_user!
   # GET /registrations or /registrations.json
   def index
     # @registrations = Registration.all
-
+    # :authenticate_user!
     @q = Registration.ransack(params[:q])
     @pagy, @registrations = pagy(@q.result(distinct: true).order(created_at: :desc), items: 10)
 
@@ -28,7 +28,7 @@ class RegistrationsController < ApplicationController
     @t_shirt_count = Registration.count
     
     @count_paid = Registration.where(:paid => 1).count
-    @count_unpaid = Registration.where(paid: [nil, 0]).count
+    @count_unpaid = Registration.where("price > ? AND paid = ?", 0, 0).count
     @paid_participants = Registration.where(:paid => 1).sum(:price)
     @unpaid_participants = Registration.where(paid: [nil, 0]).sum(:price)
     @principal_count = Registration.where(:guest_type => "Principal Delegate").count
@@ -110,6 +110,8 @@ class RegistrationsController < ApplicationController
       if Date.current <= Date.new(2023, 8, 3)
         @registration.price = 7000
       end
+      @registration.paid = 0
+      @registration.award =0
     end
     @count_yl = Registration.where(:event_hub => @registration.event_hub ,:guest_type => 'Young Coop leader').count
     # raise "errors #{@count_yl}"

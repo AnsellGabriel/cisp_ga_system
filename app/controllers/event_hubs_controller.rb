@@ -107,7 +107,7 @@ class EventHubsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_hub_params
-      params.require(:event_hub).permit(:coop_event_id, :cooperative_id, :capital, :vote_power, :vote_code, :voted, :vote_amount,
+      params.require(:event_hub).permit(:coop_event_id, :cooperative_id, :capital, :vote_power, :vote_code, :voted, :vote_amount, :code,
         registration_param: [:id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso ],
         candidate_param: [:id, :elect_position_id, :last_name, :first_name, :middle_name, :suffix, :birth_date, :address, :mobile_number, :email, :education, :company, :occupation, :status ])
     end
