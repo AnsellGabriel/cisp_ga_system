@@ -31,9 +31,9 @@
 #     puts "#{bar.name}" if bar.save!
 # end
 
-spreadsheet = Roo::Spreadsheet.open("./db/uploads/50gacoops.xlsx")
+spreadsheet = Roo::Spreadsheet.open("./db/uploads/50gacoopb2.xlsx")
 
-(2..spreadsheet.sheet("For Upload").last_row).each do |row|
+(2..spreadsheet.sheet("Sheet1").last_row).each do |row|
     coop = Cooperative.find_or_initialize_by(name: spreadsheet.cell(row, 'A'))
     puts "#{coop.name}" if coop.save!
     
