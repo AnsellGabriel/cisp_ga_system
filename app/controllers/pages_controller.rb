@@ -3,7 +3,9 @@ class PagesController < ApplicationController
         @coop_events = CoopEvent.where(active: 1)
         @coop = Cooperative.all
     end
-
+    def election 
+        @coop_events = CoopEvent.where(active: 1)
+    end
     def vote 
         @election = Election.new
         @coop_event = CoopEvent.find_by(:active => 1)

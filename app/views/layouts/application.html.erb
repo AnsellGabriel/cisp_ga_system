@@ -13,22 +13,11 @@
     <%= javascript_importmap_tags %>
   </head>
   <body class="<%#= "cis_bg_color" if params[:controller] == 'votes' %>">
-    <script>
-      $(document).ready(function() {
-        $(window).scroll(function() {
-          if ($(this).scrollTop() > 50) {
-            $('.navbar').addClass('solid-navbar');
-          } else {
-            $('.navbar').removeClass('solid-navbar');
-          }
-        });
-      });
-    </script>
     <% if current_user  %>
       <%#= render partial: '/layouts/navbar' unless params[:controller] == 'pages' || params[:controller] ==  'registrations' || params[:controller] ==  'elections' || params[:controller] == 'votes' || params[:controller] == 'users' %>
       <%= render partial: '/layouts/navbar' %>
     <% else %>
-      <%= render partial: '/layouts/home_nav' unless params[:controller] == 'pages' && params[:action] == 'vote' || params[:controller] == 'votes' || params[:controller] ==  'elections' %>
+      <%#= render partial: '/layouts/home_nav' unless params[:controller] == 'pages' && params[:action] == 'vote' || params[:controller] == 'votes' || params[:controller] ==  'elections' %>
     <% end %>
     <%# if params[:controller] == 'pages' %>
     <%#= render partial: '/layouts/home_nav' %>

@@ -38,7 +38,8 @@ p {
 .header {
   position:relative;
   text-align:center;
-  background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgb(193, 0, 167) 100%);
+  // background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgb(193, 0, 167) 100%);
+  background: linear-gradient(60deg, rgb(233, 200, 13) 0%, rgb(222, 172, 44) 100%);
   // background:radial-gradient(ellipse at center, rgb(2, 112, 66) 0%, rgb(2, 112, 66) 35%, #4ba04b 100%);
   // color:white;
 }
@@ -85,16 +86,6 @@ p {
 // .carousel-caps { 
   
 // }
-#video-background { 
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  z-index: -1;
-  width:100%;
-}
 
 // .logo {
 //   width:50px;
@@ -105,14 +96,14 @@ p {
 // }
 
 .inner-header {
-  height:70vh;
+  height: 80vh;
   width:100%;
   margin: 0;
   padding: 0;
 }
 
 .inner-header2 {
-  height:10vh;
+  height:80vh;
   width:100%;
   margin: 0;
   padding: 0;
@@ -137,7 +128,7 @@ p {
 
 .content {
   position:relative;
-  height:20vh;
+  height:10vh;
   text-align:center;
   background-color: white;
 }

@@ -3,7 +3,7 @@
     <div class="card mb-3" style="max-width: 900px;">
       <div class="row g-0">
         <div class="col-md-4">
-          <%= image_tag 'cover.jpg', width:'100%', height:'100%', class: "img-fluid rounded-start" %>
+          <%= image_tag 'cooptech.png', width:'100%', height:'100%', class: "img-fluid rounded-start" %>
           <%#= image_tag 'ocb_logo.png', width:'100%', height:'100%', class: "img-fluid rounded-start" %>
         </div>
         <div class="col-md-8">
@@ -11,9 +11,9 @@
             <div class="text-end">
               <%= link_to '<i class="bi bi-gear"></i>'.html_safe, coop_event_path(coop_event), class: 'text-secondary' %>
             </div>
-            <h5 class="card-title"><%= @coop_event.name %></h5>
+            <h5 class="card-title"><%= coop_event.name %></h5>
             <p class="card-text"><small class="text-muted">Event date: <%= coop_event.event_date %></small></p>
-            <p class="card-text"><%= @coop_event.description %></p>
+            <p class="card-text"><%= coop_event.description %></p>
             <%#= coop_event.election %>
             <% if coop_event.election %>
               <span class="badge rounded-pill text-bg-success">Election open</span>

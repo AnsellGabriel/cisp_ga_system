@@ -7,7 +7,7 @@ class Registration < ApplicationRecord
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validate :check_principal
-  validate :check_attached_board_reso
+  # validate :check_attached_board_reso
   has_one_attached :id_pic
   has_one_attached :board_reso
 
