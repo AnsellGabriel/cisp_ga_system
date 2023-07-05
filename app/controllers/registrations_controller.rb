@@ -165,7 +165,8 @@ class RegistrationsController < ApplicationController
           # unless @registration.guest_type == 'Accompanying Delegate'
             RegisterMailer.with(registration: @registration, event_hub: @event_hub).register_created.deliver_later
           # end
-          format.html { redirect_to event_page_path(@event_hub), notice: "Registration was successfully created." }
+          format.html { redirect_to success_registrations_path, notice: "Registration was successfully created." }
+          # format.html { redirect_to event_page_path(@event_hub), notice: "Registration was successfully created." }
         # format.html { redirect_to registration_url(@registration), notice: "Registration was successfully created." }
         format.json { render :show, status: :created, location: @registration }
       else
@@ -246,6 +247,10 @@ class RegistrationsController < ApplicationController
        format.turbo_stream { render :form_update, status: :unprocessable_entity }
       end
    end
+  end
+
+  def success 
+
   end
   private
     # Use callbacks to share common setup or constraints between actions.
