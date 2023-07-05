@@ -1,12 +1,12 @@
 class Registration < ApplicationRecord
   belongs_to :event_hub
-  validates_presence_of :last_name, :first_name, :guest_type, :email, :mobile_number, :size
-  validates_presence_of :coop_tin, on: :create
-  # validates :guest_type, :attendance, presence: :true
+  # validates_presence_of :last_name, :first_name, :guest_type, :email, :mobile_number, :size
+  validates_presence_of :last_name, :first_name, :email, :mobile_number
+  # validates_presence_of :coop_tin, on: :create
   attr_accessor :coop_tin
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validate :check_principal
+  # validate :check_principal
   # validate :check_attached_board_reso
   has_one_attached :id_pic
   has_one_attached :board_reso
@@ -17,7 +17,6 @@ class Registration < ApplicationRecord
 
   def check_principal 
     if guest_type == "Principal Delegate"
-      #  puts "@@@@@ check #{guest_type}"
       @principal = Registration.find_by(event_hub_id: "#{event_hub_id}", guest_type: "#{guest_type}")
       unless @principal.nil?
         errors.add(:base,"Principal delegate already registered")

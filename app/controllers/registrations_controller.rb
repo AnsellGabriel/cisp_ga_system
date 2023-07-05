@@ -82,7 +82,7 @@ class RegistrationsController < ApplicationController
       # puts "@@@@@#{params[:v]}"
       @registration = Registration.new
       #  set_dummy_register
-    
+      @registration.guest_type = "Principal Delegate"
   end
   # GET /registrations/1/edit
   def edit
