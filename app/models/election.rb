@@ -14,7 +14,7 @@ class Election < ApplicationRecord
       unless @coop_event.election 
         errors.add(:base,"Election is now close")
       end
-      if @event_hub.voted 
+      if @event_hub.voted
         errors.add(:base,"Cooperative already voted")
       end
       event_hub_id = @event_hub.id

@@ -36,10 +36,9 @@
   <div class="row mb-5">
     <% @candidates.each do |can| %>
       <div class="col-lg-3 col-md-6 mb-3">
-        <div class="card" style="width: 18rem;">
-          <%= image_tag can.picture, width: "100%", height: "240", class: "card-img-top" if can.picture.attached? %>
+        <div class="card">
           <div class="card-body">
-            <p class="text-primary"><%= can.get_fullname %></p>
+            <h3 class="text-primary"><%= can.get_fullname %></h3>
             <p class="mb-0"><%= can.elect_position %></p>
             <p><small><%= can.event_hub %></small></p>
             <% @vote = can.get_vote(@event_hub, can.id) %>
