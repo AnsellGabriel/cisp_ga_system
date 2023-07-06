@@ -57,12 +57,13 @@ class Registration < ApplicationRecord
 
   
   Attendance = [  "I will attend physically in the venue",
-    "I will attend virtually via zoom",
-    "I will attend virtually and will avail AGA kit (will shoulder shipping cost)"]
+    "I will attend virtually via zoom"]
+    # "I will attend virtually and will avail AGA kit (will shoulder shipping cost)"]
   
   Size = [ "XXXL", "XXL", "XL", "Large", "Medium", "Small", "X-Small"]
     
-  GuestType = ["Principal Delegate", "Accompanying Delegate", "Young Coop leader"]
+  GuestType = ["Principal Delegate", "Accompanying Delegate"] 
+              # , "Young Coop leader"]
 
   Dietary = ["None", "Halal", "Vegetarian", "Vegan"]
 

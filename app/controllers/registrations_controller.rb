@@ -148,7 +148,7 @@ class RegistrationsController < ApplicationController
       @registration.coop_tin = @cooperative.tin
     end
     @registration.attend = 0
-    @registration.guest_type = "Principal Delegate"
+    
     get_price
     
     unless @registration.guest_type == 'Accompanying Delegate'
