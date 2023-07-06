@@ -3,7 +3,7 @@ module ApplicationHelper
     
     def to_curr(value)
         if value.present?
-            number_with_delimiter(value.to_i, :delimiter => ',', :precision => 0) 
+            number_with_delimiter(value, :delimiter => ',', :precision => 2) 
         end
     end
 end

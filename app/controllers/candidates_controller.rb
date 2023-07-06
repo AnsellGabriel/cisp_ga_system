@@ -13,14 +13,15 @@ class CandidatesController < ApplicationController
   # GET /candidates/new
   def new
     # @candidate = Candidate.new
-    if params[:p] == "notmodal"
-      @candidate = Candidate.new
-    else
+    # if params[:p] == "notmodal"
+    #   @candidate = Candidate.new
+    # else
+    unless params[:p] == "notmodal"
       @event_hub = EventHub.find(params[:v])
       @candidate = @event_hub.candidates.build
     end
    
-    #  set_dummy_register
+     set_dummy_register
   end
   def set_dummy_register 
     @candidate.last_name = FFaker::Name.last_name

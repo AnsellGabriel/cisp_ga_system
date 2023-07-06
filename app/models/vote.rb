@@ -7,7 +7,7 @@ class Vote < ApplicationRecord
   attr_accessor :entry_vote
 
   
-  validates :vote_amount, numericality: { only_integer: true }
+  validates :vote_amount, numericality: { only_decimal: true }
   validate :validate_vote_amount, :on => :create
   validate :validate_vote_amount_edit, :on => :update
 
