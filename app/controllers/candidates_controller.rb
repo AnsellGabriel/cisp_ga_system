@@ -31,7 +31,7 @@ class CandidatesController < ApplicationController
   end
   def new_edit 
     @candidate = Candidate.new
-    set_dummy_register
+    # set_dummy_register
   end
   # GET /candidates/1/edit
   def edit
