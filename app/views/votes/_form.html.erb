@@ -21,6 +21,6 @@
     <hr>
   <div class="form-actions text-end">
     <%= link_to "Back", vote_votes_path(e: @event_hub, p: @vote.candidate.elect_position), class: "btn btn-secondary" %>
-    <%= f.button :submit, class: "btn btn-success" %>
+    <%= f.button :submit, value:"Submit", class: "btn btn-success" %>
   </div>
 <% end %>
