@@ -44,18 +44,37 @@
 #     eh.capital = 0
 #     eh.vote_power = 0
 #     puts "#{eh.vote_code}" if eh.save!
-spreadsheet = Roo::Spreadsheet.open("./db/uploads/cooptech.xlsx")
+# spreadsheet = Roo::Spreadsheet.open("./db/uploads/cooptech.xlsx")
+
+# (2..spreadsheet.sheet("Sheet1").last_row).each do |row|
+#     coop = Cooperative.find_or_initialize_by(name: spreadsheet.cell(row, 'A'))
+#     puts "#{coop.name}" if coop.save!
+    
+#     eh = EventHub.find_or_initialize_by(vote_code: spreadsheet.cell(row, 'D'))
+#     eh.code = ""
+#     eh.coop_event_id = 1
+#     eh.cooperative_id = coop.id
+#     eh.capital = spreadsheet.cell(row, 'B')
+#     eh.vote_power = spreadsheet.cell(row, 'C')
+#     puts "#{eh.vote_code}" if eh.save!
+spreadsheet = Roo::Spreadsheet.open("./db/uploads/cooptechreg.xlsx")
 
 (2..spreadsheet.sheet("Sheet1").last_row).each do |row|
     coop = Cooperative.find_or_initialize_by(name: spreadsheet.cell(row, 'A'))
-    puts "#{coop.name}" if coop.save!
+    puts "#{coop.name}" 
+    eh = EventHub.find_by(cooperative_id: coop.id)
     
-    eh = EventHub.find_or_initialize_by(vote_code: spreadsheet.cell(row, 'D'))
-    eh.code = ""
-    eh.coop_event_id = 1
-    eh.cooperative_id = coop.id
-    eh.capital = spreadsheet.cell(row, 'B')
-    eh.vote_power = spreadsheet.cell(row, 'C')
-    puts "#{eh.vote_code}" if eh.save!
+    reg = Registration.find_or_initialize_by(event_hub_id:  eh.id, last_name: spreadsheet.cell(row, 'H'))
+    reg.last_name = spreadsheet.cell(row, 'H')
+    reg.first_name = spreadsheet.cell(row, 'I')
+    reg.middle_name = ""
+    reg.email = spreadsheet.cell(row, 'D')
+    reg.mobile_number = spreadsheet.cell(row, 'E')
+    reg.guest_type = spreadsheet.cell(row, 'F')
+    reg.attendance = spreadsheet.cell(row, 'G')
+    if reg.save
+        puts "----Reg--#{reg.last_name}, #{reg.first_name}" 
+        # RegisterMailer.with(registration: reg, event_hub: eh).register_created.deliver_later
+    end
     
 end

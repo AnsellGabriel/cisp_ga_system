@@ -188,6 +188,7 @@ class RegistrationsController < ApplicationController
     respond_to do |format|
       if @registration.update(registration_params)
         # format.html { redirect_to event_page_path(@event_hub), notice: "Registration was successfully updated." }
+        RegisterMailer.with(registration: @registration, event_hub: @event_hub).register_created.deliver_later
         format.html { redirect_back fallback_location: root_path, notice: "Registration was successfully updated." }
         format.json { render :show, status: :ok, location: @registration }
       else
