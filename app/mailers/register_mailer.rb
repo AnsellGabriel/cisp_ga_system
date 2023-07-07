@@ -17,7 +17,7 @@ class RegisterMailer < ApplicationMailer
     @greeting = "Hi"
     attachments.inline['emailcooptech.png'] = File.read('app/assets/images/emailcooptech.png')
     mail(
-          from: "1CooptTech <management@onecooptech.org>",
+          from: "1CoopTech <management@onecooptech.org>",
           to: @registration.email, 
           cc: "management@onecooptech.org", 
           subject: "One Coop Tech 2nd General Assembly"

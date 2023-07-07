@@ -31,6 +31,7 @@ class CandidatesController < ApplicationController
   end
   def new_edit 
     @candidate = Candidate.new
+    @event_hub = EventHub.first
     # set_dummy_register
   end
   # GET /candidates/1/edit
