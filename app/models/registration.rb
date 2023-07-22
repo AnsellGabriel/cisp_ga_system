@@ -1,13 +1,13 @@
 class Registration < ApplicationRecord
   belongs_to :event_hub
-  # validates_presence_of :last_name, :first_name, :guest_type, :email, :mobile_number, :size
-  validates_presence_of :last_name, :first_name, :email, :mobile_number, :attendance
-  # validates_presence_of :coop_tin, on: :create
+  validates_presence_of :last_name, :first_name, :guest_type, :email, :mobile_number, :size
+  validates_presence_of :coop_tin, on: :create
+  # validates :guest_type, :attendance, presence: :true
   attr_accessor :coop_tin
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validate :check_principal, on: :create
-  # validate :check_attached_board_reso
+  validate :check_principal
+  validate :check_attached_board_reso
   has_one_attached :id_pic
   has_one_attached :board_reso
 
@@ -17,6 +17,7 @@ class Registration < ApplicationRecord
 
   def check_principal 
     if guest_type == "Principal Delegate"
+      #  puts "@@@@@ check #{guest_type}"
       @principal = Registration.find_by(event_hub_id: "#{event_hub_id}", guest_type: "#{guest_type}")
       unless @principal.nil?
         errors.add(:base,"Principal delegate already registered")
@@ -57,13 +58,12 @@ class Registration < ApplicationRecord
 
   
   Attendance = [  "I will attend physically in the venue",
-    "I will attend virtually via zoom"]
-    # "I will attend virtually and will avail AGA kit (will shoulder shipping cost)"]
+    "I will attend virtually via zoom",
+    "I will attend virtually and will avail AGA kit (will shoulder shipping cost)"]
   
   Size = [ "XXXL", "XXL", "XL", "Large", "Medium", "Small", "X-Small"]
     
-  GuestType = ["Principal Delegate", "Accompanying Delegate"] 
-              # , "Young Coop leader"]
+  GuestType = ["Principal Delegate", "Accompanying Delegate", "Young Coop leader"]
 
   Dietary = ["None", "Halal", "Vegetarian", "Vegan"]
 

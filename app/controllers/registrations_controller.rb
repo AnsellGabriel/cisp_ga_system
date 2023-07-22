@@ -82,7 +82,7 @@ class RegistrationsController < ApplicationController
       # puts "@@@@@#{params[:v]}"
       @registration = Registration.new
       #  set_dummy_register
-      @registration.guest_type = "Principal Delegate"
+    
   end
   # GET /registrations/1/edit
   def edit
@@ -148,16 +148,15 @@ class RegistrationsController < ApplicationController
       @registration.coop_tin = @cooperative.tin
     end
     @registration.attend = 0
-    
     get_price
     
-    unless @registration.guest_type == 'Accompanying Delegate'
-      if Registration.where(:award => 1).count < 100
-        @registration.award = 1
-      else
-        @registration.award = 0
-      end
-    end
+    # unless @registration.guest_type == 'Accompanying Delegate'
+    #   if Registration.where(:award => 1).count < 100
+    #     @registration.award = 1
+    #   else
+    #     @registration.award = 0
+    #   end
+    # end
     # raise "errors"
     respond_to do |format|
       if @registration.save
@@ -166,8 +165,7 @@ class RegistrationsController < ApplicationController
           # unless @registration.guest_type == 'Accompanying Delegate'
             RegisterMailer.with(registration: @registration, event_hub: @event_hub).register_created.deliver_later
           # end
-          format.html { redirect_to success_registrations_path, notice: "Registration was successfully created." }
-          # format.html { redirect_to event_page_path(@event_hub), notice: "Registration was successfully created." }
+          format.html { redirect_to event_page_path(@event_hub), notice: "Registration was successfully created." }
         # format.html { redirect_to registration_url(@registration), notice: "Registration was successfully created." }
         format.json { render :show, status: :created, location: @registration }
       else
@@ -188,7 +186,6 @@ class RegistrationsController < ApplicationController
     respond_to do |format|
       if @registration.update(registration_params)
         # format.html { redirect_to event_page_path(@event_hub), notice: "Registration was successfully updated." }
-        RegisterMailer.with(registration: @registration, event_hub: @event_hub).register_created.deliver_later
         format.html { redirect_back fallback_location: root_path, notice: "Registration was successfully updated." }
         format.json { render :show, status: :ok, location: @registration }
       else
@@ -249,10 +246,6 @@ class RegistrationsController < ApplicationController
        format.turbo_stream { render :form_update, status: :unprocessable_entity }
       end
    end
-  end
-
-  def success 
-
   end
   private
     # Use callbacks to share common setup or constraints between actions.
