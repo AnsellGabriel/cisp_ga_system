@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "pages#election"
+  root "pages#home"
   # get "pages/register", to: "pages#register", as: 'registration_post'
   
   #get "registrations/new_modal", to: "registrations#new_modal", as: "registration_new_modal"
