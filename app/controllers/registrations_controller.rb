@@ -107,7 +107,7 @@ class RegistrationsController < ApplicationController
       if Date.current <= Date.new(2023, 12, 31)
         @registration.price = 9000
       end
-      if Date.current <= Date.new(2023, 8, 3)
+      if Date.current <= Date.new(2023, 8, 31)
         @registration.price = 7000
       end
       @registration.paid = 0
@@ -126,7 +126,7 @@ class RegistrationsController < ApplicationController
         if Date.current <= Date.new(2023, 12, 31)
           @registration.price = 9000
         end
-        if Date.current <= Date.new(2023, 8, 3)
+        if Date.current <= Date.new(2023, 8, 31)
           @registration.price = 7000
         end
       end
