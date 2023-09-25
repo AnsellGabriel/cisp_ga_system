@@ -214,6 +214,23 @@
               </div>
               <%# end %>
             </div>
+            <div class="card text-bg-warning">
+              <div class="card-header">Dietary</div>
+              <ul class="list-group list-group-flush">
+                <% @dietary_group.each do |y| %>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-10">
+                        <%= y[0] %>
+                      </div>
+                      <div class="col-2">
+                        <%= to_curr(y[1]) %>
+                      </div>
+                    </div>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
           </div>
           <%# end %>
         </div>

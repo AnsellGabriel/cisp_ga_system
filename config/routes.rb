@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/index'
   resources :votes do 
     get "vote_review", to: "votes#vote_review", on: :collection
     get "vote_final", to: "votes#vote_final", on: :collection

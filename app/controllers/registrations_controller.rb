@@ -26,6 +26,8 @@ class RegistrationsController < ApplicationController
     @tentative = Registration.where(:tentative => 1).count
     @t_shirt_sizes = Registration.group(:size).count
     @t_shirt_count = Registration.count
+    @dietary_group = Registration.group(:dietary).count
+    
     
     @count_paid = Registration.where(:paid => 1).count
     @count_unpaid = Registration.where("price > ? AND paid = ?", 0, 0).count
