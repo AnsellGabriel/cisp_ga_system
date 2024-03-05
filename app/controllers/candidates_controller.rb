@@ -19,6 +19,7 @@ class CandidatesController < ApplicationController
     unless params[:p] == "notmodal"
       @event_hub = EventHub.find(params[:v])
       @candidate = @event_hub.candidates.build
+      
     end
    
      set_dummy_register
@@ -32,7 +33,7 @@ class CandidatesController < ApplicationController
   def new_edit 
     @candidate = Candidate.new
     @event_hub = EventHub.first
-    # set_dummy_register
+    set_dummy_register
   end
   # GET /candidates/1/edit
   def edit

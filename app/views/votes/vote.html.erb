@@ -4,22 +4,30 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-2">
-          <%= image_tag 'cooptechlogo.png', width: 150 %>
+          <%= image_tag 'panget_logo.png', width: 150 %>
         </div>
         <div class="col-md-10">
         <%= content_tag :h3, @event_hub.cooperative.name %>
-        <h4 class="text-primary">Voting Strength <%= to_curr(@votes_available) %></h4>
+        <h4 class="text-primary"><%= to_curr(@votes_available) %> Number of Votes</h4>
         </div>
       </div>
     </div>
   </div>
   <div class="alert alert-warning" role="alert">
     <%# <i class="bi bi-exclamation-triangle"></i> %>
-    You have the options to distribute the voting power in two ways: <br>
-    Either give all the voting power to one candidate or allocate it among candidates <br>
-    <%# BOD: 5 Vacant positions for the Board of Directors <br> %>
-    <%# Audit Committee: 2 Vacant positions for Audit Committee <br> %>
-    <%# Election Committee: 2 Vacant position for the Election Committee %>
+    <%# <strong>You have the options to distribute the voting power in two ways:</strong> <br> %>
+    <strong>Manner of Election:</strong> <br>
+    <%# Either give all the voting power to one candidate or allocate it among candidates <br> %>
+    - All voters are encouraged to fill out their ballots completely. <br>
+    - A voter may opt to use all his/her assigned number of votes on any one candidate or distribute his/her assigned number of votes to as many candidates as he/she wishes to vote. <br>
+    <hr>
+    You can vote for up to <%= @elect_position.vacant %> candidate(s) for the post of <%= @elect_position.name %> <br>
+    <% if @votes_available > 0 %>
+      You must use up your <%= to_curr(@votes_available) %> number of votes.
+    <% else %>
+      You may now proceed to <%= content_tag :strong, @next_position %>.
+    <% end %>
+    <%# Election Committee: 2 Vacant position for the Election Committee <br> %>
     <%# You can vote upto = @elect_position.vacant candidate(s) <br> %>
     <%# You must use up your voting power. %>
   </div>
@@ -36,11 +44,12 @@
   <div class="row mb-5">
     <% @candidates.each do |can| %>
       <div class="col-lg-3 col-md-6 mb-3">
-        <div class="card">
+        <div class="card" style="width: 17rem;">
+          <%= image_tag can.picture, class: "card-img-top" if can.picture.attached? %>
           <div class="card-body">
-            <h3 class="text-primary"><%= can.get_fullname %></h3>
+            <h4 class="text-primary"><%= can.get_fullname %></h4>
             <p class="mb-0"><%= can.elect_position %></p>
-            <p><small><%= can.event_hub %></small></p>
+            <small><%= can.event_hub %></small>
             <% @vote = can.get_vote(@event_hub, can.id) %>
             <p class="text-primary"> <strong> Vote: <%= to_curr(@vote.vote_amount) unless @vote.nil? %></strong></p>
             <%#= can.votes.sum(:vote_amount) %>

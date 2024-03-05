@@ -38,7 +38,8 @@ class VotesController < ApplicationController
   def edit
     # set_dummy_fields
     @TotalVote = Vote.where(event_hub: @event_hub, coop_event: @event_hub.coop_event, elect_position_id: @vote.elect_position_id).sum(:vote_amount)
-    @vote.entry_vote =  @event_hub.vote_power + @vote.vote_amount - @TotalVote
+    # @vote.entry_vote =  @event_hub.vote_power + @vote.vote_amount - @TotalVote
+    @vote.entry_vote =  @event_hub.vote_power - @TotalVote
   end
 
   # POST /votes or /votes.json
@@ -114,7 +115,8 @@ class VotesController < ApplicationController
     @vote.destroy
     
     respond_to do |format|
-      format.html { redirect_to vote_event_hub_url(@event_hub, p: @p), notice: "Vote was successfully destroyed." }
+      # format.html { redirect_to vote_event_hub_url(@event_hub, p: @p), notice: "Vote was successfully destroyed." }
+      format.html { redirect_to vote_votes_url(e: @event_hub, p: @p), notice: "Vote was successfully destroyed." }
       # format.html { redirect_back(fallback_location: vote_event_hub_url(@event_hub, p: params[:p])) , notice: "Vote was successfully destroyed." }
       format.json { head :no_content }
     end
