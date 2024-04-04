@@ -83,7 +83,7 @@ class VotesController < ApplicationController
     @event_hub = EventHub.find(params[:p])
     # @votes = Vote.where(event_hub: @event_hub, coop_event: @event_hub.coop_event)
     respond_to do |format|
-      if @event_hub.update_attribute(:voted, 1) 
+      if @event_hub.update!(voted: 1, vote_date: Time.now) 
         @vote_update = Vote.where(event_hub_id: @event_hub.id, coop_event_id: @event_hub.coop_event.id)
         @vote_update.update_all(post: 1)
         format.html { redirect_to vote_success_votes_path(p: @event_hub.coop_event), notice: "Updated" }

@@ -31,19 +31,51 @@
 #     puts "#{bar.name}" if bar.save!
 # end
 
-spreadsheet = Roo::Spreadsheet.open("./db/uploads/50gacoopb2.xlsx")
+# spreadsheet = Roo::Spreadsheet.open("./db/uploads/50gacoopb2.xlsx")
+
+# (2..spreadsheet.sheet("Sheet1").last_row).each do |row|
+#     coop = Cooperative.find_or_initialize_by(name: spreadsheet.cell(row, 'A'))
+#     puts "#{coop.name}" if coop.save!
+    
+#     eh = EventHub.find_or_initialize_by(vote_code: spreadsheet.cell(row, 'C'))
+#     eh.code = spreadsheet.cell(row, 'B')
+#     eh.coop_event_id = 1
+#     eh.cooperative_id = coop.id
+#     eh.capital = 0
+#     eh.vote_power = 0
+#     puts "#{eh.vote_code}" if eh.save!
+    
+
+spreadsheet = Roo::Spreadsheet.open("./db/uploads/vote_power_50.xlsx")
 
 (2..spreadsheet.sheet("Sheet1").last_row).each do |row|
-    coop = Cooperative.find_or_initialize_by(name: spreadsheet.cell(row, 'A'))
-    puts "#{coop.name}" if coop.save!
-    
-    eh = EventHub.find_or_initialize_by(vote_code: spreadsheet.cell(row, 'C'))
-    eh.code = spreadsheet.cell(row, 'B')
-    eh.coop_event_id = 1
-    eh.cooperative_id = coop.id
-    eh.capital = 0
-    eh.vote_power = 0
-    puts "#{eh.vote_code}" if eh.save!
+    coop = Cooperative.find_by(name: spreadsheet.cell(row, 'A'))
+    # puts "NEW COOP -------------------------> #{coop.name}" if coop.save!
+    puts "#{coop.name}"
+    if coop.nil? 
+        puts "Invalid Cooperative " & spreadsheet.cell(row, 'A')
+    else
+        eh = EventHub.find_or_initialize_by(cooperative_id: coop.id)
+        eh.capital = spreadsheet.cell(row, 'B')
+        eh.vote_power = spreadsheet.cell(row, 'C')
+        eh.coop_event_id = 1
+        eh.cooperative_id = coop.id
+        eh.voted = 0
+        eh.attend = 0
+        unless EventHub.exists?(cooperative_id: coop.id)
+            loop do
+                    code = SecureRandom.alphanumeric(4).upcase
+                    modified_string = code.gsub(/[1iO0I]/, "A")
+                    if EventHub.exists?(vote_code: modified_string)
+                        puts "Code #{modified_string} already exists, generating new code..."
+                    else
+                        eh.vote_code = modified_string    
+                    break
+                    end
+            end
+        end
+        puts "#{coop.name} - #{eh.vote_code}" if eh.save!
+    end
     
 
 # COOP TECH IMPORT
