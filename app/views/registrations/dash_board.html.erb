@@ -140,7 +140,8 @@
                     Voted Members
                   </div>
                   <div class="card-body">
-                    <h4><%= @event_hubs.where(voted: 1).count %></h4>
+                    <% voted_member = @event_hubs.where(voted: 1).count %>
+                    <h4><%= voted_member %></h4>
                   </div>
                 </div>
               </div>
@@ -150,7 +151,8 @@
                     Members not yet Voted
                   </div>
                   <div class="card-body">
-                    <h4><%= @event_hubs.where(voted: 0).count %></h4>
+                    <% member_not_voted = @registrations.where(guest_type: "Principal Delegate").count %>
+                    <h4><%= member_not_voted - voted_member %></h4>
                   </div>
                 </div>
               </div>
