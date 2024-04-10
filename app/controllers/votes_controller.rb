@@ -63,6 +63,23 @@ class VotesController < ApplicationController
     end
   end
 
+  def vote_all 
+    @event_hub = EventHub.find(params[:e])
+    @candidate = Candidate.find(params[:c])
+    @vote = Vote.new(coop_event_id: @event_hub.coop_event_id, vote_amount: @event_hub.vote_power, event_hub: @event_hub, candidate: @candidate)
+    @vote.entry_vote = @event_hub.vote_power
+    @vote.elect_position = @candidate.elect_position
+    respond_to do |format|
+      if @vote.save
+        format.html { redirect_to vote_votes_url(e: @event_hub, p: @vote.candidate.elect_position_id), notice: "Vote was successfully created." }
+        format.json { render :show, status: :created, location: @vote }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @vote.errors, status: :unprocessable_entity }
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
+      end
+    end
+  end
   # PATCH/PUT /votes/1 or /votes/1.json
   def update
     @TotalVote = Vote.where(event_hub: @event_hub, coop_event: @event_hub.coop_event, elect_position_id: @vote.elect_position_id).sum(:vote_amount)

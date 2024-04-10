@@ -82,34 +82,34 @@
                 </div>
                 <div class="card-body">
                   <%# <h1><i class="bi bi-person-fill"></i></h1> %>
-                  <h4><%= to_curr(@unpaid_participants) %></h4>
+                  <%= to_curr(@unpaid_participants) %>
                   <%#= link_to "download csv", registrations_path(format: :csv), download: ["principal_attend", Date.today].join(" ") %>
                 </div>
               </div>
             </div>
           </div>
-          <div class="card text-bg-warning mb-3">
+          <%# <div class="card text-bg-warning mb-3">
               <div class="card-header">
                 T-shirt Sizes
               </div>
-              <div class="card-body">
-                <h4><%= to_curr(@t_shirt_count) %></h4>
-              </div>
-              <ul class="list-group list-group-flush">
-                <% @t_shirt_sizes.each do |y| %>
-                  <li class="list-group-item">
+              <div class="card-body"> %>
+                <%#= to_curr(@t_shirt_count) %>
+              <%# </div>
+              <ul class="list-group list-group-flush"> %>
+                <%# @t_shirt_sizes.each do |y| %>
+                  <%# <li class="list-group-item">
                     <div class="row">
-                      <div class="col-10">
-                        <%= y[0] %>
-                      </div>
-                      <div class="col-2">
-                        <%= to_curr(y[1]) %>
-                      </div>
+                      <div class="col-10"> %>
+                        <%#= y[0] %>
+                      <%# </div>
+                      <div class="col-2"> %>
+                        <%#= to_curr(y[1]) %>
+                      <%# </div>
                     </div>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
+                  </li> %>
+                <%# end %>
+              <%# </ul>
+            </div> %>
         </div>
         <%# <div class="card"> %>
         <%# <h5 class="card-header">Total attending participants</h5> %>
@@ -140,7 +140,7 @@
                     Voted Members
                   </div>
                   <div class="card-body">
-                    <% voted_member = @event_hubs.where(voted: 1).count %>
+                    <% voted_member = @event_hubs.where(voted: 1).where('vote_power > ?', 0).count %>
                     <h4><%= voted_member %></h4>
                   </div>
                 </div>
@@ -201,23 +201,23 @@
               </div>
               <%# end %>
             </div>
-            <div class="card text-bg-warning">
+            <%# <div class="card text-bg-warning">
               <div class="card-header">Dietary</div>
-              <ul class="list-group list-group-flush">
-                <% @dietary_group.each do |y| %>
-                  <li class="list-group-item">
+              <ul class="list-group list-group-flush"> %>
+                <%# @dietary_group.each do |y| %>
+                  <%# <li class="list-group-item">
                     <div class="row">
-                      <div class="col-10">
-                        <%= y[0] %>
-                      </div>
-                      <div class="col-2">
-                        <%= to_curr(y[1]) %>
-                      </div>
+                      <div class="col-10"> %>
+                        <%#= y[0] %>
+                      <%# </div>
+                      <div class="col-2"> %>
+                        <%#= to_curr(y[1]) %>
+                      <%# </div>
                     </div>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
+                  </li> %>
+                <%# end %>
+              <%# </ul>
+            </div> %>
           </div>
           <%# end %>
         </div>
