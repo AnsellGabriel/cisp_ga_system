@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     get "register", to: "pages#register", as: "register", on: :collection
     get "vote", to: "pages#vote", as: "vote", on: :collection
     get "coming_soon", to: "pages#coming_soon", as: "coming_soon", on: :collection
+    get "program", to: "pages#program", as: "program", on: :collection
     get "announcement", to: "pages#announcement", as: "announcement", on: :collection
   end
     # post :coop, on: :collection, to: "pages#coop"
