@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :referendum_responses
+  resources :referendums do
+    post :submit_answers, on: :collection
+  end
   get 'home/index'
   resources :votes do 
     get "vote_review", to: "votes#vote_review", on: :collection

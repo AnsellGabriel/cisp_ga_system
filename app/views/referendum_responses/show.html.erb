@@ -1,0 +1,16 @@
+
+
+<div class="card">
+  <div class="card-header">
+    <h1>Referendum response</h1>
+    <%= link_to "Delete", @referendum_response, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+  </div>
+  <div class="card-body">
+    <%= render @referendum_response %>
+  </div>
+  <div class="card-footer">
+    <%= link_to "Edit", edit_referendum_response_path(@referendum_response), class: "btn btn-secondary btn-sm" %> |
+    <%= link_to "Back", referendum_responses_path, class: "btn btn-secondary btn-sm" %>
+  </div>
+
+</div>

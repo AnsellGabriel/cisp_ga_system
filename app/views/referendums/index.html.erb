@@ -1,0 +1,41 @@
+<%= content_tag :h1, "List of Referendums" %>
+
+
+<div class="text-end mb-3">
+  <%= link_to new_referendum_path, class: 'btn btn-primary' do %>
+    New Referendum
+  <% end %>
+</div>
+
+<table class ="table table-striped">
+  <table class="table table-borderless table-hover">
+    <thead>
+      <tr class="border-top border-bottom border-primary">
+
+      <th>#</th>
+        <th class="text-primary">Name</th>
+        <th class="text-primary">Active</th>
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @referendums.each do |referendum| %>
+        <tr>
+
+        <th scope="row"><%= referendum.id %></th>
+        <td><%= referendum.name %></td>
+        <td><%= referendum.active %></td>
+    
+          <td>
+            <%= link_to 'View', referendum, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Edit', edit_referendum_path(referendum), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "Delete", referendum, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

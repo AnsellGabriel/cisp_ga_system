@@ -31,10 +31,31 @@
           </table>
         </div>
       <% end %>
+      
     </div>
   <% else %>
     <div class="alert alert-danger" role="alert">
       <%= content_tag :h2, 'Election is still open' %>
     </div>
   <% end %>
+  <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th> Proposal </th>
+            <th> Oo </th>
+            <th> Hinde </th>
+          </tr>
+        </thead>
+        <tbody>
+         
+          <% @referendums = Referendum.where(active: 1) %>
+          <% @referendums.each do |r| %>
+            <tr>
+              <td><%= r.name %></td>
+              <td><%= to_curr(ReferendumResponse.where(referendum: r, response: 1).sum(:vote_amount)) %></td>
+              <td><%= to_curr(ReferendumResponse.where(referendum: r, response: 0).sum(:vote_amount)) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 </div>

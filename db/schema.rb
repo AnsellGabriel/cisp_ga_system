@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_04_132726) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_12_000000) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -1031,6 +1031,24 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_132726) do
     t.integer "minimum_participation"
     t.string "proposal_no"
     t.index ["cooperative_id"], name: "index_proposals_on_cooperative_id"
+  end
+
+  create_table "referendum_responses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "event_hub_id"
+    t.bigint "referendum_id"
+    t.boolean "response"
+    t.integer "vote_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_hub_id"], name: "index_referendum_responses_on_event_hub_id"
+    t.index ["referendum_id"], name: "index_referendum_responses_on_referendum_id"
+  end
+
+  create_table "referendums", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "registrations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
