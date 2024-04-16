@@ -20,7 +20,7 @@
             <div class="form-inputs mb-5" style="text-align: center;">
               <div class="form-inputs mb-3">
                 <%#= f.association :event_hub %>
-                <%= f.input :voter_code %>
+                <%= f.input :voter_code, input_html: { style: "text-align: center;" }  %>
               </div>
               <div class="form-actions text-center">
                 <%#= link_to "Back", root_path, class: "btn btn-secondary" %>

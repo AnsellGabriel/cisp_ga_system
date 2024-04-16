@@ -51,7 +51,7 @@
     <% if params[:p] == "notmodal" %>
       <%= link_to "Back", @candidate, class: "btn btn-secondary" %>
     <% else %>
-      <%= link_to "Back", event_page_path(@event_hub), class: "btn btn-secondary" %>
+      <%#= link_to "Back", event_page_path(@event_hub), class: "btn btn-secondary" %>
     <% end %>
     <%= f.button :submit, class: "btn btn-success", value: "Submit your application" %>
   </div>
