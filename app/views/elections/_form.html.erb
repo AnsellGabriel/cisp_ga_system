@@ -1,4 +1,4 @@
-<%= simple_form_for @election, url: elections_path(p: 1), method: :post do |f| %>
+<%= simple_form_for @election, url: elections_path(p: 1,r: params[:r]), method: :post do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <div class="col d-flex justify-content-center">

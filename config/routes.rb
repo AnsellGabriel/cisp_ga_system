@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :referendum_responses
+  resources :referendums do
+    post :submit_answers, on: :collection
+  end
   get 'home/index'
   resources :votes do 
     get "vote_review", to: "votes#vote_review", on: :collection
@@ -6,6 +10,7 @@ Rails.application.routes.draw do
     get "vote_success", to: "votes#vote_success", on: :collection
     get "vote", to: "votes#vote", on: :collection
     get "result", to: "votes#result", on: :collection
+    get "vote_all", to: "votes#vote_all", on: :collection
   end
 
   devise_for :users
@@ -49,6 +54,7 @@ Rails.application.routes.draw do
     get "register", to: "pages#register", as: "register", on: :collection
     get "vote", to: "pages#vote", as: "vote", on: :collection
     get "coming_soon", to: "pages#coming_soon", as: "coming_soon", on: :collection
+    get "program", to: "pages#program", as: "program", on: :collection
     get "announcement", to: "pages#announcement", as: "announcement", on: :collection
   end
     # post :coop, on: :collection, to: "pages#coop"

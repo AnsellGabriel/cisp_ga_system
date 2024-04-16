@@ -15,7 +15,7 @@ class Election < ApplicationRecord
         errors.add(:base,"Election is now close")
       end
       if @event_hub.voted
-        errors.add(:base,"Cooperative already voted")
+        errors.add(:base,"Invalid voter code")
       end
       event_hub_id = @event_hub.id
     end

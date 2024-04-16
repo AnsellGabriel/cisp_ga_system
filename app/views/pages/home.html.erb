@@ -37,10 +37,11 @@
             <%= image_tag 'panget_logo.png', width: 250, class: ' mt-5 mb-2 mb-lg-0 me-2 center' %>
             <h2 class="text-light display-3 fw-bolder text-capitalize">Leading with purpose;</h2>
             <h2 class="text-light display-3 fw-bolder text-capitalize">Securing Lives</h2>
-            <%= link_to 'Register', new_modal_registrations_path(q: "notmodal"), class: "btn btn-primary px-4 py-2 fs-5" %>
+            <%#= link_to 'Register', new_modal_registrations_path(q: "notmodal"), class: "btn btn-primary px-4 py-2 fs-5" %>
           </div>
         </div>
       </div>
+      
       <%# <div class="carousel-item c-item"> %>
         <%#= image_tag 'car_yl.JPG', class: 'd-block w-100 c-image' %>
         <%# <div class="carousel-caption mt-5 d-none d-md-block"> %>
@@ -69,29 +70,30 @@
     </button>
   </div>
 </div>
+  <%#= image_tag 'speaker_home.png', class: 'w-100' %>
 <div class="container my-5">
   <div class="text-center">
-    <%# <div class="row">
-      <div class="col-md-6"> %>
-        <%# <p><a href="https://vimeo.com/857767042">1CISP 50th Dir Pupa</a> from <a href="https://vimeo.com/user136253280">1CISP Gallery</a> on <a href="https://vimeo.com">Vimeo</a>.</p> %>
-        <%# <p>Invitation Video for the 50th Annual General Assembly</p> %>
-      <%# </div>
-      <div class="col-md-6">
-        <iframe src="https://player.vimeo.com/video/896736058?h=1b2a1b8123&byline=0&portrait=0" width="600" height="338" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-        <%# <p>50th Annual General Assembly Teaser</p> %>
-      <%# </div>  %>
-    </div>
     <div class="row">
       <div class="col-md-6">
-        <%# <iframe src="https://player.vimeo.com/video/896736088?h=f540936530&loop=1&byline=0&portrait=0" width="600" height="338" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe> %>
-        <iframe src="https://player.vimeo.com/video/919376623?h=1ce09487bb" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-        <%#= image_tag 'announcement_dec30.png', height: 500 %>
+        <iframe src="https://player.vimeo.com/video/932770966?h=e7b004f651&byline=0&portrait=0" width="600" height="338" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="col-md-6">
-        <%= image_tag 'elect_guide.png', height: 500 %>
-        <p><a href="https://drive.google.com/file/d/1lGqAfvpzVO1YUrGXEga9oeFpX-6ktyFD/view?usp=sharing">Click here</a> for more details</p>
-      </div>
-    </div>
+        <iframe src="https://player.vimeo.com/video/932770902?h=ce08e4bd79&byline=0&portrait=0" width="600" height="338" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    
+        <%# <p>50th Annual General Assembly Teaser</p> %>
+      </div> 
+  </div>
+    
+      <%# <div class="col-md-6"> %>
+        <%# <iframe src="https://player.vimeo.com/video/896736088?h=f540936530&loop=1&byline=0&portrait=0" width="600" height="338" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe> %>
+        <%# <iframe src="https://player.vimeo.com/video/930968584?h=75ac75121d" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe> %>
+        <%#= image_tag 'announcement_dec30.png', height: 500 %>
+      <%# </div> %>
+      <%# <div class="col-md-6"> %>
+        <%# <%= image_tag 'elect_guide.png', height: 500 %> 
+        <%# <p><a href="https://drive.google.com/file/d/1lGqAfvpzVO1YUrGXEga9oeFpX-6ktyFD/view?usp=sharing">Click here</a> for more details</p> %>
+      <%# </div> %>
+    
   </div>
 </div>
 <%= render 'layouts/footer'  %>

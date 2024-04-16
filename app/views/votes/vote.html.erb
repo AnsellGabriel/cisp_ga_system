@@ -56,6 +56,9 @@
             <div class="text-end">
               <%# <a href="#" class="btn btn-primary btn-sm">Vote</a> %>
               <% if @vote.nil? %>
+                <% if @candidates.count == 1 %>
+                  <%= link_to  'Vote all', vote_all_votes_path(e: @event_hub, c: can), class: 'btn btn-primary btn-sm' %>
+                <% end %>
                 <%= link_to  'Vote', new_vote_path(c: can, e: @event_hub, p: params[:p]), class: 'btn btn-primary btn-sm',   data: { turbo_frame: "remote_modal" }  %>
               <% else %>
                 <%= link_to 'Edit', edit_vote_path(@vote, p: params[:p] ), class: 'btn btn-secondary btn-sm',data: { turbo_frame: "remote_modal" } %>

@@ -23,16 +23,21 @@ class ElectionsController < ApplicationController
 
   # POST /elections or /elections.json
   def create
-    
+    # raise 'error'
     # @election = Election.new(election_params)
     @election = Election.new(election_params)
     @election.coop_event_id = params[:p]
     @coop_event = CoopEvent.find_by(:active => 1)
+    r = params[:r]
     # raise "errors"
     respond_to do |format|
       @event_hub = EventHub.find_by(vote_code: election_params[:voter_code])
       if @election.save
-        format.html { redirect_to vote_votes_path(e: @event_hub,p: 1), notice: "Election was successfully created." }
+        if r == 'r'
+          format.html { redirect_to new_referendum_response_path(e: @event_hub,p: 1), notice: "You may now vote" }
+        else
+          format.html { redirect_to vote_votes_path(e: @event_hub,p: 1), notice: "Election was successfully created." }
+        end
         format.json { render :show, status: :created, location: @election }
       else
          format.html { render :new, status: :unprocessable_entity }

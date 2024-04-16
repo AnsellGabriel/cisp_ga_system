@@ -1,0 +1,55 @@
+<div class="col d-flex justify-content-center mt-5", >
+  <div class="card" style="max-width: 800px">
+
+      <h5 class="card-header"><%= @event_hub.cooperative %></h5>
+      <div class="card-body">
+          <%= form_with url: submit_answers_referendums_path(e: @event_hub), method: :post do |form| %>
+              <% flash.each do |key, value| %>
+                  <div class="flash <%= key %>">
+                  <h5 class="text-danger"><%= value %></h5>
+                  </div>
+              <% end %>
+              <br>
+          <% i = 1 %>
+          <% @referendums.each_with_index do |q, index| %>
+              <%# <div class="question"> %>
+              
+              <%# <div class="answer-options"> %>
+                  <%#= form.radio_button :response, true %> <%#= label_tag 'answer_true', 'Yes' %>
+                  <%#= form.radio_button :response, false %> <%#= label_tag 'answer_false', 'No' %>
+              <%# </div> %>
+              <%# </div> %>
+              <td style="vertical-align: middle">
+                  <div class="d-flex gap-4 mb-3">
+                      <strong><%= i %>.</strong>
+                      <h5> <%= q.name %></h5>
+                      <% a = ReferendumResponse.find_by(referendum: q, event_hub: @event_hub) %>
+                      <% if a.present? %>
+                          <div class="">
+                              <input class="form-check-input" type="radio" value="true" name="question[<%= q.id %>][answer]" <%= "checked" if a.response? %>>
+                              <label class="form-check-label" name="question_<%= q.id %>">Oo</label>
+                          </div>
+                          <div class="">
+                              <input class="form-check-input" type="radio" value="false" name="question[<%= q.id %>][answer]" <%= "checked" unless a.response? %>>
+                              <label class="form-check-label" name="question_<%= q.id %>">Hindi</label>
+                          </div>
+                      <% else %>
+                          <div class="">
+                              <input class="form-check-input" type="radio" value="true" name="question[<%= q.id %>][answer]">
+                              <label class="form-check-label" name="question_<%= q.id %>">Oo</label>
+                          </div>
+                          <div class="">
+                              <input class="form-check-input" type="radio" value="false" name="question[<%= q.id %>][answer]">
+                              <label class="form-check-label" name="question_<%= q.id %>">Hindi</label>
+                          </div>
+                      <% end %>
+                      
+                  </div>
+                  <% i += 1%>
+              </td>
+          <% end %>
+          <%= form.submit "Submit Answers", class: "btn btn-primary" %>
+          <% end %>
+      </div>
+  </div>
+</div>

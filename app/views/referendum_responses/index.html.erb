@@ -1,0 +1,43 @@
+<%= content_tag :h1, "List of Referendum Responses" %>
+
+
+<div class="text-end mb-3">
+  <%= link_to new_referendum_response_path, class: 'btn btn-primary' do %>
+    New Referendum Response
+  <% end %>
+</div>
+
+<table class ="table table-striped">
+  <table class="table table-borderless table-hover">
+    <thead>
+      <tr class="border-top border-bottom border-primary">
+
+      <th>#</th>
+        <th class="text-primary">Event Hub</th>
+        <th class="text-primary">Referendum</th>
+        <th class="text-primary">Response</th>
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @referendum_responses.each do |referendum_response| %>
+        <tr>
+
+        <th scope="row"><%= referendum_response.id %></th>
+        <td><%= referendum_response.event_hub %></td>
+        <td><%= referendum_response.referendum %></td>
+        <td><%= referendum_response.response %></td>
+    
+          <td>
+            <%= link_to 'View', referendum_response, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Edit', edit_referendum_response_path(referendum_response), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "Delete", referendum_response, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
