@@ -152,7 +152,9 @@ class RegistrationsController < ApplicationController
       @registration.coop_tin = @cooperative.tin
     end
     @registration.attend = 0
-    get_price
+    @registration.price = 2800
+    # get_price
+
     
     # unless @registration.guest_type == 'Accompanying Delegate'
     #   if Registration.where(:award => 1).count < 100
