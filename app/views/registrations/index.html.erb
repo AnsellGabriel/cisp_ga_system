@@ -63,7 +63,7 @@
                 </div>
                 <%= link_to '<i class="bi bi-person-badge"></i>'.html_safe, rails_blob_url(registration.id_pic), target: :_blank, class: 'btn btn-outline-secondary btn-sm' if registration.id_pic.attached? %>
                 <%= link_to '<i class="bi bi-file-earmark-text"></i>'.html_safe, rails_blob_url(registration.board_reso), target: :_blank, class: 'btn btn-outline-secondary btn-sm' if registration.board_reso.attached? %>
-                <% unless registration.price.nil? %>
+                <% if registration.guest_type == 'Accompanying Delegate' %>
                   <% if registration.paid %>
                     <%= link_to '<i class="bi bi-cash"></i>'.html_safe, paid_registration_path(registration), class: "btn btn-outline-success btn-sm" %>
                   <% else %>

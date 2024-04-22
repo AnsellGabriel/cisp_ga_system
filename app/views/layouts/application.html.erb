@@ -19,8 +19,8 @@
     <% if current_user  %>
       <%#= render partial: '/layouts/navbar' unless params[:controller] == 'pages' || params[:controller] ==  'registrations' || params[:controller] ==  'elections' || params[:controller] == 'votes' || params[:controller] == 'users' %>
       <%= render partial: '/layouts/navbar' %>
-    <% else %>
-      <%= render partial: '/layouts/home_nav' unless params[:controller] == 'pages' && params[:action] == 'vote' || params[:controller] == 'votes' || params[:controller] ==  'elections' %>
+    <%# else %>
+      <%#= render partial: '/layouts/home_nav' unless params[:controller] == 'pages' && params[:action] == 'vote' || params[:controller] == 'votes' || params[:controller] ==  'elections' %>
     <% end %>
     <%# if params[:controller] == 'pages' %>
     <%#= render partial: '/layouts/home_nav' %>
