@@ -215,6 +215,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_19_072142) do
     t.boolean "tentative"
     t.string "dietary"
     t.string "gender"
+    t.datetime "attend_date"
     t.index ["event_hub_id"], name: "index_registrations_on_event_hub_id"
   end
 

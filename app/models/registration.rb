@@ -1,6 +1,6 @@
 class Registration < ApplicationRecord
   belongs_to :event_hub
-  validates_presence_of :last_name, :first_name, :guest_type, :email, :dietary, :mobile_number, :size
+  validates_presence_of :last_name, :first_name, :guest_type, :email, :dietary, :mobile_number, :attendance
   # validates_presence_of :mobile_number, :size
   # validates_presence_of :coop_tin, on: :create
   # validates :guest_type, :attendance, presence: :true
@@ -8,7 +8,7 @@ class Registration < ApplicationRecord
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validate :check_principal
-  validate :check_attached_board_reso
+  # validate :check_attached_board_reso
   has_one_attached :id_pic
   has_one_attached :board_reso
 
