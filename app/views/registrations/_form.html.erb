@@ -36,7 +36,7 @@
         <div data-controller="showhide" data-showhide-show-if-value="Accompanying Delegate" data-showhide-show-if-value="Young Coop leader" >
           <%# <div data-controller="showtype" data-showtype-show-if-value="Young Coop leader (35yo and below)"> %>
           <div class="row mb-3">
-            <%= f.input :size, label: "Area", wrapper_html: { class: "col-md-3" } %>
+            <%= f.input :size, collection: Registration::Area, label: "Area", wrapper_html: { class: "col-md-3" } %>
             <%= f.input :guest_type, collection: Registration::GuestType, wrapper_html: { class: "col-md-3" }, input_html: { data: { showhide_target: "input", action: "change->showhide#toggle" } } %>
             <%#= f.input :attendance, label: "You are attending?", collection: Registration::Attendance, wrapper_html: { class: "col-md-6" } %>
             <%= f.input :attendance, collection: Registration::Size, label: "Preference how to attend", wrapper_html: { class: "col-md-3" } %>
