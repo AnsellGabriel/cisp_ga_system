@@ -1,10 +1,10 @@
 <%# <h1>Register#register_created</h1> %>
-<%= image_tag attachments['50email.png'].url, alt: 'My Photo',width: 500, class: 'photos' %>
+<%= image_tag attachments['emailcooptech.png'].url, alt: 'My Photo',width: 500, class: 'photos' %>
 <div class="content-letter">
   <p>Dear <%= @name %>,</p>
   <p>Co-operative greetings from 1CISP!</p>
   <p>Thank you for registering to our 50th Annual General Assembly scheduled on April 12-13, 2024. The event will be held at the Manila Marriott Hotel, located at Newport Boulevard, Newport City, Pasay 1309, Metro Manila. Please be sure you've got the date blocked on your calendar to join us.</p>
-  <% unless @registration.price.nil? %>
+  
     <p>For your convenience, here is our PAYMENT options for your reference:</p>
     <strong>Registration Fee: <%= number_with_delimiter(@registration.price, :delimiter => ',', :precision => 0) %></strong>
     <p>Payment Methods: </p>
@@ -23,10 +23,6 @@
       </li>
     </ol>
     <p>After payment has been made, kindly email your proof of payment to 1cispga@gmail by using this format as a subject (REGISTRATION FEE_COOP NAME_DELEGATE NAME). Please take note that we will not be able to verify your registration if no proof of payment will be emailed to us.</p>
-  <% else %>
-    <p>We are excited to have you join us for this event. This email serves as your initial confirmation. You will receive a FINAL CONFIRMATION within fifteen (15) calendar days.</p>
-    <%# <p>You have successfully registered for the 50th annual general assembly; We are excited to have you join us for this event. This email serves as a confirmation of your registration, please present this confirmation at the event.</p> %>
-  <% end %>
   <%# <%= content_tag :p, '(49th) Annual General Assembly Meeting and Election on April 15, 2023, Saturday at 9:00 A.M. The meeting will be held at Novotel Manila, Araneta City, General Aguinaldo Ave, Cubao, Quezon City, Metro Manila; and via Zoom (Meeting ID: 857 1289 6787) ' %>
   <% if @guest_type == "Principal Delegate" %>
     <strong>
@@ -35,9 +31,5 @@
   <%end%>
   <p>If you have any questions or require further information about the event, please feel free to contact our event support team at 1cispga@gmail.com or call us at (02) 8556-27-00 loc. 57, 09228437281. You may look for Ms. Marjorie L. Ely or Ms. Pauline Maglonzo. We will be happy to assist you with your registration concerns.</p>
   <p>We look forward in welcoming you and creating a memorable experience. See you in our 50th Annual General Assembly!</p>
-  <br>
-  <% if @registration.award %>
-    <hr>
-    <em>Congratulations! You are one of the first 100 registrants for 1CISP’s 50th Annual General Assembly. You may claim the limited edition merchandise at the AGA Kit Area on April 12, 2024 between 7:00 am to 5:00 pm. You must present this confirmation letter to be able to claim the prize.</em>
-  <% end %>
+
 </div>
