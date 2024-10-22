@@ -4,11 +4,12 @@ lock "~> 3.17.1"
 # set :application, "my_app_name"
 # set :repo_url, "git@example.com:me/my_repo.git"
  
-set :application, "ga_system"
-# set :application, "one_coop_tech"
+# set :application, "ga_system"
+set :application, "one_coop_tech"
 set :repo_url, "git@github.com:AnsellGabriel/cisp_ga_system.git"
 set :rails_env, 'production' #
-set :branch, 'main' #
+# set :branch, 'main' #
+set :branch, 'octs' #
 
 # set :deploy_to, "/var/www/#{fetch(:application)}"  #
 set :deploy_to, "/home/deploy/#{fetch :application}"

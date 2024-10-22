@@ -4,7 +4,7 @@
       <%# <th class="text-primary"></th> %>
       <th class="text-primary">Name</th>
       <th class="text-primary">Type</th>
-      <th class="text-primary">Price</th>
+      <%# <th class="text-primary">Price</th> %>
       <th></th>
     </tr>
   </thead>
@@ -14,7 +14,7 @@
         <%# <th scope="row">= claim_document.id</th> %>
         <td><%= reg.get_fullname %></td>
         <td><%= reg.guest_type %></td>
-        <td><%= to_curr(reg.price) %></td>
+      
         <td>
          
           <%#= link_to 'Edit', edit_claim_document_path(claim_document), class: 'btn btn-secondary btn-sm' %>

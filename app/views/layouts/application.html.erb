@@ -20,7 +20,7 @@
       <%#= render partial: '/layouts/navbar' unless params[:controller] == 'pages' || params[:controller] ==  'registrations' || params[:controller] ==  'elections' || params[:controller] == 'votes' || params[:controller] == 'users' %>
       <%= render partial: '/layouts/navbar' %>
     <% else %>
-      <%= render partial: '/layouts/home_nav' unless params[:controller] == 'pages' && params[:action] == 'vote' || params[:controller] == 'votes' || params[:controller] ==  'elections' %>
+      <%#= render partial: '/layouts/home_nav' unless params[:controller] == 'pages' && params[:action] == 'vote' || params[:controller] == 'votes' || params[:controller] ==  'elections' %>
     <% end %>
     <%# if params[:controller] == 'pages' %>
     <%#= render partial: '/layouts/home_nav' %>
@@ -28,10 +28,10 @@
     <%# if params[:controller] == 'registrations'  %>
     <%#= render partial: '/layouts/home_nav' %>
     <%# end %>
-    <%#= render partial: '/layouts/wavebar'  if params[:controller] == 'registrations' || params[:controller] == 'event_hubs' || params[:controller] == 'votes' %>
+
     <div class=" <%= "top-content" unless current_user || params[:controller] == 'pages' || params[:controller] == 'votes' || params[:controller] ==  'elections' %>">
       <div class=" <%= "container" unless params[:controller] == 'pages' || params[:controller] ==  'elections' || params[:controller] == 'votes' %> ">
-        <%= render 'layouts/notification' unless params[:controller] == 'pages' || params[:controller] ==  'elections' || params[:controller] == 'votes' %>
+        <%= render 'layouts/notification' %>
         <%= yield %>
         <%= turbo_frame_tag "remote_modal", target: "_top" %>
       </div>

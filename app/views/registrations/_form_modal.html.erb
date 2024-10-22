@@ -1,30 +1,9 @@
 <div class="card mb-3">
   <div class="card-header">
-    <h2>Registration Guidelines</h2>
+    <h2>Registration</h2>
   </div>
   <div class="card-body">
-    <ol>
-      <li>Registration opens this Thursday, June 01, 2023.</li>
-      <li>Free: one (1) principal delegate and one (1) young coop leader.</li>
-      <ul>
-        <li><strong>Principal Delegate</strong> - Any representative endorsed by the cooperative and supported by a Board Resolution; has the right to vote in the Annual General Assembly.</li>
-        <li><strong>Young Coop Leader</strong> - Any representative endorsed by the cooperative but must be 35 years old and below.</li>
-      </ul>
-      <li>Accompanying Delegate - Any delegate in excess of the first two(2) representatives.</li>
-      <dl class="row">
-        <dd>The following is the cost of accompanying delegates:</dd>
-        <dd class="col-sm-6">Register from June until August 2023</dd>
-        <dt class="col-sm-3"> Php 7,000.00</dt>
-        <dd class="col-sm-6">Register from September until December 2023</dd>
-        <dt class="col-sm-3"> Php 9,000.00</dt>
-        <dd class="col-sm-6">Register from January until February 2024</dd>
-        <dt class="col-sm-3"> Php 11,000.00</dt>
-        <dd class="col-sm-6">Register from March until April 2024</dd>
-        <dt class="col-sm-3"> Php 13,000.00</dt>
-        Above rates are inclusive of 2-day event with AGA kit
-      </dl>
-      <li>First 100 individuals to register will receive 1CISP 50th AGA merchandise.</li>
-    </ol>
+    <%#= render 'registrations/registration_guidelines' %>
     To assist you on your registration, please click this video <%= link_to "How to register", how_to_vote_registrations_path, class: "btn btn-warning btn-sm", data: { turbo_frame: "remote_modal" } %>
     <hr>
 <%= simple_form_for @registration, url: registrations_path(q: params[:q]), method: :post do |f| %>
@@ -34,11 +13,7 @@
     <div class="row mb-3">
       <%= f.input :last_name,label: "Last Name", wrapper_html: { class: "col-md-4" } %>
       <%= f.input :first_name,label: "First Name", wrapper_html: { class: "col-md-4" } %>
-      <%= f.input :middle_name,label: "Middle Initial", wrapper_html: { class: "col-md-4" } %>
-      <div class="form-check form-switch mt-3">
-        <%= f.input :tentative, label: "Tentative delegate" %>
-        <div class="form-text">If you are unsure whether the participants will attend, please switch on the tentative.</div>
-      </div>
+      <%= f.input :middle_name,label: "Middle Name", wrapper_html: { class: "col-md-4" } %>
     </div>
     <div class="row mb-3">
       <%= f.input :birth_date, label: "Birth Date", as: :string, wrapper_html: { class: "col-md-3" }, 
@@ -55,29 +30,18 @@
     <% end %>
     <div data-controller="showhide" data-showhide-show-if-value="Accompanying Delegate">
       <div class="row">
-        <%= f.input :coop_tin, label: "Cooperative TIN", wrapper_html: { class: "col-md-3" } %>
-        <%= f.input :guest_type, collection: Registration::GuestType, wrapper_html: { class: "col-md-3" }, input_html: { data: { showhide_target: "input", action: "change->showhide#toggle" } } %>
-        <%#= f.input :attendance, collection: Registration::Attendance, wrapper_html: { class: "col-md-4" } %>
-        <%= f.input :size, collection: Registration::Size, label: "T-shirt Size", wrapper_html: { class: "col-md-3" } %>
-        <%= f.input :dietary, collection: Registration::Dietary, label: "Dietary Preference", wrapper_html: { class: "col-md-3" } %>
-        <div id="guesttype" class="form-text">Only the principal delegate are allowed to vote.</div>
-      </div>
-      <div class="alert alert-warning" role="alert">
-        <i class="bi bi-file-earmark-arrow-up"></i> Official delegate are required to upload their scanned image of their ID and Board resolution. <br>
-        <i class="bi bi-exclamation-square"></i> Accompanying- excess of the first two free (2) representatives, with registration fee. <br>
-        <i class="bi bi-exclamation-square"></i> Young coop leader must be 18 to 35 years of age <br>
-        <i class="bi bi-exclamation-square"></i> If you are unsure about the attending participants, check the tentative delegate.
-      </div>
-      <div data-showhide-target="output">
-        <div class="card">
-          <div class="card-header">Attachments</div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-6">
-                <h6>ID Picture: </h6>
-                <%= f.file_field :id_pic %>
-              </div>
-              <div class="col-md-6">
+        <div class="col-md-6">
+          <%#= f.input :coop_tin, label: "Cooperative TIN", wrapper_html: { class: "col-md-3" } %>
+          <%= f.input :guest_type, collection: Registration::GuestType, input_html: { data: { showhide_target: "input", action: "change->showhide#toggle" } } %>
+          <%#= f.input :attendance, collection: Registration::Attendance, wrapper_html: { class: "col-md-4" } %>
+          <%#= f.input :size, collection: Registration::Size, label: "T-shirt Size", wrapper_html: { class: "col-md-3" } %>
+          <%#= f.input :dietary, collection: Registration::Dietary, label: "Dietary Preference", wrapper_html: { class: "col-md-3" } %>
+        </div>
+        <div class="col-md-6">
+          <div data-showhide-target="output">
+            <div class="card">
+              <div class="card-header">Attachments</div>
+              <div class="card-body">
                 <div data-showhide-target="board">
                   <h6>Board Resolution: </h6>
                   <%= f.file_field :board_reso %>
@@ -87,10 +51,15 @@
           </div>
         </div>
       </div>
+      <div class="alert alert-warning mt-3" role="alert">
+        <i class="bi bi-file-earmark-arrow-up"></i> Official delegate are required to upload their scanned image of their Board resolution. <br>
+        <i class="bi bi-exclamation-square"></i> Only the principal delegate are allowed to vote.
+      </div>
+     
     </div>
   </div>
   <%#= @event_hub.cooperative %>
-  <div class="form-actions text-end mb-4">
+  <div class="form-actions text-end mt-3">
     <%= link_to "Back", root_path, class: "btn btn-secondary" %>
     <%= f.button :submit, class: "btn btn-success", value: "Register" %>
   </div>

@@ -1,4 +1,4 @@
-      <% @coop_events.each do |coop_event| %>
+<% @coop_events.each do |coop_event| %>
   <div class="col d-flex justify-content-center">
     <div class="card mb-3" style="max-width: 900px;">
       <div class="row g-0">
@@ -12,24 +12,27 @@
               <%= link_to '<i class="bi bi-gear"></i>'.html_safe, coop_event_path(coop_event), class: 'text-secondary' %>
             </div>
             <h5 class="card-title"><%= coop_event.name %></h5>
-            <p class="card-text"><small class="text-muted">Event date: <%= coop_event.event_date %></small></p>
+            <p class="card-text"><small>Event date: <%= coop_event.event_date %></small></p>
             <p class="card-text"><%= coop_event.description %></p>
             <%#= coop_event.election %>
-            <% if coop_event.election %>
-              <span class="badge rounded-pill text-bg-success">Election open</span>
-            <% else %>
-              <span class="badge rounded-pill text-bg-secondary">Election close</span>
-            <% end %>
-            <% if coop_event.active %>
-              <span class="badge rounded-pill text-bg-success">Active</span>
-            <% else %>
-              <span class="badge rounded-pill text-bg-secondary">Disable</span>
-            <% end %>
+            <div class="mb-2">
+              <% if coop_event.election %>
+                <span class="badge rounded-pill text-bg-success">Election open</span>
+              <% else %>
+                <span class="badge rounded-pill text-bg-secondary">Election close</span>
+              <% end %>
+              <% if coop_event.active %>
+                <span class="badge rounded-pill text-bg-success">Active</span>
+              <% else %>
+                <span class="badge rounded-pill text-bg-secondary">Disable</span>
+              <% end %>
+            </div>
+            <br>
             <%# @eh = Eventhub.where(coop_event_id: coop_event) %>
             <%#= simple_form_for(@coop) do |f| %>
               <%#= f.select :cooperative, prompt: "Select a cooperative", collection: Cooperative.order(:name), input_html: { class: 'form-select',  controller: "ts--select" }  %>
               <%# end %>
-              <br class="mb-3">
+              
               <%= link_to 'Vote', new_election_path(p: coop_event), class: 'btn btn-primary btn-lg' if coop_event.election %>
               <%= link_to 'Register', new_modal_registrations_path(q: "notmodal"), class: 'btn btn-primary btn-lg' %>
             </div>

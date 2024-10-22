@@ -1,14 +1,14 @@
 class Registration < ApplicationRecord
   belongs_to :event_hub
-  validates_presence_of :last_name, :first_name, :guest_type, :email, :mobile_number, :size
-  validates_presence_of :coop_tin, on: :create
+  validates_presence_of :last_name, :first_name, :guest_type, :email, :mobile_number
+  # validates_presence_of :coop_tin, on: :create
   # validates :guest_type, :attendance, presence: :true
   attr_accessor :coop_tin
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validate :check_principal
   validate :check_attached_board_reso
-  has_one_attached :id_pic
+  # has_one_attached :id_pic
   has_one_attached :board_reso
 
   def to_s 
@@ -37,13 +37,8 @@ class Registration < ApplicationRecord
       unless board_reso.attached? 
         errors.add(:base, "Must attached a board reso")
       end
-      unless id_pic.attached? 
-        errors.add(:base, "Must attached an ID")
-      end
-    elsif guest_type == "Young Coop leader"
-      unless id_pic.attached? 
-        errors.add(:base, "Must attached an ID")
-      end
+      # unless id_pic.attached? 
+      #   errors.add(:base, "Must attached an ID")
     end
   end
 
@@ -57,13 +52,10 @@ class Registration < ApplicationRecord
   end
 
   
-  Attendance = [  "I will attend physically in the venue",
-    "I will attend virtually via zoom",
-    "I will attend virtually and will avail AGA kit (will shoulder shipping cost)"]
   
   Size = [ "XXXL", "XXL", "XL", "Large", "Medium", "Small", "X-Small"]
     
-  GuestType = ["Principal Delegate", "Accompanying Delegate", "Young Coop leader"]
+  GuestType = ["Principal Delegate", "Accompanying Delegate"]
 
   Dietary = ["None", "Halal", "Vegetarian", "Vegan"]
 
