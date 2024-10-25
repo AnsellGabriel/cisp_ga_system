@@ -3,7 +3,7 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # config.hosts << 'https://event.1cisp.coop/'
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { host: 'https://event.1cisp.coop/' }
+  # config.action_mailer.default_url_options = { host: 'https://event.1cisp.coop/' }
   # config.action_mailer.default_url_options = { host: 'https://election.onecooptech.org/' }
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development

@@ -15,11 +15,11 @@ class RegisterMailer < ApplicationMailer
     @event_hub = params[:event_hub]
     @voter = @event_hub.vote_code
     @greeting = "Hi"
-    attachments.inline['emailcooptech.png'] = File.read('app/assets/images/emailcooptech.png')
+    attachments.inline['cooptech_email.png'] = File.read('app/assets/images/cooptech_email.png')
     mail(
-          from: "1cispga@gmail.com",
+          from: "ga@onecooptech.org",
           to: @registration.email, 
-          cc: "1cispga@gmail.com", 
+          cc: "ga@onecooptech.org", 
           subject: "3rd OCTS GA Registration"
     )
   end

@@ -64,7 +64,7 @@ class RegistrationsController < ApplicationController
     @event_hub = EventHub.find(params[:v])
     @registration = @event_hub.registrations.build
     
-    #  set_dummy_register
+     set_dummy_register if Rails.env.development?
   end
   def set_dummy_register 
     @eh = EventHub.all
@@ -72,7 +72,7 @@ class RegistrationsController < ApplicationController
     @registration.first_name = FFaker::Name.first_name
     @registration.middle_name = FFaker::Name.name[0]
     @registration.event_hub_id = @eh.shuffle.first.id
-    @registration.email = "ansellgabriel@gmail.com"
+    @registration.email = "agdelayre@1cisp.coop"
     @registration.mobile_number = "+639127123459"
     @registration.birth_date = "08/09/1983"
     @registration.guest_type = "Accompanying Delegate"
@@ -85,7 +85,7 @@ class RegistrationsController < ApplicationController
   def new_modal
       # puts "@@@@@#{params[:v]}"
       @registration = Registration.new
-      #  set_dummy_register
+      set_dummy_register if Rails.env.development?
     
   end
   # GET /registrations/1/edit

@@ -1,35 +1,20 @@
 <%# <h1>Register#register_created</h1> %>
-<%= image_tag attachments['emailcooptech.png'].url, alt: 'My Photo',width: 500, class: 'photos' %>
+<%= image_tag attachments['cooptech_email.png'].url, alt: 'My Photo',width: 500, class: 'photos' %>
 <div class="content-letter">
   <p>Dear <%= @name %>,</p>
-  <p>Co-operative greetings from 1CISP!</p>
-  <p>Thank you for registering to our 50th Annual General Assembly scheduled on April 12-13, 2024. The event will be held at the Manila Marriott Hotel, located at Newport Boulevard, Newport City, Pasay 1309, Metro Manila. Please be sure you've got the date blocked on your calendar to join us.</p>
-  
-    <p>For your convenience, here is our PAYMENT options for your reference:</p>
-    <strong>Registration Fee: <%= number_with_delimiter(@registration.price, :delimiter => ',', :precision => 0) %></strong>
-    <p>Payment Methods: </p>
-    <ol>
-      <li>
-        Deposit or Bank Transfer:
-        <p>Bank Name: Metrobank <br>Account Name: 1CISP <br>Account Number: 232-3-23250315-8</p>
-      </li>
-      <li>
-        Check Payment:
-        <ul>
-          <li>Cheque payments must be made in PHP peso prior the scheduled 50th AGA.</li>
-          <li>Please make the check payable to 1CISP.</li>
-          <li>Deposit the cheque payment at any branch of METROBANK or mail it to 1CISP.</li>
-        </ul>
-      </li>
-    </ol>
-    <p>After payment has been made, kindly email your proof of payment to 1cispga@gmail by using this format as a subject (REGISTRATION FEE_COOP NAME_DELEGATE NAME). Please take note that we will not be able to verify your registration if no proof of payment will be emailed to us.</p>
+  <p>Cooperative Greetings from One Coop Tech!</p>
+  <p>We are thrilled to confirm your registration for our 3rd Annual General Assembly on November 14, 2024. This event will be held at the 1CISP Multi-Purpose Hall (11 Mapagbigay St. Brgy. Pinyahan, Quezon City) and accessible online via Zoom.</p>
+
   <%# <%= content_tag :p, '(49th) Annual General Assembly Meeting and Election on April 15, 2023, Saturday at 9:00 A.M. The meeting will be held at Novotel Manila, Araneta City, General Aguinaldo Ave, Cubao, Quezon City, Metro Manila; and via Zoom (Meeting ID: 857 1289 6787) ' %>
   <% if @guest_type == "Principal Delegate" %>
-    <strong>
-      Your voter's code is <strong> <%= @voter %> </strong>
-    </strong>
+    <p>
+      Your voter's code is <strong> <%= @voter %> </strong> , which will grant you access to cast your votes during this important assembly.
+    </p>
   <%end%>
-  <p>If you have any questions or require further information about the event, please feel free to contact our event support team at 1cispga@gmail.com or call us at (02) 8556-27-00 loc. 57, 09228437281. You may look for Ms. Marjorie L. Ely or Ms. Pauline Maglonzo. We will be happy to assist you with your registration concerns.</p>
-  <p>We look forward in welcoming you and creating a memorable experience. See you in our 50th Annual General Assembly!</p>
+  <p>If you need any assistance or further details, feel free to reach out to our support team via info@onecoop.tech or call 0917-813-9114. For specific concerns, you may contact Ms. Anna Marin Crisolo or Ms. Vianca Quinesio, who will be more than happy to assist you.</p>
+  <p>We are excited to have you with us as we create a memorable and meaningful experience. Your voice matters, and together, we will continue to build a stronger cooperative community.</p>
+  <p>See you at our 3rd Annual General Assembly!</p>
 
+  <p>Warm regards,</p>
+  <p>The One Coop Tech Team</p>
 </div>
