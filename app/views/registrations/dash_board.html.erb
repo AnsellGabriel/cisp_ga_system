@@ -28,65 +28,7 @@
                   </div>
                 </li>
               <% end %>
-              <li class="list-group-item">
-                  <div class="row">
-                    <div class="col-10">
-                      Tentative
-                    </div>
-                    <div class="col-2">
-                      <%= @tentative %>
-                    </div>
-                  </div>
-                </li>
             </ul>
-          </div>
-          <div class="card text-bg-warning mb-3">
-            <div class="card-header">
-              Awardee:
-            </div>
-            <div class="card-body">
-              <h4><%= @awardee_count %></h4>
-            </div>
-            <ul class="list-group list-group-flush">
-              <% @awardee_type.each do |y| %>
-                <li class="list-group-item">
-                  <div class="row">
-                    <div class="col-10">
-                      <%= y[0] %>
-                    </div>
-                    <div class="col-2">
-                      <%= to_curr(y[1]) %>
-                    </div>
-                  </div>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="card text-bg-primary mb-3">
-                <div class="card-header">
-                  Paid Participants: <%= to_curr(@count_paid) %>
-                </div>
-                <div class="card-body">
-                  <%# <h1><i class="bi bi-person-fill"></i></h1> %>
-                  <h4><%= to_curr(@paid_participants) %></h4>
-                  <%#= link_to "download csv", registrations_path(format: :csv), download: ["principal_attend", Date.today].join(" ") %>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card text-bg-warning mb-3">
-                <div class="card-header">
-                  Unpaid Participants: <%= to_curr(@count_unpaid) %>
-                </div>
-                <div class="card-body">
-                  <%# <h1><i class="bi bi-person-fill"></i></h1> %>
-                  <%= to_curr(@unpaid_participants) %>
-                  <%#= link_to "download csv", registrations_path(format: :csv), download: ["principal_attend", Date.today].join(" ") %>
-                </div>
-              </div>
-            </div>
           </div>
           <%# <div class="card text-bg-warning mb-3">
               <div class="card-header">
@@ -194,8 +136,8 @@
                   </div>
                   <div class="col-4 text-center">
                     <p class="mb-0"><strong>Quorum :</strong></p>
-                    <% quorum = (attend_shares / total_shares) * 100 %>
-                    <h1 class="mt-0 text-primary"><%= to_curr(quorum) %></h1>
+                    <%# quorum = (attend_shares / total_shares) * 100 %>
+                    <h1 class="mt-0 text-primary"><%#= to_curr(quorum) %></h1>
                   </div>
                 </div>
               </div>
