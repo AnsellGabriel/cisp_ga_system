@@ -14,7 +14,7 @@ class RegistrationsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv do 
-        send_data Registration.to_csv, filename: Date.today.to_s, content_type: 'text/csv'
+        send_data Registration.to_csv, filename: "Reg as of #{Date.today.to_s}.csv", content_type: 'text/csv'
       end
     end
   end
