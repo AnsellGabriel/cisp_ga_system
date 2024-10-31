@@ -31,19 +31,30 @@
 #     puts "#{bar.name}" if bar.save!
 # end
 
+# spreadsheet = Roo::Spreadsheet.open("./db/uploads/3rd_octs_ga_coop.xlsx")
+
+# (2..spreadsheet.sheet("Sheet1").last_row).each do |row|
+#     coop = Cooperative.find_or_initialize_by(name: spreadsheet.cell(row, 'A'))
+#     puts "#{coop.name}" if coop.save!
+    
+#     eh = EventHub.find_or_initialize_by(vote_code: spreadsheet.cell(row, 'C'))
+#     eh.code = spreadsheet.cell(row, 'B')
+#     eh.coop_event_id = 1
+#     eh.cooperative_id = coop.id
+#     eh.capital = 0
+#     eh.vote_power = 0
+#     puts "#{eh.vote_code}" if eh.save!
+# end
+
 spreadsheet = Roo::Spreadsheet.open("./db/uploads/3rd_octs_ga_coop.xlsx")
 
-(2..spreadsheet.sheet("Sheet1").last_row).each do |row|
-    coop = Cooperative.find_or_initialize_by(name: spreadsheet.cell(row, 'A'))
-    puts "#{coop.name}" if coop.save!
+(2..spreadsheet.sheet("Sheet2").last_row).each do |row|
+    coop = Cooperative.find_by(name: spreadsheet.cell(row, 'A'))
+    # puts "#{coop.name}" if coop.save!
     
-    eh = EventHub.find_or_initialize_by(vote_code: spreadsheet.cell(row, 'C'))
-    eh.code = spreadsheet.cell(row, 'B')
-    eh.coop_event_id = 1
-    eh.cooperative_id = coop.id
-    eh.capital = 0
-    eh.vote_power = 0
-    puts "#{eh.vote_code}" if eh.save!
+    eh = EventHub.find_by(cooperative: coop)
+    eh.vote_power = spreadsheet.cell(row, 'B')
+    puts "#{coop.name} - #{eh.vote_power}" if eh.save!
 end
 
 # spreadsheet = Roo::Spreadsheet.open("./db/uploads/vote_power_50.xlsx")
