@@ -21,8 +21,8 @@ class EventHubsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   def home 
-    
   end
 
   def coop 
@@ -36,6 +36,7 @@ class EventHubsController < ApplicationController
   # GET /event_hubs/1 or /event_hubs/1.json
   def show
   end
+  
   def vote 
     @elect_position = ElectPosition.find_by(id: params[:p], coop_event: @event_hub.coop_event)
     @next = params[:p].to_i + 1

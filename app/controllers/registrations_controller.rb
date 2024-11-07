@@ -96,8 +96,8 @@ class RegistrationsController < ApplicationController
     # raise "errors"
     #  puts "#######{params[:registration_id]}"
     
-     @registration = Registration.find_by(id: params[:registration_id])
-      @event_hub = EventHub.find(@registration.event_hub_id)
+    @registration = Registration.find_by(id: params[:registration_id])
+    @event_hub = EventHub.find(@registration.event_hub_id)
   end
 
   def get_price

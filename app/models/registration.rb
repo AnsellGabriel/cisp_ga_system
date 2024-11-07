@@ -6,7 +6,7 @@ class Registration < ApplicationRecord
   attr_accessor :coop_tin
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validate :check_principal
+  validate :check_principal, if: :new_record?
   validate :check_attached_board_reso
   # has_one_attached :id_pic
   has_one_attached :board_reso
@@ -16,13 +16,14 @@ class Registration < ApplicationRecord
   end
 
   def check_principal 
-    if guest_type == "Principal Delegate"
-      #  puts "@@@@@ check #{guest_type}"
-      @principal = Registration.find_by(event_hub_id: "#{event_hub_id}", guest_type: "#{guest_type}")
-      unless @principal.nil?
-        errors.add(:base,"Principal delegate already registered")
-      end
+    #  puts "@@@@@ check #{guest_type}"
+    @principal = Registration.where(event_hub_id: "#{event_hub_id}", guest_type: "Principal Delegate")
+
+    # raise 'error'
+    if @principal.present? and guest_type == "Principal Delegate"
+      errors.add(:base,"Principal delegate already registered")
     end
+    
     # if guest_type == "Young Coop leader"
     #   #  puts "@@@@@ check #{guest_type}"
     #   @principal = Registration.find_by(event_hub_id: "#{event_hub_id}", guest_type: "#{guest_type}")

@@ -16,14 +16,12 @@ class CandidatesController < ApplicationController
     # if params[:p] == "notmodal"
     #   @candidate = Candidate.new
     # else
-    unless params[:p] == "notmodal"
-      @event_hub = EventHub.find(params[:v])
-      @candidate = @event_hub.candidates.build
-      
-    end
+      # @event_hub = EventHub.find(params[:v])
+    @candidate = Candidate.new
+    set_dummy_register if Rails.env.development?
    
-     set_dummy_register
   end
+
   def set_dummy_register 
     @candidate.last_name = FFaker::Name.last_name
     @candidate.first_name = FFaker::Name.first_name
@@ -33,7 +31,7 @@ class CandidatesController < ApplicationController
   def new_edit 
     @candidate = Candidate.new
     @event_hub = EventHub.first
-    set_dummy_register
+    # set_dummy_register
   end
   # GET /candidates/1/edit
   def edit
