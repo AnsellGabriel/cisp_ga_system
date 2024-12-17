@@ -63,7 +63,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "pages#home"
-  root "pages#election"
+  root "pages#home"
   # get "pages/register", to: "pages#register", as: 'registration_post'
   
   #get "registrations/new_modal", to: "registrations#new_modal", as: "registration_new_modal"
