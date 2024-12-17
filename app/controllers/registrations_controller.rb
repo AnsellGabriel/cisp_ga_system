@@ -152,7 +152,9 @@ class RegistrationsController < ApplicationController
       @registration.coop_tin = @cooperative.tin
     end
     @registration.attend = 0
-    get_price
+    @registration.price = 2800 if @registration.guest_type == 'Accompanying Delegate'
+    # get_price
+
     
     # unless @registration.guest_type == 'Accompanying Delegate'
     #   if Registration.where(:award => 1).count < 100
@@ -234,15 +236,16 @@ class RegistrationsController < ApplicationController
     else
       @paid = 1
     end
-    @award_count = Registration.where(:award => 1).count 
+    # @award_count = Registration.where(:award => 1).count 
     # raise "errors @@ {#@award_count}"
-    if Registration.where(:award => 1).count < 5
-      @award = 1
-    else
-      @award = 0
-    end
+    # if Registration.where(:award => 1).count < 5
+    #   @award = 1
+    # else
+    #   @award = 0
+    # end
     respond_to do |format|
-      if @registration.update!(paid:@paid, award:@award)
+      # if @registration.update!(paid:@paid, award:@award)
+      if @registration.update!(paid:@paid)
         # raise "error"
        # @registration.update_attribute(:attend_date, DateTime.now)
        format.html { redirect_back fallback_location: registrations_path, notice: "Updated" }
