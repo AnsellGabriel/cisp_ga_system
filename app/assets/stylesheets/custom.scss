@@ -10,10 +10,10 @@
 body {
   margin:0;
   font-family: 'Helvetica', sans-serif;
-  background-image: url('white_bg.jpg');
-  background-size: cover;
-  background-position: center;
-  // background:radial-gradient(ellipse at center, rgba(255,254,234,1) 0%, rgba(255,254,234,1) 35%, #dbe1e2 100%);
+  // background-image: url('white_bg.jpg');
+  // background-size: cover;
+  // background-position: center;
+  // background:radial-gradient(ellipse at center, rgb(19, 180, 137) 0%, rgba(255,254,234,1) 35%, #dbe1e2 100%);
   
 }
 
@@ -29,6 +29,47 @@ p {
   font-size:16px;
   color: #403f3f;
 }
+
+.img-container {
+  margin: 20px auto;
+  max-width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.img-header {
+  width: 70%;
+  height: auto;
+  text-align: center;
+  // border: 2px solid #ddd;
+  // border-radius: 8px;
+  // box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.image-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.image-box {
+  flex: 1 1 calc(33.333% - 20px);
+  max-width: calc(20% - 20px);
+  box-sizing: border-box;
+}
+.image-box img {
+  width: 100%;
+  height: auto;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.justify-text {
+      text-align: justify;
+      margin: 20px;
+}
+
+
 .nav-link {
   // color: #fcfafa; /* set the default color for the link */
   color: #FFDF00; /* set the default color for the link */
@@ -41,9 +82,9 @@ p {
 }
 .header {
   position:relative;
-  text-align:center;
+  text-align:center; 
   // background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgb(193, 0, 167) 100%);
-  background: linear-gradient(60deg, rgb(233, 200, 13) 0%, rgb(222, 172, 44) 100%);
+  // background: linear-gradient(60deg, rgb(233, 200, 13) 0%, rgb(222, 172, 44) 100%);
   // background:radial-gradient(ellipse at center, rgb(2, 112, 66) 0%, rgb(2, 112, 66) 35%, #4ba04b 100%);
   // color:white;
 }
@@ -51,7 +92,7 @@ p {
   // background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
   // background: linear-gradient(60deg, rgb(255, 215, 0) 0%, rgb(231, 231, 231) 100%);
   // background: linear-gradient(60deg, rgb(10, 73, 11) 0%, rgb(21, 172, 76) 100%);
-  background: linear-gradient(to upper, rgb(58, 5, 68) 0%,rgb(237, 231, 236) 50%, rgb(237, 231, 236) 100%);
+  // background: linear-gradient(to upper, rgb(58, 5, 68) 0%,rgb(237, 231, 236) 50%, rgb(237, 231, 236) 100%);
 }
 
 .top-content {
@@ -135,7 +176,7 @@ p {
   position:relative;
   height:10vh;
   text-align:center;
-  background-color: white;
+  // background-color: white;
 }
 
 /* Animation */
