@@ -1,49 +1,45 @@
+
+<div class="alert alert-warning" role="alert">
+    <strong><i class="bi bi-exclamation-square"></i> Registration Guidlines</strong> <br>
+    <i class="bi bi-dash"></i> Official delegate are required to upload their scanned image of their ID and Board Resolution. <br>
+    <i class="bi bi-dash"></i> Each accompanying delegates will be charged P2,800.00, which will cover the cost of meals and a GA kit. <br>
+    <%# <i class="bi bi-exclamation-square"></i> Young coop leader must be 18 to 35 years of age <br> %>
+    <%# <i class="bi bi-exclamation-square"></i> If you are unsure about the attending participants, check the tentative delegate. %>
+</div>
 <div class="card mb-3">
-  <div class="card-header">
-    <h2>Registration</h2>
-  </div>
   <div class="card-body">
     <%# <h3>Registration Guidlines</h3> %>
-    <div class="alert alert-warning" role="alert">
-        <strong><i class="bi bi-exclamation-square"></i> Registration Guidlines</strong> <br>
-        <i class="bi bi-dash"></i> Official delegate are required to upload their scanned image of their ID and Board Resolution. <br>
-        <i class="bi bi-dash"></i> Each accompanying delegates will be charged P2,800.00, which will cover the cost of meals and a GA kit. <br>
-        <%# <i class="bi bi-exclamation-square"></i> Young coop leader must be 18 to 35 years of age <br> %>
-        <%# <i class="bi bi-exclamation-square"></i> If you are unsure about the attending participants, check the tentative delegate. %>
-    </div>
 <%= simple_form_for @registration, url: registrations_path(q: params[:q]), method: :post do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <div class="form-inputs mb-3">
     <div class="row mb-3">
-      <%= f.input :last_name,label: "Last Name", wrapper_html: { class: "col-md-4" } %>
-      <%= f.input :first_name,label: "First Name", wrapper_html: { class: "col-md-4" } %>
-      <%= f.input :middle_name,label: "Middle Initial", wrapper_html: { class: "col-md-4" } %>
+      <%= f.input :last_name,label: "Last Name", wrapper_html: { class: "col-md-5" } %>
+      <%= f.input :first_name,label: "First Name", wrapper_html: { class: "col-md-5" } %>
+      <%= f.input :middle_name,label: "MI", wrapper_html: { class: "col-md-2"} %>
       <%# <div class="form-check form-switch mt-3"> %>
         <%#= f.input :tentative, label: "Tentative delegate" %>
         <%# <div class="form-text">If you are unsure whether the participants will attend, please switch on the tentative.</div> %>
       <%# </div> %>
-    </div>
-    <div class="row mb-3">
-      <%= f.input :birth_date, label: "Birth Date", as: :string, wrapper_html: { class: "col-md-3" }, 
+      <%= f.input :birth_date, label: "Birth Date", as: :string, wrapper_html: { class: "col-md-6" }, 
       input_html: { data: { controller: "flatpickr",
       flatpickr_max_date: Time.zone.now,
       flatpickr_next_arrow: "Next",
       flatpickr_prev_arrow: "Prev" } } %>
-      <%= f.input :gender, collection: Registration::Gender, wrapper_html: { class: "col-md-3" } %>
-      <%= f.input :mobile_number, placeholder: "+63", wrapper_html: { class: "col-md-3" } %>
-      <%= f.input :email, placeholder: 'user@domain.com', wrapper_html: { class: "col-md-3" } %>
+      <%= f.input :gender, collection: Registration::Gender, wrapper_html: { class: "col-md-6" } %>
+      <%= f.input :mobile_number, placeholder: "+63", wrapper_html: { class: "col-md-6" } %>
+      <%= f.input :email, placeholder: 'user@domain.com', wrapper_html: { class: "col-md-6" } %>
     </div>
     <% if params[:q] == "notmodal" %>
       <%= f.association :event_hub, label: "Cooperative", wrapper_html: { class: "mb-3" }, input_html: { data: { controller: 'ts--select' } } %>
     <% end %>
     <div data-controller="showhide" data-showhide-show-if-value="Accompanying Delegate">
       <div class="row">
-        <%= f.input :coop_tin, label: "Cooperative TIN", wrapper_html: { class: "col-md-3" } %>
-        <%= f.input :guest_type, collection: Registration::GuestType, wrapper_html: { class: "col-md-3" }, input_html: { data: { showhide_target: "input", action: "change->showhide#toggle" } } %>
+        <%= f.input :coop_tin, label: "Cooperative TIN", wrapper_html: { class: "col-md-6" } %>
+        <%= f.input :guest_type, collection: Registration::GuestType, wrapper_html: { class: "col-md-6" }, input_html: { data: { showhide_target: "input", action: "change->showhide#toggle" } } %>
         <%#= f.input :attendance, collection: Registration::Attendance, wrapper_html: { class: "col-md-4" } %>
-        <%= f.input :size, collection: Registration::Size, label: "Preference how to attend", wrapper_html: { class: "col-md-3" } %>
-        <%= f.input :dietary, label: "Position", wrapper_html: { class: "col-md-3" } %>
+        <%#= f.input :size, collection: Registration::Size, label: "Preference how to attend", wrapper_html: { class: "col-md-3" } %>
+        <%#= f.input :dietary, wrapper_html: { class: "col-md-3" } %>
         <div id="guesttype" class="form-text">Only the principal delegate are allowed to vote.</div>
       </div>
       
