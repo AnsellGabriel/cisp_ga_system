@@ -1,13 +1,6 @@
 
-<div class="alert alert-warning" role="alert">
-    <strong><i class="bi bi-exclamation-square"></i> Registration Guidlines</strong> <br>
-    <i class="bi bi-dash"></i> Official delegate are required to upload their scanned image of their ID and Board Resolution. <br>
-    <i class="bi bi-dash"></i> Each accompanying delegates will be charged P2,800.00, which will cover the cost of meals and a GA kit. <br>
-    <%# <i class="bi bi-exclamation-square"></i> Young coop leader must be 18 to 35 years of age <br> %>
-    <%# <i class="bi bi-exclamation-square"></i> If you are unsure about the attending participants, check the tentative delegate. %>
-</div>
-<div class="card mb-3">
-  <div class="card-body">
+
+
     <%# <h3>Registration Guidlines</h3> %>
 <%= simple_form_for @registration, url: registrations_path(q: params[:q]), method: :post do |f| %>
   <%= f.error_notification %>
@@ -35,7 +28,7 @@
     <% end %>
     <div data-controller="showhide" data-showhide-show-if-value="Accompanying Delegate">
       <div class="row">
-        <%= f.input :coop_tin, label: "Cooperative TIN", wrapper_html: { class: "col-md-6" } %>
+        <%#= f.input :coop_tin, label: "Cooperative TIN", wrapper_html: { class: "col-md-6" } %>
         <%= f.input :guest_type, collection: Registration::GuestType, wrapper_html: { class: "col-md-6" }, input_html: { data: { showhide_target: "input", action: "change->showhide#toggle" } } %>
         <%#= f.input :attendance, collection: Registration::Attendance, wrapper_html: { class: "col-md-4" } %>
         <%#= f.input :size, collection: Registration::Size, label: "Preference how to attend", wrapper_html: { class: "col-md-3" } %>
@@ -70,6 +63,3 @@
     <%= f.button :submit, class: "btn btn-success", value: "Register" %>
   </div>
 <% end %>
-
-</div>
-</div>

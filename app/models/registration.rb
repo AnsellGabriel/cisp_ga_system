@@ -24,13 +24,13 @@ class Registration < ApplicationRecord
         errors.add(:base,"Principal delegate already registered")
       end
     end
-    # if guest_type == "Young Coop leader"
-    #   #  puts "@@@@@ check #{guest_type}"
-    #   @principal = Registration.find_by(event_hub_id: "#{event_hub_id}", guest_type: "#{guest_type}")
-    #   unless @principal.nil?
-    #     errors.add(:base,"Young Coop Leader already registered")
-    #   end
-    # end
+    if guest_type == "Young Coop leader"
+      #  puts "@@@@@ check #{guest_type}"
+      @yl = Registration.find_by(event_hub_id: "#{event_hub_id}", guest_type: "#{guest_type}")
+      if @yl.present?
+        errors.add(:base,"Young Coop Leader already registered")
+      end
+    end
   end
   def check_attached_board_reso
     # rails "errors"
@@ -65,8 +65,8 @@ class Registration < ApplicationRecord
   # Size = [ "XXXL", "XXL", "XL", "Large", "Medium", "Small", "X-Small"]
   Size = [ "Face to Face", "Virtual Zoom Meeting"]
     
-  # GuestType = ["Principal Delegate", "Accompanying Delegate", "Young Coop leader"]
-  GuestType = ["Principal Delegate", "Accompanying Delegate"]
+  GuestType = ["Principal Delegate", "Accompanying Delegate", "Young Coop leader"]
+  # GuestType = ["Principal Delegate", "Accompanying Delegate"]
 
   Dietary = ["None", "Halal", "Vegetarian", "Vegan"]
 

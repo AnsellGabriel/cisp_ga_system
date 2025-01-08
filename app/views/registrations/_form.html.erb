@@ -2,7 +2,8 @@
   <%#= simple_form_for @registration, url: url, method: meth, url: registrations_path(q: params[:q]), method: :post do |f| %>
     <div class="alert alert-warning" role="alert">
       <strong><i class="bi bi-exclamation-square"></i> Registration Guidlines</strong> <br>
-      <i class="bi bi-dash"></i> Official delegate are required to upload their scanned image of their ID and Board Resolution. <br>
+      <i class="bi bi-dash"></i>Free: one (1) principal delegate and one (1) young coop leader.
+Principal Delegate - Any representative endorsed by the cooperative and supported by a board resolution or secretary certificate has the right to vote in the annual general assembly.<br>
       <i class="bi bi-dash"></i> Each accompanying delegates will be charged P2,800.00, which will cover the cost of meals and a GA kit. <br>
       <%# <i class="bi bi-exclamation-square"></i> Young coop leader must be 18 to 35 years of age <br> %>
       <%# <i class="bi bi-exclamation-square"></i> If you are unsure about the attending participants, check the tentative delegate. %>
@@ -16,30 +17,29 @@
           <%= f.input :last_name, wrapper_html: { class: "col-md-4" } %>
           <%= f.input :first_name, wrapper_html: { class: "col-md-4" } %>
           <%= f.input :middle_name, wrapper_html: { class: "col-md-4" } %>
-          <div class="form-check form-switch mt-3">
-            <%= f.input :tentative, label: "Tentative delegate" %>
-          </div>
         </div>
         <div class="row mb-3">
-          <%= f.input :birth_date, label: "Birth Date", as: :string, wrapper_html: { class: "col-md-3" }, 
+          <%= f.input :birth_date, label: "Birth Date", as: :string, wrapper_html: { class: "col-md-4" }, 
           input_html: { data: { controller: "flatpickr",
           flatpickr_max_date: Time.zone.now,
           flatpickr_next_arrow: "Next",
           flatpickr_prev_arrow: "Prev" } } %>
-          <%= f.input :gender, collection: Registration::Gender, wrapper_html: { class: "col-md-3" } %>
-          <%= f.input :mobile_number, placeholder: "+63", wrapper_html: { class: "col-md-3" } %>
-          <%= f.input :email, placeholder: 'user@domain.com', wrapper_html: { class: "col-md-3" } %>
+          <%= f.input :gender, collection: Registration::Gender, wrapper_html: { class: "col-md-4" } %>
+          <%= f.input :mobile_number, placeholder: "+63", wrapper_html: { class: "col-md-4" } %>
+          
         </div>
         <% if params[:q] == "notmodal" %>
-          <%= f.association :event_hub, label: "Cooperative", wrapper_html: { class: "mb-3" }, input_html: { data: { controller: 'ts--select' } } %>
+          <%#= f.association :event_hub, label: "Cooperative", wrapper_html: { class: "mb-3" }, input_html: { data: { controller: 'ts--select' } } %>
         <% end %>
         <div data-controller="showhide" data-showhide-show-if-value="Accompanying Delegate" data-showhide-show-if-value="Young Coop leader" >
           <%# <div data-controller="showtype" data-showtype-show-if-value="Young Coop leader (35yo and below)"> %>
           <div class="row mb-3">
+            <%= f.input :email, placeholder: 'user@domain.com', wrapper_html: { class: "col-md-4" } %>
             <%= f.input :guest_type, collection: Registration::GuestType, wrapper_html: { class: "col-md-4" }, input_html: { data: { showhide_target: "input", action: "change->showhide#toggle" } } %>
             <%#= f.input :attendance, label: "You are attending?", collection: Registration::Attendance, wrapper_html: { class: "col-md-6" } %>
-            <%= f.input :size, collection: Registration::Size, label: "Preference how to attend", wrapper_html: { class: "col-md-4" } %>
-            <%= f.input :dietary, label: "Position", wrapper_html: { class: "col-md-4" } %>
+            <%#= f.input :size, collection: Registration::Size, label: "Preference how to attend", wrapper_html: { class: "col-md-4" } %>
+            <%#= f.input :dietary, label: "Position", wrapper_html: { class: "col-md-4" } %>
+            
             <div id="guesttype" class="form-text">Only the principal delegate are allowed to vote.</div>
           </div>
           <div data-showhide-target="output">

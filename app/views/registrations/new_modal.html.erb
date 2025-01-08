@@ -1,9 +1,27 @@
-<div class="text-center mb-3">
-<%#= image_tag 'rise_head.jpg', width: 1200 %>
-</div>
-<div class="row">
-  <div class="col-md-6">
-    <%= render "form_modal", registration: @registration %>
+<div class="d-flex justify-content-center">
+  <div class="alert alert-warning" role="alert">
+      <strong><i class="bi bi-exclamation-square"></i> Registration Guidlines</strong> <hr>
+      <i class="bi bi-dash"></i> Free: one (1) principal delegate and one (1) young coop leader. <br>
+      <i class="bi bi-dash"></i> <em>Principal Delegate</em> - Any representative endorsed by the cooperative and supported by a board resolution or secretary certificate has the right to vote in the annual general assembly. <br>
+      <i class="bi bi-dash"></i> <em>Young Coop Leader</em> - Any representative endorsed by the cooperative but must be 35 years old and below. <br>
+      <i class="bi bi-dash"></i> <em>Accompanying delegate</em> – any delegate more than the first two (2) representatives. <br>
+      <i class="bi bi-dash"></i> <em>Registraion Rate</em> – In-excess of two (2) official free representatives, the cooperative will have to pay a corresponding fee of Php 2,500.00 for each additional accompanying delegate. <br>
   </div>
 </div>
-   
+
+<div class="container justify-content-center align-items-center vh-100">
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <%= image_tag '51_card.png', class: "img-fluid rounded-start" %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <strong>Registration</strong> <hr>
+          <%= render "form_modal", registration: @registration %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

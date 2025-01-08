@@ -152,7 +152,7 @@ class RegistrationsController < ApplicationController
       @registration.coop_tin = @cooperative.tin
     end
     @registration.attend = 0
-    @registration.price = 2800 if @registration.guest_type == 'Accompanying Delegate'
+    @registration.price = 2500 if @registration.guest_type == 'Accompanying Delegate'
     # get_price
 
     
