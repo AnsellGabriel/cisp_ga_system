@@ -62,8 +62,8 @@ class Registration < ApplicationRecord
     "I will attend virtually via zoom",
     "I will attend virtually and will avail AGA kit (will shoulder shipping cost)"]
   
-  # Size = [ "XXXL", "XXL", "XL", "Large", "Medium", "Small", "X-Small"]
-  Size = [ "Face to Face", "Virtual Zoom Meeting"]
+  Size = [ "XXXL", "XXL", "XL", "Large", "Medium", "Small", "X-Small"]
+  # Size = [ "Face to Face", "Virtual Zoom Meeting"]
     
   GuestType = ["Principal Delegate", "Accompanying Delegate", "Young Coop leader"]
   # GuestType = ["Principal Delegate", "Accompanying Delegate"]
