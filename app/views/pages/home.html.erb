@@ -3,6 +3,34 @@
 </div>%>
     <%= image_tag '51st_agam.png', class: "img-header w-100" %>
 <section class="py-5 container">
+        
+        <div class="row">
+            <div class="col-md-6">
+                <iframe 
+                src="https://player.vimeo.com/video/1042209202?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;dnt=1&amp;loop=1" 
+                width="600" 
+                height="338" 
+                frameborder="0" 
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write" 
+                title="TEASER VIDEO-12_18_24"></iframe>
+            </div>
+            <div class="col-md-6">
+                <h1 class="poppins-regular"><%= link_to 'Rise', coop_events_path, class: "text-dark" %> with Us</h1>
+                <em>Discover how we continue to grow and thrive together, rooted in tradition and rising with vision. Join us for this year’s General Assembly and be part of a transformative journey. Let’s unite to:</em>
+                <ul>
+                    <li><strong class="text-primary">Reflect</strong> on our shared achievements.</li>
+                    <li><strong class="text-primary">Inspire</strong> each other to greater heights.</li>
+                    <li><strong class="text-primary">Secure</strong> a stronger future.</li>
+                    <li><strong class="text-primary">Empower</strong> our community.</li>
+                    
+                </ul>
+                <%= link_to 'Register', new_modal_registrations_path(q: "notmodal"), class: "btn btn-primary btn-sm" %> <em>now to connect, collaborate, and contribute to our shared vision for the future.</em>
+            </div>
+        </div>
+        <%#<iframe src="https://player.vimeo.com/video/1042209202?h=e7b004f651&byline=0&portrait=0" width="600" height="338" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>%>
+    
+</section>
+<section class="py-5 container">
     <div class="text-center">
         <h4>RISE: Reflect, Inspire, Secure, Empower - Rooted in Tradition, Rising with Vision.</h4>
         <br>
@@ -33,34 +61,6 @@
     </div>
 </section>
 
-<section class="py-5 container">
-        
-        <div class="row">
-            <div class="col-md-6">
-                <iframe 
-                src="https://player.vimeo.com/video/1042209202?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;dnt=1&amp;loop=1" 
-                width="600" 
-                height="338" 
-                frameborder="0" 
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write" 
-                title="TEASER VIDEO-12_18_24"></iframe>
-            </div>
-            <div class="col-md-6">
-                <h1 class="poppins-regular"><%= link_to 'Rise', coop_events_path, class: "text-dark" %> with Us</h1>
-                <em>Discover how we continue to grow and thrive together, rooted in tradition and rising with vision. Join us for this year’s General Assembly and be part of a transformative journey. Let’s unite to:</em>
-                <ul>
-                    <li><strong class="text-primary">Reflect</strong> on our shared achievements.</li>
-                    <li><strong class="text-primary">Inspire</strong> each other to greater heights.</li>
-                    <li><strong class="text-primary">Secure</strong> a stronger future.</li>
-                    <li><strong class="text-primary">Empower</strong> our community.</li>
-                    
-                </ul>
-                <%= link_to 'Register', new_modal_registrations_path(q: "notmodal"), class: "btn btn-primary btn-sm" %> <em>now to connect, collaborate, and contribute to our shared vision for the future.</em>
-            </div>
-        </div>
-        <%#<iframe src="https://player.vimeo.com/video/1042209202?h=e7b004f651&byline=0&portrait=0" width="600" height="338" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>%>
-    
-</section>
 
 <section class="py-5 text-center" style="background-color: #1a2adb; color: white;>
     <div class="row py-lg-5">

@@ -36,8 +36,8 @@ Principal Delegate - Any representative endorsed by the cooperative and supporte
           <div class="row mb-3">
             <%= f.input :email, placeholder: 'user@domain.com', wrapper_html: { class: "col-md-6" } %>
             <%= f.input :guest_type, collection: Registration::GuestType, wrapper_html: { class: "col-md-6" }, input_html: { data: { showhide_target: "input", action: "change->showhide#toggle" } } %>
-            <%= f.input :size, collection: Registration::Size, wrapper_html: { class: "col-md-6" } %>
-            <%= f.input :dietary, collection: Registration::Dietary, wrapper_html: { class: "col-md-6" } %>
+            <%= f.input :size, collection: Registration::Size, label: "Size (Standard Unisex)", wrapper_html: { class: "col-md-6" } %>
+            <%= f.input :dietary, collection: Registration::Dietary, label: "Dietary Preference", wrapper_html: { class: "col-md-6" } %>
             <%#= f.input :attendance, label: "You are attending?", collection: Registration::Attendance, wrapper_html: { class: "col-md-6" } %>
             <%#= f.input :size, collection: Registration::Size, label: "Preference how to attend", wrapper_html: { class: "col-md-4" } %>
             <%#= f.input :dietary, label: "Position", wrapper_html: { class: "col-md-4" } %>
