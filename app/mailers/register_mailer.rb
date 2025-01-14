@@ -19,7 +19,7 @@ class RegisterMailer < ApplicationMailer
     mail(
           from: "agam@1cisp.coop",
           to: @registration.email, 
-          cc: "agam@1cisp.coop", 
+          cc: "1cispga@gmail.com", 
           subject: "1CISP 51st AGAM Registration"
     )
   end
