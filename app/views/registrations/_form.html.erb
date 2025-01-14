@@ -1,13 +1,6 @@
 <%#= simple_form_for(@registration) do |f| %>
   <%#= simple_form_for @registration, url: url, method: meth, url: registrations_path(q: params[:q]), method: :post do |f| %>
-    <div class="alert alert-warning" role="alert">
-      <strong><i class="bi bi-exclamation-square"></i> Registration Guidlines</strong> <br>
-      <i class="bi bi-dash"></i>Free: one (1) principal delegate and one (1) young coop leader.
-Principal Delegate - Any representative endorsed by the cooperative and supported by a board resolution or secretary certificate has the right to vote in the annual general assembly.<br>
-      <i class="bi bi-dash"></i> Each accompanying delegates will be charged P2,800.00, which will cover the cost of meals and a GA kit. <br>
-      <%# <i class="bi bi-exclamation-square"></i> Young coop leader must be 18 to 35 years of age <br> %>
-      <%# <i class="bi bi-exclamation-square"></i> If you are unsure about the attending participants, check the tentative delegate. %>
-    </div>
+    <%= render 'registration_guidelines' %>
     <%= simple_form_for(@registration, url: url, method: meth) do |f| %>
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
