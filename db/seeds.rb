@@ -30,21 +30,26 @@
 #     # bar.psgc_code = spreadsheet.cell(row, 'E')
 #     puts "#{bar.name}" if bar.save!
 # end
-
-spreadsheet = Roo::Spreadsheet.open("./db/uploads/chmf_9th_ga.xlsx")
+def generate_code
+    charset = ('A'..'Z').to_a + ('2'..'9').to_a # Excludes I, O, 1, and 0
+    charset -= ['I', 'O'] # Explicitly remove I and O
+    Array.new(5) { charset.sample }.join
+end
+spreadsheet = Roo::Spreadsheet.open("./db/uploads/51st_coop_b1.xlsx")
 
 (2..spreadsheet.sheet("Sheet1").last_row).each do |row|
-    coop = Cooperative.find_or_initialize_by(name: spreadsheet.cell(row, 'A'))
+    coop = Cooperative.find_or_initialize_by(name: spreadsheet.cell(row, 'B'))
     puts "#{coop.name}" if coop.save!
     
-    eh = EventHub.find_or_initialize_by(vote_code: spreadsheet.cell(row, 'D'))
-    eh.code = spreadsheet.cell(row, 'E')
+    vote_code = generate_code
+    eh = EventHub.find_or_initialize_by(cooperative_id: coop.id)
+    eh.code = spreadsheet.cell(row, 'A')
     eh.coop_event_id = 1
-    eh.cooperative_id = coop.id
-    eh.capital = spreadsheet.cell(row, 'B')
-    eh.vote_power = spreadsheet.cell(row, 'C')
+    eh.vote_code = generate_code
+    eh.capital = 0
+    eh.vote_power = 0
     puts "#{eh.vote_code}" if eh.save!
-    
+end    
 
 # spreadsheet = Roo::Spreadsheet.open("./db/uploads/vote_power_50.xlsx")
 
@@ -99,4 +104,3 @@ spreadsheet = Roo::Spreadsheet.open("./db/uploads/chmf_9th_ga.xlsx")
 #         # RegisterMailer.with(registration: reg, event_hub: eh).register_created.deliver_later
 #     end
     
-end

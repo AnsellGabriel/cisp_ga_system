@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get "paid", to: "registrations#paid", on: :member
     get "hot_to_vote", to: "registrations#how_to_vote", as: "how_to_vote", on: :collection
     get "success", to: "registrations#success", as: "success", on: :collection
+    get "size", to: "registrations#size", as: "size", on: :collection
   end
   resources :candidates do 
     get "new_edit", to: "candidates#new_edit", as: "new_edit", on: :collection

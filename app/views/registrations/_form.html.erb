@@ -36,6 +36,7 @@
             <%#= f.input :dietary, label: "Position", wrapper_html: { class: "col-md-4" } %>
             
             <div id="guesttype" class="form-text">Only the principal delegate are allowed to vote.</div>
+            <%= link_to 'Size guide', size_registrations_path, data: { turbo_frame: "remote_modal" } %>
           </div>
           <div data-showhide-target="output">
             <div class="card">
