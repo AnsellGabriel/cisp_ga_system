@@ -9,17 +9,20 @@
     <section class="py-5 container">
             <div class="row">
                 <div class="col-md-6">
-                    <iframe 
-                    src="https://player.vimeo.com/video/1042209202?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;dnt=1&amp;loop=1" 
-                    width="600" 
-                    height="338" 
-                    frameborder="0" 
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write" 
-                    title="TEASER VIDEO-12_18_24"></iframe>
+                   <div class="video-container">
+                        <iframe 
+                            src="https://player.vimeo.com/video/1042209202?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;dnt=1&amp;loop=1" 
+                            frameborder="0" 
+                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write" 
+                            title="TEASER VIDEO-12_18_24">
+                        </iframe>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <%= link_to 'REGISTER NOW!', new_modal_registrations_path(q: "notmodal"), class: "btn btn-primary btn-lg" %> 
+                        <div class="center-link">
+                            <%= link_to 'REGISTER NOW!', new_modal_registrations_path(q: "notmodal"), class: "btn btn-primary btn-lg" %> 
+                        </div>
                     </div>
                     <em>Discover how we continue to grow and thrive together, rooted in tradition and rising with vision. Join us for this year’s General Assembly and be part of a transformative journey.</em> <br>
 

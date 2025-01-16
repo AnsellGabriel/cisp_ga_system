@@ -55,7 +55,7 @@
                       <%= y[0] %>
                     </div>
                     <div class="col-2">
-                      <%= to_curr(y[1]) %>
+                      0
                     </div>
                   </div>
                 </li>
@@ -186,16 +186,16 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-8">
-                    <% attend_shares = @event_hubs.where(attend: 1).sum(:capital) %>
-                    <% total_shares = @event_hubs.sum(:capital) %>
+                    <% attend_shares = @event_hubs.where(attend: 1).sum(:capital) || 0 %>
+                    <% total_shares = @event_hubs.sum(:capital) || 0 %>
 
                     <p> <strong>Present no. of shares :</strong> <%= to_curr(attend_shares) %></p>
                     <p><strong>Total no. of shares :</strong> <%= to_curr(total_shares) %></p>
                   </div>
                   <div class="col-4 text-center">
                     <p class="mb-0"><strong>Quorum :</strong></p>
-                    <% quorum = (attend_shares / total_shares) * 100 %>
-                    <h1 class="mt-0 text-primary"><%= to_curr(quorum) %></h1>
+                    <%# quorum = (attend_shares / total_shares) * 100 %>
+                    <h1 class="mt-0 text-primary"><%#= to_curr(quorum) unless quorum.nil? %></h1>
                   </div>
                 </div>
               </div>
