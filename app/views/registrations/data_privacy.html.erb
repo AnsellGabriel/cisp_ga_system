@@ -1,0 +1,25 @@
+<%= render "layouts/modal/remote_modal_scrollable", title: "Data Privacy" do %>
+    <small>
+      <strong>Data Privacy Sharing Agreement and Photo and Video Consent Form</strong><br>
+        In accordance with the provisions of the Data Privacy Act of 2012 and its relevant rules and regulations, I hereby grant 1 Cooperative Insurance System of the Philippines Life and General Insurance (1CISP) the following authorization:
+        <ol>
+            <li><strong>Data Privacy Sharing</strong></li>
+                <ol type="a">
+                    <li>Collect, process, share, and/or transfer my Personal and Sensitive Information, ("Information" for brevity), as defined under the Data Privacy Act of 2012;</li>
+                    <li>Use the Information for the purpose of facilitating my participation in the 51st Annual General Assembly and its related activities, as well as advertising, publication and other media activities of 1CISP;</li>
+                    <li>Continue collecting, processing, sharing, and/or transferring the Information until the completion of the purpose;</li>
+                    <li>Acknowledge that 1CISP has the right to suspend, withdraw, or request the blocking, removal, or destruction of my Information at any time by providing a written notice to 1CISP.</li>
+                </ol>
+            <li><strong>Photo and Video Consent</strong></li>
+            <ol type= "a">
+                <li>Conduct interviews, film, and take photograph(s) of myself;</li>
+                <li>Use my image, likeness, and/or any interview statements, photographs, film, video reproductions, and voice recordings for publications, advertising, or other media activities, including on the Internet and in electronic, print, television, radio, and theatrical media, for educational and awareness purposes;</li>
+                <li>Give my consent in perpetuity and with no requirement of prior approval for any future use solely for the purposes of facilitating my participation in the 51st Annual General Assembly and its related activities, as well as advertising, publication and other media activities of 1CISP;</li>
+            </ol>
+        </ol>
+        By agreeing below, I affirm that I have read and fully understand the terms of this <strong>Data Privacy and Photo/Video Consent Form</strong> and that I voluntarily consent to the collection, processing, sharing, transfer, and media use of my Information, image, recordings and statements as described herein. Furthermore, I agree to hold 1CISP and its affiliates and agents free and harmless from any and all claims, liabilities, or damages that may arise in connection with the collection, processing, sharing, transfer, destruction, or media use of my information, image, recordings, and statements as specified in this Agreement
+    </small>
+    <div class="text-end">
+        <%= link_to "I ACCEPT", new_modal_registrations_path(q: "notmodal"), class: "btn btn-primary" %> 
+    </div>
+<% end %>

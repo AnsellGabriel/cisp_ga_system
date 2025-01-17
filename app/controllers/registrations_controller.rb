@@ -5,6 +5,9 @@ class RegistrationsController < ApplicationController
   before_action :authenticate_user!, only: :index
   # before_action :authenticate_user!
   # GET /registrations or /registrations.json
+  def data_privacy
+  end
+
   def size
   end
 
