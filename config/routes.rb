@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :referendums do
     post :submit_answers, on: :collection
   end
-  get 'home/index'
-  resources :votes do 
+  get "home/index"
+  resources :votes do
     get "vote_review", to: "votes#vote_review", on: :collection
     get "vote_final", to: "votes#vote_final", on: :collection
     get "vote_success", to: "votes#vote_success", on: :collection
@@ -15,9 +15,9 @@ Rails.application.routes.draw do
 
   devise_for :users
   # resources :users
-   
+
   resources :elections
-  resources :registrations do 
+  resources :registrations do
     get "new_modal", to: "registrations#new_modal", as: "new_modal", on: :collection
     get "edit_modal", to: "registrations#edit_modal", as: "edit_modal"
     get "dash_board", to: "registrations#dash_board", as: "dash_board", on: :collection
@@ -25,13 +25,14 @@ Rails.application.routes.draw do
     get "paid", to: "registrations#paid", on: :member
     get "hot_to_vote", to: "registrations#how_to_vote", as: "how_to_vote", on: :collection
     get "success", to: "registrations#success", as: "success", on: :collection
+    get "data_privacy", to: "registrations#data_privacy", as: "data_privacy", on: :collection
   end
-  resources :candidates do 
+  resources :candidates do
     get "new_edit", to: "candidates#new_edit", as: "new_edit", on: :collection
   end
   resources :elect_positions
   resources :participants
-  resources :event_hubs do 
+  resources :event_hubs do
     get "coop", on: :collection
     get "home", on: :collection
     patch "voter_code", on: :collection
@@ -46,10 +47,10 @@ Rails.application.routes.draw do
   resources :geo_provinces do
     get :selected, on: :member
   end
-  resources :geo_regions  do
+  resources :geo_regions do
     get :selected, on: :member
   end
-  resources :pages do 
+  resources :pages do
     get "event_hub", to: "pages#event_hub", as: "event", on: :member
     get "register", to: "pages#register", as: "register", on: :collection
     get "vote", to: "pages#vote", as: "vote", on: :collection
@@ -57,15 +58,15 @@ Rails.application.routes.draw do
     get "program", to: "pages#program", as: "program", on: :collection
     get "announcement", to: "pages#announcement", as: "announcement", on: :collection
   end
-    # post :coop, on: :collection, to: "pages#coop"
-    # post "coop", on: :collection, to: "pages#coop"
+  # post :coop, on: :collection, to: "pages#coop"
+  # post "coop", on: :collection, to: "pages#coop"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "pages#home"
   root "pages#election"
   # get "pages/register", to: "pages#register", as: 'registration_post'
-  
+
   #get "registrations/new_modal", to: "registrations#new_modal", as: "registration_new_modal"
   # get "registrations/edit_modal", to: "registrations#edit_modal", as: "registration_edit_modal"
 end

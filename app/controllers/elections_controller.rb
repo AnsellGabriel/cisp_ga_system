@@ -31,17 +31,18 @@ class ElectionsController < ApplicationController
     r = params[:r]
     # raise "errors"
     respond_to do |format|
-      @event_hub = EventHub.find_by(vote_code: election_params[:voter_code])
+      @event_hub = @coop_event.event_hubs.find_by(vote_code: election_params[:voter_code])
+      # raise "error"
       if @election.save
-        if r == 'r'
-          format.html { redirect_to new_referendum_response_path(e: @event_hub,p: 1), notice: "You may now vote" }
+        if r == "r"
+          format.html { redirect_to new_referendum_response_path(e: @event_hub, p: 1), notice: "You may now vote" }
         else
-          format.html { redirect_to vote_votes_path(e: @event_hub,p: 1), notice: "Election was successfully created." }
+          format.html { redirect_to vote_votes_path(e: @event_hub, p: 1), notice: "Election was successfully created." }
         end
         format.json { render :show, status: :created, location: @election }
       else
-         format.html { render :new, status: :unprocessable_entity }
-         format.json { render json: @election.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @election.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -70,13 +71,14 @@ class ElectionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_election
-      @election = Election.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def election_params
-      params.require(:election).permit(:event_hub_id, :coop_event_id, :voter_code)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_election
+    @election = Election.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def election_params
+    params.require(:election).permit(:event_hub_id, :coop_event_id, :voter_code)
+  end
 end

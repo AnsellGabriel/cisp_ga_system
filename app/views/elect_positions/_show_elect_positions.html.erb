@@ -1,7 +1,8 @@
 <table class="table table-borderless table-hover">
   <thead>
     <tr class="border-top border-bottom border-primary">
-      <%# <th class="text-primary"></th> %>
+      <% # <th class="text-primary"></th> %>
+      <th></th>
       <th class="text-primary">Position</th>
       <th class="text-primary">Vacant</th>
       <th></th>
@@ -10,12 +11,13 @@
   <tbody>
     <% @coop_event.elect_positions.each do |position| %>
       <tr>
-        <%# <th scope="row">= claim_document.id</th> %>
+        <% # <th scope="row">= claim_document.id</th> %>
+        <td><%= position.id %></td>
         <td><%= position.name %></td>
         <td><%= position.vacant %></td>
         <td>
-          <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_elect_position_path(position), class: 'btn btn-outline-primary btn-sm', data: { turbo_frame: "remote_modal" } %>
-          <%= link_to '<i class="bi bi-trash3"></i>'.html_safe, position, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_elect_position_path(position), class: "btn btn-outline-primary btn-sm", data: { turbo_frame: "remote_modal" } %>
+          <%= link_to '<i class="bi bi-trash3"></i>'.html_safe, position, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
         </td>
       </tr>
     <% end %>

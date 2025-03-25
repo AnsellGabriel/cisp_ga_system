@@ -3,7 +3,7 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # config.hosts << 'https://event.1cisp.coop/'
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { host: 'https://event.1cisp.coop/' }
+  config.action_mailer.default_url_options = { host: "https://event.1cisp.coop/" }
   # config.action_mailer.default_url_options = { host: 'https://election.onecooptech.org/' }
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
@@ -13,18 +13,21 @@ Rails.application.configure do
   config.cache_classes = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'event.1cisp.coop',
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "event.1cisp.coop",
     # domain:               'election.onecooptech.org',
-    user_name:            '9thaga.1coophealth@gmail.com',
-    password:             'ogokmwenezniszhs',
+    # user_name:            '9thaga.1coophealth@gmail.com',
+    # password:             'ogokmwenezniszhs',
+    user_name: "chmfga@gmail.com",
+    password: "atydbficoblpadat",
     # user_name:            'ga@onecooptech.org',
     # password:             'hntzhfcquoyaeamf',
-    authentication:       'plain',
+    authentication: "plain",
     enable_starttls_auto: true,
-    open_timeout:         5,
-    read_timeout:         5 }
+    open_timeout: 5,
+    read_timeout: 5,
+  }
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -43,7 +46,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}",
     }
   else
     config.action_controller.perform_caching = false

@@ -2,8 +2,8 @@
   <div class="card mb-5">
     <div class="row g-0">
       <div class="col-md-4">
-        <%= image_tag 'chmf_home.png', width:'100%', height:'100%', class: "img-fluid rounded-start" %>
-        <%#= image_tag 'ocb_logo.png', width:'100%', height:'100%', class: "img-fluid rounded-start" %>
+        <%= image_tag "chmf_10th_home.png", width: "100%", height: "100%", class: "img-fluid rounded-start" %>
+        <% #= image_tag 'ocb_logo.png', width:'100%', height:'100%', class: "img-fluid rounded-start" %>
       </div>
       
       <div class="col-md-8">
@@ -11,8 +11,8 @@
           <div class="mb-3">
             <h4><%= event_hub.cooperative %></h4>
             <small class="text-primary">Please update your cooperative details <strong>
-                <%= link_to '<i class="bi bi-pencil-square"></i> Update Details'.html_safe, edit_cooperative_path(event_hub.cooperative_id),   data: { turbo_frame: "remote_modal" } %> </strong> </small>
-            <%# <%= link_to '<i class="bi bi-pencil-square"></i> Edit'.html_safe, edit_cooperative_path(event_hub.cooperative_id), {:style=>"color:#fff;"}, class: 'btn btn-outline-primary',   data: { turbo_frame: "remote_modal" } %>
+                <%= link_to '<i class="bi bi-pencil-square"></i> Update Details'.html_safe, edit_cooperative_path(event_hub.cooperative_id), data: { turbo_frame: "remote_modal" } %> </strong> </small>
+            <% # <%= link_to '<i class="bi bi-pencil-square"></i> Edit'.html_safe, edit_cooperative_path(event_hub.cooperative_id), {:style=>"color:#fff;"}, class: 'btn btn-outline-primary',   data: { turbo_frame: "remote_modal" } %>
           </div>
           
               <div class="row">
@@ -23,7 +23,7 @@
                   <%= link_to '<i class="bi bi-plus-square"></i> Add Guest'.html_safe, new_registration_path(v: event_hub, q: ""), class: "btn btn-primary btn-sm mb-3", data: { turbo_frame: "remote_modal" } %>
                 </div>
               </div>
-              <%= render 'registrations/show_registration' %>
+              <%= render "registrations/show_registration" %>
         </div>
       </div>
     </div>

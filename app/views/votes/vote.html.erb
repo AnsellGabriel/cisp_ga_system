@@ -4,7 +4,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-2">
-          <%= image_tag 'panget_logo.png', width: 150 %>
+          <%= image_tag "panget_logo.png", width: 150 %>
         </div>
         <div class="col-md-10">
         <%= content_tag :h3, @event_hub.cooperative.name %>
@@ -14,12 +14,12 @@
     </div>
   </div>
   <div class="alert alert-warning" role="alert">
-    <%# <i class="bi bi-exclamation-triangle"></i> %>
-    <%# <strong>You have the options to distribute the voting power in two ways:</strong> <br> %>
+    <% # <i class="bi bi-exclamation-triangle"></i> %>
+    <% # <strong>You have the options to distribute the voting power in two ways:</strong> <br> %>
     <strong>Manner of Election:</strong> <br>
-    <%# Either give all the voting power to one candidate or allocate it among candidates <br> %>
-    - All voters are encouraged to fill out their ballots completely. <br>
-    - A voter may opt to use all his/her assigned number of votes on any one candidate or distribute his/her assigned number of votes to as many candidates as he/she wishes to vote. <br>
+    <% # Either give all the voting power to one candidate or allocate it among candidates <br> %>
+    <strong>You have the options to distribute the voting power in two (2) ways:</strong> <br>
+    Either give all the voting power to one candidate or allocate it among candidates: <br>
     <hr>
     You can vote for up to <%= @elect_position.vacant %> candidate(s) for the post of <%= @elect_position.name %> <br>
     <% if @votes_available > 0 %>
@@ -27,17 +27,17 @@
     <% else %>
       You may now proceed to <%= content_tag :strong, @next_position %>.
     <% end %>
-    <%# Election Committee: 2 Vacant position for the Election Committee <br> %>
-    <%# You can vote upto = @elect_position.vacant candidate(s) <br> %>
-    <%# You must use up your voting power. %>
+    <% # Election Committee: 2 Vacant position for the Election Committee <br> %>
+    <% # You can vote upto = @elect_position.vacant candidate(s) <br> %>
+    <% # You must use up your voting power. %>
   </div>
   <div class="text-end mb-3">
     <%= content_tag :h2, @elect_position.name, class: "text-primary" %> <br>
     <div class="text-end">
-      <%# if @count_vote == @elect_position.vacant && @votes_available == 0 %>
+      <% # if @count_vote == @elect_position.vacant && @votes_available == 0 %>
       <% if @votes_available == 0 %>
-        <%= link_to "Proceed to " + @next_position.name, vote_votes_path(e: @event_hub,p: @next_position.id), class: 'btn btn-warning btn-lg' unless @next_position.nil? %>
-        <%= link_to 'Review your votes', vote_review_votes_path(e: @event_hub), class: 'btn btn-success btn-lg' if @next_position.nil? %>
+        <%= link_to "Proceed to " + @next_position.name, vote_votes_path(e: @event_hub, p: @next_position.id), class: "btn btn-warning btn-lg" unless @next_position.nil? %>
+        <%= link_to "Review your votes", vote_review_votes_path(e: @event_hub), class: "btn btn-success btn-lg" if @next_position.nil? %>
       <% end %>
     </div>
   </div>
@@ -52,16 +52,16 @@
             <small><%= can.event_hub %></small>
             <% @vote = can.get_vote(@event_hub, can.id) %>
             <p class="text-primary"> <strong> Vote: <%= to_curr(@vote.vote_amount) unless @vote.nil? %></strong></p>
-            <%#= can.votes.sum(:vote_amount) %>
+            <% #= can.votes.sum(:vote_amount) %>
             <div class="text-end">
-              <%# <a href="#" class="btn btn-primary btn-sm">Vote</a> %>
+              <% # <a href="#" class="btn btn-primary btn-sm">Vote</a> %>
               <% if @vote.nil? %>
                 <% if @candidates.count == 1 %>
-                  <%= link_to  'Vote all', vote_all_votes_path(e: @event_hub, c: can), class: 'btn btn-primary btn-sm' %>
+                  <%= link_to "Vote all", vote_all_votes_path(e: @event_hub, c: can), class: "btn btn-primary btn-sm" %>
                 <% end %>
-                <%= link_to  'Vote', new_vote_path(c: can, e: @event_hub, p: params[:p]), class: 'btn btn-primary btn-sm',   data: { turbo_frame: "remote_modal" }  %>
+                <%= link_to "Vote", new_vote_path(c: can, e: @event_hub, p: params[:p]), class: "btn btn-primary btn-sm", data: { turbo_frame: "remote_modal" } %>
               <% else %>
-                <%= link_to 'Edit', edit_vote_path(@vote, p: params[:p] ), class: 'btn btn-secondary btn-sm',data: { turbo_frame: "remote_modal" } %>
+                <%= link_to "Edit", edit_vote_path(@vote, p: params[:p]), class: "btn btn-secondary btn-sm", data: { turbo_frame: "remote_modal" } %>
                 <%= link_to "Delete", @vote, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
               <% end %>
             </div>
