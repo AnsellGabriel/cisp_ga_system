@@ -3,8 +3,8 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # config.hosts << 'https://event.1cisp.coop/'
   # Settings specified here will take precedence over those in config/application.rb.
-  
-  config.action_mailer.default_url_options = { host: 'https://event.1cisp.coop/' }
+
+  config.action_mailer.default_url_options = { host: "https://event.1cisp.coop/" }
   # config.action_mailer.default_url_options = { host: 'https://election.onecooptech.org/' }
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
@@ -14,20 +14,21 @@ Rails.application.configure do
   config.cache_classes = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'event.1cisp.coop',
-    user_name:            '9thaga.1coophealth@gmail.com',
-    password:             'ogokmwenezniszhs',
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "event.1cisp.coop",
+    user_name: "chmfga@gmail.com",
+    password: "atydbficoblpadat",
     # domain:               'election.onecooptech.org',
     # user_name:            '1cispga@gmail.com',
     # password:             'tqughticipmujarl',
     # user_name:            'ga@onecooptech.org',
     # password:             'hntzhfcquoyaeamf',
-    authentication:       'plain',
+    authentication: "plain",
     enable_starttls_auto: true,
-    open_timeout:         5,
-    read_timeout:         5 }
+    open_timeout: 5,
+    read_timeout: 5,
+  }
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
@@ -36,7 +37,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
@@ -76,7 +77,7 @@ Rails.application.configure do
   config.log_level = :info
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -106,9 +107,9 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
   # Do not dump schema after migrations.
