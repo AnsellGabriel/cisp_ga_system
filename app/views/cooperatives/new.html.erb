@@ -1,7 +1,7 @@
 
-<div class="card">
-  <h5 class="card-header">Edit cooperative</h5>
-  <div class="card-body">
+
+
+<%= render "remote_modal", title: "New cooperative" do %>
     <%= render "form", cooperative: @cooperative %>
-  </div>
-</div>
+  <% #= render "form", url: cooperative_path(@cooperative), meth: 'patch' %>
+<% end %>

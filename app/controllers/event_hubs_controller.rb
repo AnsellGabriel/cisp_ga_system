@@ -5,13 +5,14 @@ class EventHubsController < ApplicationController
   # GET /event_hubs or /event_hubs.json
   def index
     # @event_hubs = EventHub.all
-    @q = EventHub.ransack(params[:q])
+
+    @event_hubs = @my_coop_event.event_hubs
+    @q = @event_hubs.ransack(params[:q])
     # @pagy, @event_hubs = pagy(EventHub)
     @pagy, @event_hubs = pagy(@q.result(distinct: true).order(vote_power: :desc), items: 10)
-    
   end
 
-  def voter_code 
+  def voter_code
     # raise "errors"
     respond_to do |format|
       if @event_hub.update_attribute(:voted, 1)
@@ -21,22 +22,22 @@ class EventHubsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  def home 
-    
+
+  def home
   end
 
-  def coop 
+  def coop
     @event_hubs = EventHub.where(coop_event_id: params[1])
   end
 
-
-  def admin 
-    
+  def admin
   end
+
   # GET /event_hubs/1 or /event_hubs/1.json
   def show
   end
-  def vote 
+
+  def vote
     @elect_position = ElectPosition.find_by(id: params[:p], coop_event: @event_hub.coop_event)
     @next = params[:p].to_i + 1
     @next_position = ElectPosition.find_by(id: @next)
@@ -45,18 +46,19 @@ class EventHubsController < ApplicationController
     @candidates = Candidate.where(coop_event_id: @event_hub.coop_event_id, elect_position: @elect_position)
     #  @vote = Vote.find_by(candidate_id: @candidates, event_hub_id: @event_hub)
     @count_vote = Vote.where(elect_position: @elect_position, event_hub_id: @event_hub).count
-   
   end
+
   # GET /event_hubs/new
   def new
     @event_hub = EventHub.new
     default_value
   end
 
-  def default_value 
+  def default_value
     @event_hub.coop_event = CoopEvent.find_by(:active => 1)
     @event_hub.vote_code = SecureRandom.alphanumeric(5)
   end
+
   # GET /event_hubs/1/edit
   def edit
   end
@@ -67,7 +69,7 @@ class EventHubsController < ApplicationController
 
     respond_to do |format|
       if @event_hub.save
-        format.html { redirect_to event_hub_url(@event_hub), notice: "Event hub was successfully created." }
+        format.html { redirect_to event_hubs_url, notice: "Event hub was successfully created." }
         format.json { render :show, status: :created, location: @event_hub }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -80,7 +82,7 @@ class EventHubsController < ApplicationController
   def update
     respond_to do |format|
       if @event_hub.update(event_hub_params)
-        format.html { redirect_to event_hub_url(@event_hub), notice: "Event hub was successfully updated." }
+        format.html { redirect_to event_hubs_url, notice: "Event hub was successfully updated." }
         format.json { render :show, status: :ok, location: @event_hub }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -100,15 +102,16 @@ class EventHubsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event_hub
-      @event_hub = EventHub.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def event_hub_params
-      params.require(:event_hub).permit(:coop_event_id, :cooperative_id, :capital, :vote_power, :vote_code, :voted, :vote_amount, :code,
-        registration_param: [:id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso ],
-        candidate_param: [:id, :elect_position_id, :last_name, :first_name, :middle_name, :suffix, :birth_date, :address, :mobile_number, :email, :education, :company, :occupation, :status ])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event_hub
+    @event_hub = EventHub.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def event_hub_params
+    params.require(:event_hub).permit(:coop_event_id, :cooperative_id, :capital, :vote_power, :vote_code, :voted, :vote_amount, :code,
+                                      registration_param: [:id, :last_name, :first_name, :middle_name, :birth_date, :mobile_number, :email, :guest_type, :attendance, :id_pic, :board_reso],
+                                      candidate_param: [:id, :elect_position_id, :last_name, :first_name, :middle_name, :suffix, :birth_date, :address, :mobile_number, :email, :education, :company, :occupation, :status])
+  end
 end

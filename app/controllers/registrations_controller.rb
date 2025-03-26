@@ -8,6 +8,9 @@ class RegistrationsController < ApplicationController
   def data_privacy
   end
 
+  def registration_closed
+  end
+
   def size
   end
 

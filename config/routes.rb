@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     get "success", to: "registrations#success", as: "success", on: :collection
     get "size", to: "registrations#size", as: "size", on: :collection
     get "data_privacy", to: "registrations#data_privacy", as: "data_privacy", on: :collection
+    get "registration_closed", to: "registrations#registration_closed", as: "closed", on: :collection
   end
   resources :candidates do
     get "new_edit", to: "candidates#new_edit", as: "new_edit", on: :collection

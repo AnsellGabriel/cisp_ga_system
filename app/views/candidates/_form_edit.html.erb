@@ -2,21 +2,21 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <div class="form-inputs mb-3">
-    <%= f.association :elect_position, label: "Desired position" %>
-    <%= f.association :event_hub, label: "Cooperative", wrapper_html: { class: "mb-3" }, input_html: { data: { controller: 'ts--select' } } %>
+    <%= f.association :elect_position, collection: @my_coop_event.elect_positions, label: "Desired position" %>
+    <%= f.association :event_hub, label: "Cooperative", wrapper_html: { class: "mb-3" }, input_html: { data: { controller: "ts--select" } } %>
     <div class="row">
-      <%= f.input :last_name, wrapper_html: { class: "col-md-3" }  %>
-      <%= f.input :first_name, wrapper_html: { class: "col-md-3" }  %>
-      <%= f.input :middle_name, wrapper_html: { class: "col-md-3" }  %>
-      <%= f.input :suffix, label: "Suffix", wrapper_html: { class: "col-md-3" }  %>
+      <%= f.input :last_name, wrapper_html: { class: "col-md-3" } %>
+      <%= f.input :first_name, wrapper_html: { class: "col-md-3" } %>
+      <%= f.input :middle_name, wrapper_html: { class: "col-md-3" } %>
+      <%= f.input :suffix, label: "Suffix", wrapper_html: { class: "col-md-3" } %>
     </div>
     <div class="row">
-      <%#= f.input :birth_date, wrapper_html: { class: "col-md-6" } %>
-      <%= f.input :birth_date, as: :string, wrapper_html: { class: "col-md-6" }, 
-      input_html: { data: { controller: "flatpickr",
-      flatpickr_max_date: Time.zone.now,
-      flatpickr_next_arrow: "Next",
-      flatpickr_prev_arrow: "Prev" } } %>
+      <% #= f.input :birth_date, wrapper_html: { class: "col-md-6" } %>
+      <%= f.input :birth_date, as: :string, wrapper_html: { class: "col-md-6" },
+                               input_html: { data: { controller: "flatpickr",
+                                                    flatpickr_max_date: Time.zone.now,
+                                                    flatpickr_next_arrow: "Next",
+                                                    flatpickr_prev_arrow: "Prev" } } %>
       <%= f.input :education, label: "Highest educational attainment", wrapper_html: { class: "col-md-6" } %>
     </div>
     <%= f.input :address, label: "Residence address" %>
@@ -24,11 +24,11 @@
       <%= f.input :mobile_number, label: "Contact no./Mobile no.", wrapper_html: { class: "col-md-6" } %>
       <%= f.input :email, label: "Email address", wrapper_html: { class: "col-md-6" } %>
     </div>
-    <%# <div class="row"> %>
-    <%#= f.input :occupation, wrapper_html: { class: "col-md-6" } %>
-    <%#= f.input :company, label: "Company working/Cooperative", wrapper_html: { class: "col-md-6" } %>
-    <%# </div> %>
-    <%#= f.input :status %>
+    <% # <div class="row"> %>
+    <% #= f.input :occupation, wrapper_html: { class: "col-md-6" } %>
+    <% #= f.input :company, label: "Company working/Cooperative", wrapper_html: { class: "col-md-6" } %>
+    <% # </div> %>
+    <% #= f.input :status %>
   </div>
   <div class="alert alert-warning" role="alert">
     Note: Please attach to this form your aplication form with 2x2 colored formal picture (in business attire) and kindly submit on or before March 31, 2023.

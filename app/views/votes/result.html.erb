@@ -1,10 +1,10 @@
 <div class="container mt-4">
   <%= content_tag :h2, @event.name %>
-  <%= content_tag :h4, 'Election Result' %>
+  <%= content_tag :h4, "Election Result" %>
   <br>
-  <%#= content_tag :p, d.strftime("%m/%d/%Y %H:%M")  %>
+  <% #= content_tag :p, d.strftime("%m/%d/%Y %H:%M") %>
   <% unless @event.election %>
-    <%= content_tag :p, 'The result of the election are as follows:' %>
+    <%= content_tag :p, "The result of the election are as follows:" %>
     <div class="row">
       <% @elect_position.each do |ec| %>
         <div class="col-md-6 mb-4">
@@ -18,9 +18,9 @@
               </tr>
             </thead>
             <tbody>
-              <% @vote = Vote.group(:candidate_id).where(elect_position: ec, post: 1).order('sum_vote_amount desc').sum(:vote_amount) %>
+              <% @vote = Vote.group(:candidate_id).where(elect_position: ec, post: 1).order("sum_vote_amount desc").sum(:vote_amount) %>
               <% @vote.each do |v| %>
-                <tr class= "<%= 'table-success' if @win > 0 %>">
+                <tr class= "<%= "table-success" if @win > 0 %>">
                   <% @candidate = Candidate.find(v[0]) %>
                   <td> <%= @candidate %> </td>
                   <td> <%= to_curr(v[1]) %> </td>
@@ -35,27 +35,27 @@
     </div>
   <% else %>
     <div class="alert alert-danger" role="alert">
-      <%= content_tag :h2, 'Election is still open' %>
+      <%= content_tag :h2, "Election is still open" %>
     </div>
   <% end %>
-  <table class="table table-bordered table-hover">
-        <thead>
+  <% if @referendums.present? %>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th> Proposal </th>
+          <th> Oo </th>
+          <th> Hinde </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @referendums.each do |r| %>
           <tr>
-            <th> Proposal </th>
-            <th> Oo </th>
-            <th> Hinde </th>
+            <td><%= r.name %></td>
+            <td><%= to_curr(ReferendumResponse.where(referendum: r, response: 1).sum(:vote_amount)) %></td>
+            <td><%= to_curr(ReferendumResponse.where(referendum: r, response: 0).sum(:vote_amount)) %></td>
           </tr>
-        </thead>
-        <tbody>
-         
-          <% @referendums = Referendum.where(active: 1) %>
-          <% @referendums.each do |r| %>
-            <tr>
-              <td><%= r.name %></td>
-              <td><%= to_curr(ReferendumResponse.where(referendum: r, response: 1).sum(:vote_amount)) %></td>
-              <td><%= to_curr(ReferendumResponse.where(referendum: r, response: 0).sum(:vote_amount)) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>

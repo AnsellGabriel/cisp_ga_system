@@ -26,7 +26,7 @@ class CooperativesController < ApplicationController
 
     respond_to do |format|
       if @cooperative.save
-        format.html { redirect_to cooperative_url(@cooperative), notice: "Cooperative was successfully created." }
+        format.html { redirect_to event_hubs_url, notice: "Cooperative was successfully created." }
         format.json { render :show, status: :created, location: @cooperative }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -61,13 +61,14 @@ class CooperativesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cooperative
-      @cooperative = Cooperative.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def cooperative_params
-      params.require(:cooperative).permit(:name, :geo_region_id, :geo_province_id, :geo_municipality_id, :geo_barangay_id, :street, :tin, :registration_no, :coop_type, :email, :contact_no)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cooperative
+    @cooperative = Cooperative.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def cooperative_params
+    params.require(:cooperative).permit(:name, :geo_region_id, :geo_province_id, :geo_municipality_id, :geo_barangay_id, :street, :tin, :registration_no, :coop_type, :email, :contact_no)
+  end
 end

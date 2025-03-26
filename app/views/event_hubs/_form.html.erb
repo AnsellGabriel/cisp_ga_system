@@ -5,12 +5,17 @@
 
   <div class="form-inputs">
     <%= f.association :coop_event %>
-    <%= f.association :cooperative %>
+    <% #= f.association :cooperative %>
+    <%= f.association :cooperative,
+                      include_blank: "Search cooperative",
+                      wrapper_html: { class: "", style: "margin-bottom: 0!important;" },
+                      input_html: { data: { controller: "ts--select" } },
+                      error: "*Required" %>
     <div class="row">
-    <%= f.input :capital, wrapper_html: { class: "col-md-3"} %>
-    <%= f.input :code, wrapper_html: { class: "col-md-3"} %>
-    <%= f.input :vote_power, wrapper_html: { class: "col-md-3"} %>
-    <%= f.input :vote_code, wrapper_html: { class: "col-md-3"} %>
+    <%= f.input :capital, wrapper_html: { class: "col-md-3" } %>
+    <%= f.input :code, wrapper_html: { class: "col-md-3" } %>
+    <%= f.input :vote_power, wrapper_html: { class: "col-md-3" } %>
+    <%= f.input :vote_code, wrapper_html: { class: "col-md-3" } %>
     </div>
   </div>
 

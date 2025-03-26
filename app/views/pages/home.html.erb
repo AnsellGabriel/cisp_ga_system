@@ -22,7 +22,8 @@
                     <div class="mb-4">
                         <div class="center-link">
                             <%#= link_to 'REGISTER NOW!', new_modal_registrations_path(q: "notmodal"), class: "btn btn-primary btn-lg" %> 
-                            <%= link_to 'REGISTER NOW!', data_privacy_registrations_path, class: "btn btn-primary btn-lg", data: { turbo_frame: "remote_modal" } %> 
+                            <%= link_to 'REGISTRATION CLOSED!', closed_registrations_path, class: "btn btn-warning btn-lg", data: { turbo_frame: "remote_modal" } %> 
+                            <%= link_to 'VOTE NOW!', vote_pages_path, class: "btn btn-primary btn-lg", data: { turbo_frame: "remote_modal" } if @my_coop_event.election? %> 
                         </div>
                     </div>
                     <em>Discover how we continue to grow and thrive together, rooted in tradition and rising with vision. Join us for this year’s General Assembly and be part of a transformative journey.</em> <br>
