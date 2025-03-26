@@ -7,8 +7,6 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-
-
 # role-based syntax
 # ==================
 
@@ -21,8 +19,6 @@
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-
-
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb
@@ -30,8 +26,6 @@
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-
-
 
 # Custom SSH Options
 # ==================
@@ -59,9 +53,9 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
-server '139.162.9.248', user: 'deploy', roles: %w{app db web}
+server "139.162.9.248", user: "deploy", roles: %w{app db web}
 # server '170.187.231.250', user: 'deploy', roles: %w{app db web}
 # server '139.162.19.200', user: 'deploy', roles: %w{app db web}
 #server "172.104.33.72", user: "deploy", roles: %w{app db web}#, my_property: :my_value
- 
-set :default_env, { 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/home/deploy/passenger_temp' }
+
+# set :default_env, { 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/home/deploy/passenger_temp' }
