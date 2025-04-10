@@ -83,38 +83,65 @@
 #     end
 
 # COOP TECH IMPORT
-# spreadsheet = Roo::Spreadsheet.open("./db/uploads/cooptechreg.xlsx")
+spreadsheet = Roo::Spreadsheet.open("./db/uploads/capital_2024_final.xlsx")
 
-# (2..spreadsheet.sheet("Sheet1").last_row).each do |row|
-#     coop = Cooperative.find_or_initialize_by(name: spreadsheet.cell(row, 'A'))
-#     puts "#{coop.name}"
-#     eh = EventHub.find_by(cooperative_id: coop.id)
+(2..spreadsheet.sheet("Sheet1").last_row).each do |row|
+  coop = Cooperative.find_or_initialize_by(name: spreadsheet.cell(row, "B").strip)
+  puts "SAVED --- #{coop.name}" if coop.save!
+  # eh = coop.event_hub
+  if coop.event_hub.present?
+    eh = coop.event_hub
+    if eh.capital == 0
+      eh.update!(capital: spreadsheet.cell(row, "C"), vote_power: spreadsheet.cell(row, "D"))
+      puts "#{coop.name}"
+    end
+  else
+    eh = EventHub.find_or_initialize_by(cooperative: coop)
+    eh.capital = spreadsheet.cell(row, "C")
+    eh.vote_power = spreadsheet.cell(row, "D")
+    coop_event = CoopEvent.find_by(active: 1)
+    eh.coop_event = coop_event
+    loop do
+      code = SecureRandom.alphanumeric(4).upcase
+      modified_string = code.gsub(/[1iO0I]/, "A")
+      if EventHub.exists?(vote_code: modified_string)
+        puts "Code #{modified_string} already exists, generating new code..."
+      else
+        eh.vote_code = modified_string
+        break
+      end
+    end
+    puts "#{eh.vote_code} - #{eh.cooperative}" if eh.save!
+    # puts "#{spreadsheet.cell(row, "B")}"
+  end
+  #     puts "#{coop.name}"
+  #     eh = EventHub.find_by(cooperative_id: coop.id)
 
-#     reg = Registration.find_or_initialize_by(event_hub_id:  eh.id, last_name: spreadsheet.cell(row, 'H'))
-#     reg.last_name = spreadsheet.cell(row, 'H')
-#     reg.first_name = spreadsheet.cell(row, 'I')
-#     reg.middle_name = ""
-#     reg.email = spreadsheet.cell(row, 'D')
-#     reg.mobile_number = spreadsheet.cell(row, 'E')
-#     reg.guest_type = spreadsheet.cell(row, 'F')
-#     reg.attendance = spreadsheet.cell(row, 'G')
-#     if reg.save
-#         puts "----Reg--#{reg.last_name}, #{reg.first_name}"
-#         # RegisterMailer.with(registration: reg, event_hub: eh).register_created.deliver_later
-#     end
+  #     reg = Registration.find_or_initialize_by(event_hub_id:  eh.id, last_name: spreadsheet.cell(row, 'H'))
+  #     reg.last_name = spreadsheet.cell(row, 'H')
+  #     reg.first_name = spreadsheet.cell(row, 'I')
+  #     reg.middle_name = ""
+  #     reg.email = spreadsheet.cell(row, 'D')
+  #     reg.mobile_number = spreadsheet.cell(row, 'E')
+  #     reg.guest_type = spreadsheet.cell(row, 'F')
+  #     reg.attendance = spreadsheet.cell(row, 'G')
+  #     if reg.save
+  #         puts "----Reg--#{reg.last_name}, #{reg.first_name}"
+  #         # RegisterMailer.with(registration: reg, event_hub: eh).register_created.deliver_later
+end
 
 ## SEED CANDIDATES FAKKER
-event = CoopEvent.find_by(active: 1)
-10.times do
-  c = Candidate.create!(
-    last_name: FFaker::Name.last_name,
-    first_name: FFaker::Name.first_name,
-    middle_name: FFaker::Name.name[0],
-    suffix: "",
-    email: FFaker::Name.last_name + "@email.com",
-    coop_event_id: event.id,
-    elect_position: event.elect_positions.sample,
-    event_hub: EventHub.all.sample,
-  )
-  puts "#{c.last_name} - #{c.event_hub.cooperative} has been created!"
-end
+# event = CoopEvent.find_by(active: 1)
+# 10.times do
+#   c = Candidate.create!(
+#     last_name: FFaker::Name.last_name,
+#     first_name: FFaker::Name.first_name,
+#     middle_name: FFaker::Name.name[0],
+#     suffix: "",
+#     email: FFaker::Name.last_name + "@email.com",
+#     coop_event_id: event.id,
+#     elect_position: event.elect_positions.sample,
+#     event_hub: EventHub.all.sample,
+#   )
+#   puts "#{c.last_name} - #{c.event_hub.cooperative} has been created!"
+# end
