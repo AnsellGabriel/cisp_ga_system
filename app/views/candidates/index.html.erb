@@ -1,8 +1,8 @@
 <%= content_tag :h1, "List of Candidates" %>
 
 <div class="text-end mb-3">
-  <%= link_to new_edit_candidates_path, class: 'btn btn-primary', data: { turbo_frame: "remote_modal" } do %> 
-  <%#= link_to new_candidate_path(p: "notmodal"), class: 'btn btn-primary', data: { turbo_frame: "remote_modal" } do %>
+  <%= link_to new_edit_candidates_path, class: "btn btn-primary", data: { turbo_frame: "remote_modal" } do %> 
+  <% #= link_to new_candidate_path(p: "notmodal"), class: 'btn btn-primary', data: { turbo_frame: "remote_modal" } do %>
     New Candidate
   <% end %>
 </div>
@@ -29,12 +29,12 @@
         <td><strong> <%= candidate.get_fullname %> </strong> <br>
           <%= candidate.event_hub %> <br>
           <%= candidate.elect_position %> <br>
-          <%= link_to '<i class="bi bi-person-badge"></i> picture'.html_safe, rails_blob_url(candidate.picture), target: :_blank, class: 'btn btn-outline-secondary btn-sm' if candidate.picture.attached? %> | 
-          <%= link_to '<i class="bi bi-file-earmark-medical"></i> form'.html_safe, rails_blob_url(candidate.resume), target: :_blank, class: 'btn btn-outline-secondary btn-sm' if candidate.resume.attached? %> |
-          <%= link_to '<i class="bi bi-file-earmark-text"></i> board reso.'.html_safe, rails_blob_url(candidate.board_reso), target: :_blank, class: 'btn btn-outline-secondary btn-sm' if candidate.board_reso.attached? %> </td>
+          <%= link_to '<i class="bi bi-person-badge"></i> picture'.html_safe, rails_blob_url(candidate.picture), target: :_blank, class: "btn btn-outline-secondary btn-sm" if candidate.picture.attached? %> | 
+          <%= link_to '<i class="bi bi-file-earmark-medical"></i> form'.html_safe, rails_blob_url(candidate.resume), target: :_blank, class: "btn btn-outline-secondary btn-sm" if candidate.resume.attached? %> |
+          <%= link_to '<i class="bi bi-file-earmark-text"></i> board reso.'.html_safe, rails_blob_url(candidate.board_reso), target: :_blank, class: "btn btn-outline-secondary btn-sm" if candidate.board_reso.attached? %> </td>
           <td>
-            <%= link_to 'View', candidate, class: 'btn btn-secondary btn-sm' %>
-            <%= link_to 'Edit', edit_candidate_path(candidate), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "View", candidate, class: "btn btn-secondary btn-sm" %>
+            <%= link_to "Edit", edit_candidate_path(candidate), class: "btn btn-secondary btn-sm", data: { turbo_frame: "remote_modal" } %>
             <%= link_to "Delete", candidate, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
           </td>
 

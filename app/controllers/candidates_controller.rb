@@ -19,22 +19,24 @@ class CandidatesController < ApplicationController
     unless params[:p] == "notmodal"
       @event_hub = EventHub.find(params[:v])
       @candidate = @event_hub.candidates.build
-      
     end
-   
-     set_dummy_register
+
+    set_dummy_register
   end
-  def set_dummy_register 
+
+  def set_dummy_register
     @candidate.last_name = FFaker::Name.last_name
     @candidate.first_name = FFaker::Name.first_name
     @candidate.middle_name = FFaker::Name.name[0]
     @candidate.email = @candidate.last_name.downcase + "@email.com"
   end
-  def new_edit 
+
+  def new_edit
     @candidate = Candidate.new
     @event_hub = EventHub.first
     set_dummy_register
   end
+
   # GET /candidates/1/edit
   def edit
   end
@@ -61,7 +63,7 @@ class CandidatesController < ApplicationController
   def update
     respond_to do |format|
       if @candidate.update(candidate_params)
-        format.html { redirect_to candidate_url(@candidate), notice: "Candidate was successfully updated." }
+        format.html { redirect_to candidates_path, notice: "Candidate was successfully updated." }
         format.json { render :show, status: :ok, location: @candidate }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -81,13 +83,14 @@ class CandidatesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_candidate
-      @candidate = Candidate.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def candidate_params
-      params.require(:candidate).permit(:event_hub_id, :elect_position_id, :coop_event_id, :last_name, :first_name, :middle_name, :suffix, :birth_date, :address, :mobile_number, :email, :education, :company, :occupation, :status, :picture, :resume, :board_reso)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_candidate
+    @candidate = Candidate.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def candidate_params
+    params.require(:candidate).permit(:event_hub_id, :elect_position_id, :coop_event_id, :last_name, :first_name, :middle_name, :suffix, :birth_date, :address, :mobile_number, :email, :education, :company, :occupation, :status, :picture, :resume, :board_reso)
+  end
 end
