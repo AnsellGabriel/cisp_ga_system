@@ -18,8 +18,13 @@
     <% # <strong>You have the options to distribute the voting power in two ways:</strong> <br> %>
     <strong>Manner of Election:</strong> <br>
     <% # Either give all the voting power to one candidate or allocate it among candidates <br> %>
-    <strong>You have the options to distribute the voting power in two (2) ways:</strong> <br>
-    Either give all the voting power to one candidate or allocate it among candidates: <br>
+    <strong>You have the options to distribute the voting power in two ways:</strong> <br>
+    <small>
+      Either give all the voting power to one candidate or allocate it among candidates: <br>
+      <strong>Board of Directors:</strong> 4 vacant positions for the Board of Directors <br>
+      <strong>Audit Committee:</strong> 2 vacant positions for the Audit Committee <br>
+      <strong>Election Committee:</strong> 2 Vacant position for the Election Committee <br>
+    </small>
     <hr>
     You can vote for up to <%= @elect_position.vacant %> candidate(s) for the post of <%= @elect_position.name %> <br>
     <% if @votes_available > 0 %>
