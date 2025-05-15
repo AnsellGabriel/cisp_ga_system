@@ -45,10 +45,16 @@
                 <small><i class="bi bi-phone"></i> <%= registration.mobile_number %> |
                   <i class="bi bi-envelope"></i> <%= registration.email %> |
                   <i class="bi bi-cash"></i> <%= to_curr(registration.price) %> <span class="badge text-bg-success"><%= "Paid" if registration.paid %></span>
-                  <span class="badge text-bg-success"><%= "Voted" if registration.event_hub.voted? %></span></small></td>
+                  <span class="badge text-bg-success"><%= "Voted" if registration.event_hub.voted? %></span> <br>
+                  <span class="badge text-bg-info"><%= "Attended" if registration.attend? %></span>
+                </small>
+                
+              </td>
               <td><%= registration.guest_type %> 
                 <br>
-                <small><span class="badge text-bg-warning"><%= "#{registration.event_hub.vote_code}" if registration.guest_type == "Principal Delegate" %></span> <br>
+                <small>
+                  <span class="badge text-bg-warning"><%= "#{registration.event_hub.vote_code}" if registration.guest_type == "Principal Delegate" %></span>
+                  <span class="badge text-bg-light"><%= "#{registration.attendance}" %></span> <br>
                   <%= registration.created_at %> </small> </td>
               <td>
                 <div class="mb-2">
