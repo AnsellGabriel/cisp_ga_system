@@ -53,7 +53,7 @@ class Registration < ApplicationRecord
     CSV.generate(col_sep: ";") do |csv|
       csv << ["id", "coop", "last_name", "first_name", "middle_name", "birth_date", "mobile_no", "email", "guest_type", "attend", "price", "paid", "area", "attendance", "position", "registered", "voted", "vote_code", "number_votes"]
       all.find_each do |reg|
-        csv << [reg.id, reg.event_hub.cooperative.name, reg.last_name, reg.first_name, reg.middle_name, reg.birth_date, reg.mobile_number, reg.email, reg.guest_type, reg.attend, reg.price, reg.paid, reg.size, reg.attendance, reg.dietary, reg.created_at, reg.event_hub.voted, reg.event_hub.vote_code, reg.event_hub.vote_amount]
+        csv << [reg.id, reg.event_hub.cooperative.name, reg.last_name, reg.first_name, reg.middle_name, reg.birth_date, reg.mobile_number, reg.email, reg.guest_type, reg.attend, reg.price, reg.paid, reg.size, reg.attendance, reg.dietary, reg.created_at, reg.event_hub.voted, reg.event_hub.vote_code, reg.event_hub.vote_power]
       end
     end
   end
