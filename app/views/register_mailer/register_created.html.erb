@@ -1,19 +1,19 @@
-<%# <h1>Register#register_created</h1> %>
-<%= image_tag attachments['cooptech_email.png'].url, alt: 'My Photo',width: 500, class: 'photos' %>
+<% # <h1>Register#register_created</h1> %>
+<%= image_tag attachments["cooptech_email.png"].url, alt: "My Photo", width: 500, class: "photos" %>
 <div class="content-letter">
   <p>Dear <%= @name %>,</p>
   <p>Cooperative Greetings from One Coop Tech!</p>
-  <p>We are thrilled to confirm your registration for our 3rd Annual General Assembly on November 14, 2024. This event will be held at the 1CISP Multi-Purpose Hall (11 Mapagbigay St. Brgy. Pinyahan, Quezon City) and accessible online via Zoom.</p>
+  <p>We’re pleased to confirm your registration for the 4th Annual General Assembly of <strong>One Cooperative Technology Service (OCTS)</strong> happening on <strong>June 30, 2025, 9:00AM-12:00NN</strong>. The event will take place at the 1CISP Multi-Purpose Hall, No. 11 Mapagbigay corner Maunlad Streets, Brgy. Pinyahan, Quezon City, and will also be accessible via Zoom.</p>
 
-  <%# <%= content_tag :p, '(49th) Annual General Assembly Meeting and Election on April 15, 2023, Saturday at 9:00 A.M. The meeting will be held at Novotel Manila, Araneta City, General Aguinaldo Ave, Cubao, Quezon City, Metro Manila; and via Zoom (Meeting ID: 857 1289 6787) ' %>
+  <% # <%= content_tag :p, '(49th) Annual General Assembly Meeting and Election on April 15, 2023, Saturday at 9:00 A.M. The meeting will be held at Novotel Manila, Araneta City, General Aguinaldo Ave, Cubao, Quezon City, Metro Manila; and via Zoom (Meeting ID: 857 1289 6787) ' %>
   <% if @guest_type == "Principal Delegate" %>
     <p>
       Your voter's code is <strong> <%= @voter %> </strong> , which will grant you access to cast your votes during this important assembly.
     </p>
-  <%end%>
-  <p>If you need any assistance or further details, feel free to reach out to our support team via info@onecoop.tech or call 0917-813-9114. For specific concerns, you may contact Ms. Anna Marin Crisolo or Ms. Vianca Quinesio, who will be more than happy to assist you.</p>
-  <p>We are excited to have you with us as we create a memorable and meaningful experience. Your voice matters, and together, we will continue to build a stronger cooperative community.</p>
-  <p>See you at our 3rd Annual General Assembly!</p>
+  <% end %>
+  <p>Should you need assistance or additional information, feel free to contact us at <strong>info@onecoop.tech</strong> or <strong>0917-813-9114</strong>. For specific concerns, you may also reach out to <strong>Ms. Marin Crisolo</strong> or <strong>Ms. Vianca Quinesio</strong>, who will be happy to assist you.</p>
+  <p>We look forward to your participation in making this event both meaningful and memorable. Your presence and voice play a vital role in shaping the future of our cooperative community.</p>
+  <p>See you at the 4th Annual General Assembly!</p>
 
   <p>Warm regards,</p>
   <p>The One Coop Tech Team</p>

@@ -2,25 +2,25 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <div class="form-inputs">
-    <%#= f.association :event_hub %>
-    <%#= f.association :coop_event %>
-    <%#= f.association :candidate %>
+    <% #= f.association :event_hub %>
+    <% #= f.association :coop_event %>
+    <% #= f.association :candidate %>
     <p>
       <strong>Candidate:</strong>
       <%= @vote.candidate %>
     </p>
    
       <strong>Remaining number of votes:</strong>
-      <%= to_curr(@vote.entry_vote) %>
+      <%= @vote.entry_vote %>
  
     <%= f.input :vote_amount %>
     <%= content_tag :p, 'Avoid using comma "," on the vote amount', class: "form-text" %>
-    <%#= f.input :entry_vote %>
-    <%#= f.input :post %>
+    <% #= f.input :entry_vote %>
+    <% #= f.input :post %>
   </div>
     <hr>
   <div class="form-actions text-end">
     <%= link_to "Back", vote_votes_path(e: @event_hub, p: @vote.candidate.elect_position), class: "btn btn-secondary" %>
-    <%= f.button :submit, value:"Submit", class: "btn btn-success" %>
+    <%= f.button :submit, value: "Submit", class: "btn btn-success" %>
   </div>
 <% end %>

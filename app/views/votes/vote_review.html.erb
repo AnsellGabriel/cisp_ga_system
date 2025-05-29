@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="text-end mb-4">
-    <%= link_to '<i class="bi bi-box-seam"></i> Save Votes'.html_safe , vote_final_votes_path(p: @event_hub), class: 'btn btn-success btn-lg' %>
+    <%= link_to '<i class="bi bi-box-seam"></i> Save Votes'.html_safe, vote_final_votes_path(p: @event_hub), class: "btn btn-success btn-lg" %>
   </div>
   <div class="row">
     <% @elect_positions.each do |ec| %>
@@ -16,7 +16,7 @@
         <div class="card">
           <div class="card-header">
             <strong class="text-primary"> <%= ec.name %> </strong><br>
-            <%= link_to "Change", vote_votes_path(e: @event_hub,p: ec.id), class: 'btn btn-warning btn-sm' %>
+            <%= link_to "Change", vote_votes_path(e: @event_hub, p: ec.id), class: "btn btn-warning btn-sm" %>
           </div>
           <% @votes = Vote.where(elect_position: ec, event_hub: @event_hub) %>
           <ul class="list-group list-group-flush">
@@ -28,7 +28,7 @@
                   </div>
                   <div class="col-8">
                     <strong> <%= v.candidate %> </strong>  <br>
-                    <p> <%= to_curr(v.vote_amount) %> </p>
+                    <p> <%= v.vote_amount %> </p>
                   </div>
                 </div>
               </li>

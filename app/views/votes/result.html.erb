@@ -23,7 +23,7 @@
                 <tr class= "<%= 'table-success' if @win > 0 %>">
                   <% @candidate = Candidate.find(v[0]) %>
                   <td> <%= @candidate %> </td>
-                  <td> <%= to_curr(v[1]) %> </td>
+                  <td> <%= v[1] %> </td>
                   <% @win = @win - 1 %>
                 </tr>
               <% end %>

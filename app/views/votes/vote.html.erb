@@ -8,7 +8,7 @@
         </div>
         <div class="col-md-10">
         <%= content_tag :h3, @event_hub.cooperative.name %>
-        <h4 class="text-primary"><%= to_curr(@votes_available) %> Number of Votes</h4>
+        <h4 class="text-primary"><%= @votes_available %> Number of Votes</h4>
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
     <hr>
     You can vote for up to <%= @elect_position.vacant %> candidate(s) for the post of <%= @elect_position.name %> <br>
     <% if @votes_available > 0 %>
-      You must use up your <%= to_curr(@votes_available) %> number of votes.
+      You must use up your <%= @votes_available %> number of votes.
     <% else %>
       You may now proceed to <%= content_tag :strong, @next_position %>.
     <% end %>

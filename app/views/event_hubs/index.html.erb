@@ -1,21 +1,21 @@
 <%= content_tag :h1, "List of Event Hubs" %>
 <div class="text-end mb-3">
-  <%= link_to new_event_hub_path, class: 'btn btn-primary' do %>
+  <%= link_to new_event_hub_path, class: "btn btn-primary" do %>
     New Event Hub
   <% end %>
 </div>
 <%= search_form_for @q, data: { turbo_frame: :results } do |f| %>
-  <%# # Search if the name field contains... %>
-  <%#= f.label :last_name_cont %>
-  <%#= f.search_field :last_name_cont %>
-  <%# # Search if an associated articles.title starts with... %>
-  <%#= f.label :registration.event_hub_start %>
-  <%#= f.search_field :articles_title_start %>
+  <% # # Search if the name field contains... %>
+  <% #= f.label :last_name_cont %>
+  <% #= f.search_field :last_name_cont %>
+  <% # # Search if an associated articles.title starts with... %>
+  <% #= f.label :registration.event_hub_start %>
+  <% #= f.search_field :articles_title_start %>
   <%= f.label :cooperative_name_cont %>
   <%= f.search_field :cooperative_name_cont %>
-  <%# # Attributes may be chained. Search multiple attributes for one value... %>
-  <%#= f.label :last_name_or_first_name_cont %>
-  <%#= f.search_field :last_name_or_first_name_cont %>
+  <% # # Attributes may be chained. Search multiple attributes for one value... %>
+  <% #= f.label :last_name_or_first_name_cont %>
+  <% #= f.search_field :last_name_or_first_name_cont %>
   <%= f.submit %>
 <% end %>
 <div class="card mt-3">
@@ -36,10 +36,10 @@
               <tr>
                 <th scope="row"><%= event_hub.id %></th>
                 <td><%= event_hub.cooperative %> <br>
-                  <small> C <%= to_curr(event_hub.capital) %> | VP <%= to_curr(event_hub.vote_power ) %> | <%= event_hub.vote_code %> | <span class="badge text-bg-success"><%= "Voted" if event_hub.voted %></span></small> </td>
+                  <small> C <%= to_curr(event_hub.capital) %> | VP <%= event_hub.vote_power %> | <%= event_hub.vote_code %> | <span class="badge text-bg-success"><%= "Voted" if event_hub.voted %></span></small> </td>
                 <td>
-                  <%= link_to 'View', event_hub, class: 'btn btn-secondary btn-sm' %>
-                  <%= link_to 'Edit', edit_event_hub_path(event_hub), class: 'btn btn-secondary btn-sm' %>
+                  <%= link_to "View", event_hub, class: "btn btn-secondary btn-sm" %>
+                  <%= link_to "Edit", edit_event_hub_path(event_hub), class: "btn btn-secondary btn-sm" %>
                   <%= link_to "Delete", event_hub, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
                 </td>
               </tr>

@@ -1,9 +1,9 @@
-<%#= simple_form_for(@registration) do |f| %>
-  <%#= simple_form_for @registration, url: url, method: meth, url: registrations_path(q: params[:q]), method: :post do |f| %>
+<% #= simple_form_for(@registration) do |f| %>
+  <% #= simple_form_for @registration, url: url, method: meth, url: registrations_path(q: params[:q]), method: :post do |f| %>
     <%= simple_form_for(@registration, url: url, method: meth) do |f| %>
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-      <%#= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <% #= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
       <div class="form-inputs mb-3">
         <div class="row mb-3">
           <%= f.input :last_name, wrapper_html: { class: "col-md-4" } %>
@@ -11,26 +11,26 @@
           <%= f.input :middle_name, wrapper_html: { class: "col-md-4" } %>
         </div>
         <div class="row mb-3">
-          <%= f.input :birth_date, label: "Birth Date", as: :string, wrapper_html: { class: "col-md-6" }, 
-          input_html: { data: { controller: "flatpickr",
-          flatpickr_max_date: Time.zone.now,
-          flatpickr_next_arrow: "Next",
-          flatpickr_prev_arrow: "Prev" } } %>
+          <%= f.input :birth_date, label: "Birth Date", as: :string, wrapper_html: { class: "col-md-6" },
+                                   input_html: { data: { controller: "flatpickr",
+                                                        flatpickr_max_date: Time.zone.now,
+                                                        flatpickr_next_arrow: "Next",
+                                                        flatpickr_prev_arrow: "Prev" } } %>
           <%= f.input :gender, collection: Registration::Gender, wrapper_html: { class: "col-md-6" } %>
           <%= f.input :mobile_number, placeholder: "+63", wrapper_html: { class: "col-md-6" } %>
-          <%= f.input :email, placeholder: 'user@domain.com', wrapper_html: { class: "col-md-6" } %>
+          <%= f.input :email, placeholder: "user@domain.com", wrapper_html: { class: "col-md-6" } %>
         </div>
         <% if params[:q] == "notmodal" %>
-          <%= f.association :event_hub, label: "Cooperative", wrapper_html: { class: "mb-3" }, input_html: { data: { controller: 'ts--select' } } %>
+          <%= f.association :event_hub, label: "Cooperative", wrapper_html: { class: "mb-3" }, input_html: { data: { controller: "ts--select" } } %>
         <% end %>
         <div data-controller="showhide" data-showhide-show-if-value="Accompanying Delegate">
       <div class="row">
         <div class="col-md-6">
-          <%#= f.input :coop_tin, label: "Cooperative TIN", wrapper_html: { class: "col-md-3" } %>
+          <% #= f.input :coop_tin, label: "Cooperative TIN", wrapper_html: { class: "col-md-3" } %>
           <%= f.input :guest_type, collection: Registration::GuestType, input_html: { data: { showhide_target: "input", action: "change->showhide#toggle" } } %>
-          <%#= f.input :attendance, collection: Registration::Attendance, wrapper_html: { class: "col-md-4" } %>
-          <%#= f.input :size, collection: Registration::Size, label: "T-shirt Size", wrapper_html: { class: "col-md-3" } %>
-          <%#= f.input :dietary, collection: Registration::Dietary, label: "Dietary Preference", wrapper_html: { class: "col-md-3" } %>
+          <% #= f.input :attendance, collection: Registration::Attendance, wrapper_html: { class: "col-md-4" } %>
+          <% #= f.input :size, collection: Registration::Size, label: "T-shirt Size", wrapper_html: { class: "col-md-3" } %>
+          <% #= f.input :dietary, collection: Registration::Dietary, label: "Dietary Preference", wrapper_html: { class: "col-md-3" } %>
         </div>
         <div class="col-md-6">
           <div data-showhide-target="output">
@@ -47,14 +47,14 @@
         </div>
       </div>
       <div class="alert alert-warning mt-3" role="alert">
-        <i class="bi bi-file-earmark-arrow-up"></i> Official delegate are required to upload their scanned image of their Board resolution. <br>
-        <i class="bi bi-exclamation-square"></i> Only the principal delegate are allowed to vote.
+        <i class="bi bi-file-earmark-arrow-up"></i> Principal delegates are required to upload a scanned copy of their Board Resolution.  <br>
+        <i class="bi bi-exclamation-square"></i> Only the Principal Delegate is authorized to vote.
       </div>
      
     </div>
       </div>
       <div class="form-actions text-end">
-        <%#= link_to "Back", root_path, class: "btn btn-secondary" %>
+        <% #= link_to "Back", root_path, class: "btn btn-secondary" %>
         <%= link_to "Back", event_page_path(@event_hub), class: "btn btn-secondary" %>
         <%= f.button :submit, class: "btn btn-success", value: "Register" %>
       </div>
