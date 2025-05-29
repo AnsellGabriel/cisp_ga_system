@@ -26,11 +26,14 @@
         <div data-controller="showhide" data-showhide-show-if-value="Accompanying Delegate">
       <div class="row">
         <div class="col-md-6">
+          <div class="row">
+          
           <% #= f.input :coop_tin, label: "Cooperative TIN", wrapper_html: { class: "col-md-3" } %>
+          <%= f.input :attendance, collection: Registration::Attendance %>
           <%= f.input :guest_type, collection: Registration::GuestType, input_html: { data: { showhide_target: "input", action: "change->showhide#toggle" } } %>
-          <% #= f.input :attendance, collection: Registration::Attendance, wrapper_html: { class: "col-md-4" } %>
           <% #= f.input :size, collection: Registration::Size, label: "T-shirt Size", wrapper_html: { class: "col-md-3" } %>
           <% #= f.input :dietary, collection: Registration::Dietary, label: "Dietary Preference", wrapper_html: { class: "col-md-3" } %>
+          </div>
         </div>
         <div class="col-md-6">
           <div data-showhide-target="output">
