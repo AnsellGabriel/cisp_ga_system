@@ -1,16 +1,16 @@
 <div id="<%= dom_id event_hub %>">
   <div class="card mb-5">
     <div class="card-header">
-      <strong><%= event_hub.coop_event %></strong>
+      <strong><%= @coop_event.name %></strong>
       <br>
-      <small><%= event_hub.coop_event.description %></small>
+      <small><%= @coop_event.description %></small>
     </div>
     <div class="card-body">
       <div class="mb-3">
         <h4><%= event_hub.cooperative %></h4>
         <small class="text-primary">Please update your cooperative details <strong>
-            <%= link_to '<i class="bi bi-pencil-square"></i> Update Details'.html_safe, edit_cooperative_path(event_hub.cooperative_id),   data: { turbo_frame: "remote_modal" } %> </strong> </small>
-        <%# <%= link_to '<i class="bi bi-pencil-square"></i> Edit'.html_safe, edit_cooperative_path(event_hub.cooperative_id), {:style=>"color:#fff;"}, class: 'btn btn-outline-primary',   data: { turbo_frame: "remote_modal" } %>
+            <%= link_to '<i class="bi bi-pencil-square"></i> Update Details'.html_safe, edit_cooperative_path(event_hub.cooperative_id), data: { turbo_frame: "remote_modal" } %> </strong> </small>
+        <% # <%= link_to '<i class="bi bi-pencil-square"></i> Edit'.html_safe, edit_cooperative_path(event_hub.cooperative_id), {:style=>"color:#fff;"}, class: 'btn btn-outline-primary',   data: { turbo_frame: "remote_modal" } %>
       </div>
       <div class="row">
         <div class="col-md-6">
@@ -22,7 +22,7 @@
               <%= link_to '<i class="bi bi-plus-square"></i> Add Guest'.html_safe, new_registration_path(v: event_hub, q: ""), class: "btn btn-primary btn-sm mb-3", data: { turbo_frame: "remote_modal" } %>
             </div>
           </div>
-          <%= render 'registrations/show_registration' %>
+          <%= render "registrations/show_registration" %>
         </div>
           
       </div>

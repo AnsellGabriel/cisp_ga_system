@@ -4,7 +4,8 @@
   </div>
   <div class="card-body">
     <% #= render 'registrations/registration_guidelines' %>
-    To assist you on your registration, please click this video <%= link_to "How to register", how_to_vote_registrations_path, class: "btn btn-warning btn-sm", data: { turbo_frame: "remote_modal" } %>
+    <% # To assist you on your registration, please click this video %>
+    <% #= link_to "How to register", how_to_vote_registrations_path, class: "btn btn-warning btn-sm", data: { turbo_frame: "remote_modal" } %>
     <hr>
 <%= simple_form_for @registration, url: registrations_path(q: params[:q]), method: :post do |f| %>
   <%= f.error_notification %>
