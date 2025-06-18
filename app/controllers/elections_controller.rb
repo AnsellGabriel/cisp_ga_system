@@ -34,9 +34,9 @@ class ElectionsController < ApplicationController
       # raise "errors"
       if @election.save
         if r == "r"
-          format.html { redirect_to new_referendum_response_path(e: @event_hub, p: 1), notice: "You may now vote" }
+          format.html { redirect_to new_referendum_response_path(e: @event_hub, p: @coop_event.elect_positions.first.id), notice: "You may now vote" }
         else
-          format.html { redirect_to vote_votes_path(e: @event_hub, p: 1), notice: "Election was successfully created." }
+          format.html { redirect_to vote_votes_path(e: @event_hub, p: @coop_event.elect_positions.first.id), notice: "Election was successfully created." }
         end
         format.json { render :show, status: :created, location: @election }
       else
