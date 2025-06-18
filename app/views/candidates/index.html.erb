@@ -34,7 +34,7 @@
           <%= link_to '<i class="bi bi-file-earmark-text"></i> board reso.'.html_safe, rails_blob_url(candidate.board_reso), target: :_blank, class: "btn btn-outline-secondary btn-sm" if candidate.board_reso.attached? %> </td>
           <td>
             <%= link_to "View", candidate, class: "btn btn-secondary btn-sm" %>
-            <%= link_to "Edit", edit_candidate_path(candidate), class: "btn btn-secondary btn-sm" %>
+            <%= link_to "Edit", edit_candidate_path(candidate), class: "btn btn-secondary btn-sm", data: { turbo_frame: "remote_modal" } %>
             <%= link_to "Delete", candidate, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
           </td>
 
